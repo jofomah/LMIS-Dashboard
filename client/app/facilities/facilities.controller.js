@@ -8,7 +8,7 @@ angular.module('lmisApp')
     vm.reporting = facilityReports.reportingConstants;
     vm.hideChart = false;
     vm.tableColumns = 8;
-    vm.isSaving = {};
+    vm.isSaving = {};  
     vm.currentStatus = {};
 
     vm.showToggleButton = function() {
