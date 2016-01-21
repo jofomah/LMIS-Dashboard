@@ -5,6 +5,7 @@ angular.module('lmisApp')
     var URL = '/api/waste_count';
     var wasteReasons = [
       'VVM Stage 3',
+      'VVM Stage 4',
       'Broken Vial',
       'Label Missing',
       'Unopened Expiry',
