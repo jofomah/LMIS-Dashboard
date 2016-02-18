@@ -124,7 +124,6 @@ angular.module('lmisApp')
             for(var i in stockCountSummaries){
               if(stockCountSummaries[i].reportingStatus === reports.NON_REPORTING){
                 $scope.stockReports.noReports.push(stockCountSummaries[i]);
-                console.log(stockCountSummaries[i]);
               }else if (stockCountSummaries[i].reportingStatus === reports.DELAYING_REPORT){
                 $scope.stockReports.lateReports.push(stockCountSummaries[i]);
               }
