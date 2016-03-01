@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('NavbarCtrl', function ($scope, $location, $route, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, $route, Auth, $filter, $window) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -20,4 +20,10 @@ angular.module('lmisApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.lastUpdated = $filter('date')(new Date(), 'MMM d, y h:mm a');
+
+    $scope.reloadPage = function () {
+      $window.location.reload()
+    }
   });
