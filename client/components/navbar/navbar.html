@@ -47,7 +47,7 @@
 
 <div class="row" ng-controller="NavbarCtrl">
   <div class="col-xs-12 clearfix">
-    <div class="pull-right page-status">
+    <div class="pull-right page-status" ng-show="isLoggedIn()">
       <strong>Last Updated: </strong> <span>{{ lastUpdated }}</span>
       <a title="Reload Page" class="btn btn-primary refresh-btn" ng-click="reloadPage()">
         <i class="fa fa-refresh"></i>
