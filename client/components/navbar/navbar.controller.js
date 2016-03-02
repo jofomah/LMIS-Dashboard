@@ -21,7 +21,13 @@ angular.module('lmisApp')
       return route === $location.path();
     };
 
-    $scope.lastUpdated = $filter('date')(new Date(), 'MMM d, y h:mm a');
+    function updateTime () {
+      $scope.lastUpdated = $filter('date')(new Date(), 'MMM d, y h:mm a');
+    }
+
+    updateTime();
+
+    $scope.$on('$routeChangeSuccess', updateTime);
 
     $scope.reloadPage = function () {
       $window.location.reload()
