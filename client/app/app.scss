@@ -127,6 +127,14 @@ tr.grey-bg{
   height: auto;
 }
 
+.page-status {
+  padding-right: 20px;
+  font-size: 18px;
+}
+.refresh-btn {
+  margin-left: 10px;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'modal/modal.scss';
