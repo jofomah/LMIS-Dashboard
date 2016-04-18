@@ -117,7 +117,7 @@ angular.module('lmisApp')
         $scope.stockReports.noReports = [];
         $scope.stockReports.lateReports = [];
 
-        return facilityReports.load($scope.from.date, $scope.to.date)
+        return facilityReports.load($scope.from.date, $scope.to.date, true)
           .then(function (response){
             var stockCountSummaries = response.summaries;
             $scope.stockReports.total = stockCountSummaries.length;
