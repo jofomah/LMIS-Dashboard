@@ -102,17 +102,7 @@ angular.module('lmisApp')
         ON_TIME_REPORT: ON_TIME_REPORT,
         DELAYING_REPORT: DELAYING_REPORT
       },
-      load: function() {
-        var startDate, endDate, hasWorkingPhone;
-        if(arguments.length > 0){
-          startDate = arguments[0].date || arguments[0]; // to handle both objects containing dates and date objects
-          if(arguments[1]){
-            endDate = arguments[1].date || arguments[1];
-          }
-          if(arguments[2]){
-            hasWorkingPhone = arguments[2];
-          }
-        }
+      load: function(startDate, endDate, hasWorkingPhone) {
         var facilityPromises = {
           summaries: stockCount.stockCountSummaryByFacility(startDate, endDate, hasWorkingPhone)
         };

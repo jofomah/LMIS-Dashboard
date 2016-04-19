@@ -50,16 +50,9 @@ angular.module('lmisApp')
       return rows;
     }
 
-    function getStockCountWithFacilitiesAndAppConfig() {
-      var startDate, endDate, hasWorkingPhone, apiUrl = [URL];
-      if(arguments.length > 0 && arguments[0]){
-        startDate = arguments[0].date || arguments[0]; // to handle both objects containing dates and date objects
-        if(arguments[1]){
-          endDate = arguments[1].date || arguments[1];
-        }
-        if(arguments[2]){
-          hasWorkingPhone = arguments[2];
-        }
+    function getStockCountWithFacilitiesAndAppConfig(startDate, endDate, hasWorkingPhone) {
+      var apiUrl = [URL];
+      if(startDate && endDate){
         apiUrl.push('/in_range?start='+startDate+'&end='+endDate)
       }
       var configPromise = angular.isDefined(hasWorkingPhone) ? AppConfig.byPhoneStatus(hasWorkingPhone) : AppConfig.all()
