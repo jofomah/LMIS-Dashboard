@@ -50,20 +50,16 @@ angular.module('lmisApp')
       return rows;
     }
 
-    function getStockCountWithFacilitiesAndAppConfig() {
-      var startDate, endDate, apiUrl = [URL];
-      if(arguments.length > 0 && arguments[0]){
-        startDate = arguments[0].date || arguments[0]; // to handle both objects containing dates and date objects
-        if(arguments[1]){
-          endDate = arguments[1].date || arguments[1];
-        }
+    function getStockCountWithFacilitiesAndAppConfig(startDate, endDate, hasWorkingPhone) {
+      var apiUrl = [URL];
+      if(startDate && endDate){
         apiUrl.push('/in_range?start='+startDate+'&end='+endDate)
       }
-      var hasWorkingPhone = true;
+      var configPromise = angular.isDefined(hasWorkingPhone) ? AppConfig.byPhoneStatus(hasWorkingPhone) : AppConfig.all()
       var promises = [
         Facility.all(),
         utility.request(apiUrl.join('')),
-        AppConfig.byPhoneStatus(hasWorkingPhone)
+        configPromise
       ];
 
       return $q.all(promises);
@@ -152,7 +148,7 @@ angular.module('lmisApp')
     function stockCountSummaryByFacility() {
 
       var deferred = $q.defer();
-      var startDate, endDate;
+      var startDate, endDate, hasWorkingPhone;
       if(arguments.length > 0){
         if (arguments[0]) {
           startDate = arguments[0].date || arguments[0]; // to handle both objects containing dates and date objects
@@ -160,8 +156,11 @@ angular.module('lmisApp')
         if(arguments[1]){
           endDate = arguments[1].date || arguments[1];
         }
+        if(arguments[2]){
+          hasWorkingPhone = arguments[2];
+        }
       }
-      getStockCountWithFacilitiesAndAppConfig(startDate, endDate)
+      getStockCountWithFacilitiesAndAppConfig(startDate, endDate, hasWorkingPhone)
         .then(function(resolved) {
           var groupedStockCount = groupByFacility(resolved[1]);
           var facilities = resolved[0];
