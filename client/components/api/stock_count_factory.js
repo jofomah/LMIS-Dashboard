@@ -55,7 +55,7 @@ angular.module('lmisApp')
       if(startDate && endDate){
         apiUrl.push('/in_range?start='+startDate+'&end='+endDate)
       }
-      var configPromise = angular.isDefined(hasWorkingPhone) ? AppConfig.byPhoneStatus(hasWorkingPhone) : AppConfig.all()
+      var configPromise = angular.isDefined(hasWorkingPhone) ? AppConfig.byPhoneStatus(hasWorkingPhone) : AppConfig.all();
       var promises = [
         Facility.all(),
         utility.request(apiUrl.join('')),
