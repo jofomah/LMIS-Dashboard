@@ -1,0 +1,266 @@
+﻿<link href="../app.scss" rel="stylesheet" />
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2 class="page-header">Supply Planning</h2>
+      <div>
+          <div class="well hidden-print">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="placeType">Place Type:</label>
+          <select id="placeType" class="form-control" ng-model="place.type" ng-change="place.search = ''">
+            <option value=""></option>
+            <option  value="state">State</option>
+            <option  value="zone">Zone</option>
+            <option  value="lga">LGA</option>
+            <option  value="ward">Ward</option>
+            <option value="facility">Facility</option>
+          </select>
+        </div>
+        &nbsp;
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control filter" placeholder="Place Name"
+                 ng-model="place.search" ng-disabled="!place.type.length"
+                 typeahead="place for place in getPlaces($viewValue)" typeahead-loading="places.loading">
+          <span ng-show="places.loading" class="glyphicon glyphicon-refresh form-control-feedback"></span>
+        </div>
+        &nbsp;
+        
+        <button type="button" class="btn btn-primary" ng-click="updateTotals()">
+          Apply
+        </button>
+      </form>
+    </div>
+          <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <button ng-disabled="!export.length" class="btn btn-primary btn-xs pull-right hidden-print" type="button"
+                  ng-csv="export" csv-header="csvHeader" filename="{{getFileName('supply-planning')}}">
+            Export
+          </button>
+            
+                <div class="key-row pull-right ">
+                <div class="radius-circle icon-div block-orange"></div>
+                <label>Warning</label>&nbsp;&nbsp;&nbsp;
+                    <div class="radius-circle icon-div block-blood"></div>
+                <label>Critical</label>
+                </div>
+                
+          <h3 class="panel-title">Urgent Stock Allocation</h3>
+        </div>
+        <div class="table-scroller">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+            <tr>
+              <th style="width: 3%">#</th>
+              <th style="width: 10%">State</th>
+              <th  style="width: 10%">Zone</th>
+              <th  style="width: 10%">LGA</th>
+              <th  style="width: 10%">Ward</th>
+              <th>Facility</th>
+              <th style="width: 8%">Product Type</th>
+              <th style="width: 5%">Max</th>
+                <th style="width: 5%">Min</th>
+                <th style="width: 5%">Buffer</th>
+                <th style="width: 5%">Reorder</th>
+                <th style="width: 5%">Current</th>
+                <th style="width: 5%">P/Allocation</th>
+                <th style="width: 5%"></th>
+            </tr>
+            </thead>
+            <tbody
+              ng-repeat="row in contents"
+              ng-init="rowIndex = $index">
+            <tr ng-repeat="item in row.Facility.ProductType">
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.State}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Zone}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.LGA}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Ward}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Name}}
+              </td>
+              <td>
+                  {{item.Name}}
+              </td>
+              <td class="text-center">
+                  {{item.Max}}
+              </td>
+              <td class="text-center">{{item.Min}}</td>
+              <td class="text-center">{{item.Buffer}}</td>
+                <td class="text-center">{{item.Reorder}}</td>
+                <td class="text-center" ng-class="{'block-blood' : item.Current<item.Min,'block-orange': item.Current<=item.Reorder}">{{item.Current}}</td>
+                <td class="text-center">{{(item.Max + item.Buffer) - item.Current}}</td>
+                <td class="text-center" ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}"><a href="#" ng-click="showAllocationForm()">Allocate</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer text-right">
+            <input type="button" class =" btn btn-primary" value="More.." />
+        </div>
+      </div>
+
+          <div class ="row">
+              <div class="col-xs-6">
+                  <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <button ng-disabled="!export.length" class="btn btn-primary btn-xs pull-right hidden-print" type="button"
+                  ng-csv="export" csv-header="csvHeader" filename="{{getFileName('vendor-assignment')}}">
+            Export
+          </button>
+             <div class="key-row pull-right ">
+                <div class="radius-circle icon-div block-blood"></div>
+                <label>Pending</label>&nbsp;&nbsp;&nbsp;
+                    <div class="radius-circle icon-div block-green"></div>
+                <label>Delivered</label>
+                </div>
+
+          <h3 class="panel-title">Vendor Assignments</h3>
+        </div>
+        <div class="table-scroller">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+            <tr>
+              <th style="width: 3%">#</th>
+              <th>Facility</th>
+              <th  style="width: 20%">Vendor</th>
+              <th  style="width: 10%">Date</th>
+              <th  style="width: 10%">Products</th>
+              <th style="width: 8%">Quantity</th>
+              <th style="width: 5%">Status</th>
+              <th style="width: 5%"></th>
+            </tr>
+            </thead>
+            <tbody
+              ng-repeat="row in assignmentContents"
+              ng-init="rowIndex = $index">
+            <tr ng-repeat="item in row.Facility.ProductType">
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Name + ' → ' + row.Facility.Ward + ' → ' + row.Facility.LGA + ' → ' + row.Facility.Zone + ' → ' + row.Facility.State}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Vendor}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Date}}
+              </td>
+              <td>
+                {{item.Name}}
+              </td>
+              <td>
+                {{item.Quantity}}
+              </td>
+              <td ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+               {{item.Status}}   
+                  <div class="radius-circle indicator center-block" ng-class="{'block-blood' : row.Facility.Status==='Pending','block-green': row.Facility.Status==='Delivered'}">
+
+                  </div>
+              </td>
+              <td class="text-center" ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                  <a href="#">Manage</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer text-right">
+            <input type="button" class =" btn btn-primary" value="More.." />
+        </div>
+      </div>
+              </div>
+              <div class="col-xs-6">
+                  <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <button ng-disabled="!export.length" class="btn btn-primary btn-xs pull-right hidden-print" type="button"
+                  ng-csv="export" csv-header="csvHeader" filename="{{getFileName('vendor-assignment')}}">
+            Export
+          </button>
+          <h3 class="panel-title">Top Vendors</h3>
+        </div>
+        <div class="table-scroller">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+            <tr>
+              <th style="width: 3%">#</th>
+              <th>Vendor</th>
+              <th  style="width: 20%">Address</th>
+              <th  style="width: 15%">Contact Person</th>
+              <th  style="width: 15%">Phone</th>
+              <th style="width: 8%">Rating</th>
+              
+                <th style="width: 5%"></th>
+            </tr>
+            </thead>
+            <tbody
+              ng-repeat="row in vendorContents"
+              ng-init="rowIndex = $index">
+            <tr ng-repeat="item in row">
+              <td >
+                
+              </td>
+              <td>
+                {{item.Name}}
+              </td>
+              <td>
+                {{item.Address}}
+              </td>
+              <td>
+                {{item.ContactPerson}}
+              </td>
+              <td>
+                {{item.Phone}}
+              </td>
+              <td>
+                  <div class ="ratings" ng-class="{'ratings-0' : item.Rating==0,'ratings-1': item.Rating==1, 'ratings-2':item.Rating==2, 'ratings-3':item.Rating==3, 'ratings-4': item.Rating==4, 'ratings-5':item.Rating==5}"></div>
+                
+              </td>
+              
+                <td class="text-center"><a href="#" data-toggle="modal" data-target="#myModal" >Manage</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer text-right">
+            <input type="button" class =" btn btn-primary" value="More.." />
+        </div>
+      </div>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+</div>
+
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

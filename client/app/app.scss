@@ -134,6 +134,104 @@ tr.grey-bg{
 .refresh-btn {
   margin-left: 10px;
 }
+.menu-items ul li:hover {
+    background:#c1d5d9;
+}
+.menu-items ul li:hover > div{
+    display: block;
+}
+.dropdown-menu{
+    position:absolute;
+    padding:20px;
+    background:#c1d5d9;
+}
+.dropdown-menu ul li{
+    list-style:none;
+}
+.dropdown-menu ul{
+    padding:0;
+}
+.dropdown-menu ul li a{
+    white-space:nowrap;
+    color:#777;
+    margin-bottom:5px;
+    display:block;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    text-decoration:underline;
+    background:rgba(0,0,0,0);
+}
+
+.toggle, [id^=drop] {
+ display: none;
+}
+
+.block-green{
+    background-color:#44904a !important;
+    color:white;
+}
+
+.block-orange{
+    background-color:rgb(248, 231, 28) !important;
+}
+
+.block-blood{
+    background-color:#d70000 !important;
+    color:white;
+}
+.radius-circle {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.icon-div{
+    width:15px;
+    height:15px;
+    display:inline-block;
+    margin:0 5px;
+}
+.key{
+    padding:5px 10px;
+    
+    background-color :#dddddd;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    display:table;
+}
+.key-row{
+    display:table-row;
+    margin:0 20px;
+}
+
+.key-cell{
+    display:table-cell;
+}
+.indicator{
+    width:30px;
+    height:30px;
+}
+.ratings{
+    background-position: center center; width: 100px; height: 30px; background-repeat: no-repeat
+}
+.ratings-0{
+     background-image: url('../assets/images/icon-rating-0.png');
+}
+.ratings-1{
+     background-image: url('../assets/images/icon-rating-1.png');
+}
+.ratings-2{
+     background-image: url('../assets/images/icon-rating-2.png');
+}
+.ratings-3{
+     background-image: url('../assets/images/icon-rating-3.png');
+}
+.ratings-4{
+     background-image: url('../assets/images/icon-rating-4.png');
+}
+.ratings-5{
+     background-image: url('../assets/images/icon-rating-5.png');
+}
 
 // Component styles are injected through grunt
 // injector

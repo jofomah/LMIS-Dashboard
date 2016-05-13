@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<!-- 
+  Visual Studio global web project settings.
+-->
+<VisualWebDeveloper>
+
+  <Globals>
+    <UserProperties client_4app_4supply_3planning_4dummy_1json__JSONSchema="http://json.schemastore.org/global"/>
+  </Globals>
+</VisualWebDeveloper>

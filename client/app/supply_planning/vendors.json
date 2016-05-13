@@ -1,0 +1,50 @@
+﻿[
+    {
+
+        "Vendor": {
+            "Name": "Sun Rise Enterprises",
+            "Address": "No. 5, Oluyemi Bankole Crescent, Kaji, Kano",
+            "ContactPerson": "Mr. Aminu Bashir",
+            "Phone": "07084635462",
+            "Rating": 4
+
+        }
+    },
+    {
+
+        "Vendor": {
+            "Name": "Abdul and Sons Limited",
+            "Address": "No. 3, Yakubu Haruna Street, Suleja, Niger",
+            "ContactPerson": "Mr. Solomon Dutse",
+            "Phone": "09024635462",
+            "Rating": 3
+
+        }
+    },
+    {
+
+        "Vendor": {
+            "Name": "The Mega Movement Shop",
+            "Address": "56, Ademola Adetokunbo Street, Abuja",
+            "ContactPerson": "Mrs. Hauwa Mohammed",
+            "Phone": "07064730462",
+            "Rating": 4
+
+        }
+    },
+    {
+
+        "Vendor": {
+            "Name": "Test Vendor 209",
+            "Address": "No. 5, Street Felix Nu, Kaji, Sokoto",
+            "ContactPerson": "Mr. John Gin",
+            "Phone": "08074635462",
+            "Rating": 2
+
+        }
+    }
+    
+
+
+]
+
