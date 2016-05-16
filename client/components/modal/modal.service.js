@@ -22,9 +22,31 @@ angular.module('lmisApp')
       });
     }
 
+    function defaultController ($scope, $modalInstance) {
+      var paramObject = angular.isDefined($scope.paramObject) ? $scope.paramObject : {};
+      if((Object.keys(paramObject)).length){
+        $scope.modalHeader = angular.isDefined(paramObject.modalHeader) ? paramObject.modalHeader : 'Notification!';
+        $scope.modalBodyText = angular.isDefined(paramObject.modalBodyText) ? paramObject.modalBodyText : '';
+      }
+      $scope.closeDialog = $modalInstance.dismiss;
+      $scope.confirm = $modalInstance.close;
+    }
+
+    function dialog (paramObject) {
+      var modalScope = $rootScope.$new();
+      paramObject = paramObject || {};
+      modalScope.paramObject = paramObject;
+      return $modal.open({
+        templateUrl: paramObject.templateUrl || 'components/modal/dialog.html',
+        controller: paramObject.controller || defaultController,
+        scope: modalScope
+      }).result;
+    }
+
     // Public API here
     return {
-
+      /* Modal dialog with lots of flexibility */
+      dialog: dialog,
       /* Confirmation modals */
       confirm: {
 
@@ -43,8 +65,8 @@ angular.module('lmisApp')
            */
           return function() {
             var args = Array.prototype.slice.call(arguments),
-                name = args.shift(),
-                deleteModal;
+              name = args.shift(),
+              deleteModal;
 
             deleteModal = openModal({
               modal: {
