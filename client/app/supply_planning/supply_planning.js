@@ -10,8 +10,7 @@ angular.module('lmisApp')
             
         });
   })
-.controller("SupplyPlanningCtrl", function ($scope, $http) {
-    debugger
+.controller("SupplyPlanningCtrl", function ($scope, $http, Modal) {
     $scope.contents = null;
     $scope.assignmentContents = null;
     $http.get('app/supply_planning/assignment.json')
@@ -20,19 +19,38 @@ angular.module('lmisApp')
         });
     $http.get('app/supply_planning/dummy.json')
         .success(function (data) {
-            $scope.contents = data;
+            
+            $scope.contents = data.Facility;
+            
         });
 
     $http.get('app/supply_planning/vendors.json')
         .success(function (data) {
             $scope.vendorContents = data;
         });
+
+    function getSelectedItem(value) {
+        if (value.Id === this.id)
+            return value;
+    }
     
-    $scope.showAllocationForm = function () {
-        $scope.State = cRow.State;
-        $modal.open({
+    $scope.showAllocationForm = function (id) {
+      
+        var obj = { id: id };
+        var params = {
             templateUrl: 'app/supply_planning/stock_allocations/stock-allocation-form.html',
-            controller: 'StockAllocationFormCtrl'
+            controller: 'StockAllocationFormCtrl',
+            size: 'lg',
+            selectedItem: $scope.contents.filter(getSelectedItem,obj)
+        }
+        Modal.dialog(params)
+        .then({
+
+        })
+        .catch({
+
         });
+        
     };
+    
 });

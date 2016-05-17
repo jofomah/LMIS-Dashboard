@@ -70,24 +70,24 @@
             <tbody
               ng-repeat="row in contents"
               ng-init="rowIndex = $index">
-            <tr ng-repeat="item in row.Facility.ProductType">
-              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                
+            <tr ng-repeat="item in row.ProductType">
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.Id}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                {{row.Facility.State}}
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.State}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                {{row.Facility.Zone}}
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.Zone}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                {{row.Facility.LGA}}
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.LGA}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                {{row.Facility.Ward}}
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.Ward}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                {{row.Facility.Name}}
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.Name}}
               </td>
               <td>
                   {{item.Name}}
@@ -100,7 +100,7 @@
                 <td class="text-center">{{item.Reorder}}</td>
                 <td class="text-center" ng-class="{'block-blood' : item.Current<item.Min,'block-orange': item.Current<=item.Reorder}">{{item.Current}}</td>
                 <td class="text-center">{{(item.Max + item.Buffer) - item.Current}}</td>
-                <td class="text-center" ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}"><a href="#" ng-click="showAllocationForm()">Allocate</a></td>
+                <td class="text-center" ng-if="$index == 0" rowspan="{{row.ProductType.length}}"><a href="#" ng-click="showAllocationForm(row.Id)">Allocate</a></td>
             </tr>
             </tbody>
           </table>
@@ -121,8 +121,10 @@
              <div class="key-row pull-right ">
                 <div class="radius-circle icon-div block-blood"></div>
                 <label>Pending</label>&nbsp;&nbsp;&nbsp;
-                    <div class="radius-circle icon-div block-green"></div>
-                <label>Delivered</label>
+                    <div class="radius-circle icon-div block-orange"></div>
+                <label>Enroute</label>&nbsp;&nbsp;&nbsp;
+                 <div class="radius-circle icon-div block-green"></div>
+                 <label>Delivered</label>
                 </div>
 
           <h3 class="panel-title">Vendor Assignments</h3>
@@ -146,7 +148,7 @@
               ng-init="rowIndex = $index">
             <tr ng-repeat="item in row.Facility.ProductType">
               <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                
+                {{row.Facility.Id}}
               </td>
               <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
                 {{row.Facility.Name + ' → ' + row.Facility.Ward + ' → ' + row.Facility.LGA + ' → ' + row.Facility.Zone + ' → ' + row.Facility.State}}
@@ -165,12 +167,14 @@
               </td>
               <td ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
                {{item.Status}}   
-                  <div class="radius-circle indicator center-block" ng-class="{'block-blood' : row.Facility.Status==='Pending','block-green': row.Facility.Status==='Delivered'}">
+                  <div class="radius-circle indicator center-block" ng-class="{'block-blood' : row.Facility.Status==='Pending','block-green': row.Facility.Status==='Delivered', 'block-orange': row.Facility.Status==='Enroute'}">
 
                   </div>
               </td>
-              <td class="text-center" ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
-                  <a href="#">Manage</a>
+              <td ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                  <a href="#" ng-click="showReAssignmentForm(row.Facility.Id)">Reassign</a>
+                  <br /><br />
+                  <a href="#" ng-click="showConfirmation(row.Facility.Id})">Cancel</a>
               </td>
             </tr>
             </tbody>
@@ -209,7 +213,7 @@
               ng-init="rowIndex = $index">
             <tr ng-repeat="item in row">
               <td >
-                
+                {{item.Id}}
               </td>
               <td>
                 {{item.Name}}
@@ -228,13 +232,13 @@
                 
               </td>
               
-                <td class="text-center"><a href="#" data-toggle="modal" data-target="#myModal" >Manage</a></td>
+                <td class="text-center"><a href="#" ng-click="showVendorForm('{{item.Id}}')" >Manage</a></td>
             </tr>
             </tbody>
           </table>
         </div>
         <div class="panel-footer text-right">
-            <input type="button" class =" btn btn-primary" value="More.." />
+            <input type="button" class ="btn btn-primary" value="More.." />
         </div>
       </div>
               </div>
@@ -243,24 +247,3 @@
       
     </div>
 </div>
-
- <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>

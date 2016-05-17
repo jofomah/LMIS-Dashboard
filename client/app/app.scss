@@ -172,7 +172,7 @@ tr.grey-bg{
 }
 
 .block-orange{
-    background-color:rgb(248, 231, 28) !important;
+    background-color:rgb(239, 184, 4) !important;
 }
 
 .block-blood{
@@ -231,6 +231,12 @@ tr.grey-bg{
 }
 .ratings-5{
      background-image: url('../assets/images/icon-rating-5.png');
+}
+.box-20{
+    padding:20px;
+}
+.margin-bottom-20{
+    margin-bottom:20px;
 }
 
 // Component styles are injected through grunt
