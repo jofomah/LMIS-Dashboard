@@ -22,9 +22,12 @@ dist="dist"
 if [[ "$TRAVIS_TAG" ]]; then
   deploy "release"
   host="lomis.ehealth.org.ng"
-else
+fi
+if [[ "$TRAVIS_BRANCH" == "develop" ]]; then
   deploy "snapshot"
   host="dev.lomis.ehealth.org.ng"
+else
+  exit 1
 fi
 
 decode_ssh_key "$host"

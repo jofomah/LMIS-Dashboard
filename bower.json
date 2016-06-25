@@ -27,7 +27,7 @@
     "ng-csv": "~0.2.4",
     "angular-ui-select": "~0.8.3",
     "leaflet": "~0.7.3",
-    "Leaflet.MakiMarkers": "~1.0.1",
+    "Leaflet.MakiMarkers": "~2.0.0",
     "leaflet-polylinedecorator": "~0.7.2",
     "angular-ui-grid": "~3.0.1"
   },
