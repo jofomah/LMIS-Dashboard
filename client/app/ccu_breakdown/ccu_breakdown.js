@@ -24,7 +24,7 @@ angular.module('lmisApp')
                 .then(function(rows) {
                   return rows
                     .filter(function(row) {
-                      return !!row.facility;
+                      return !!row.facility && row.ccuProfile;
                     })
                     .map(function(row) {
                       var latestCCUStatus = row.ccuStatus ? cceStatus[row.ccuStatus.reverse()[0].status] : 'Working';
