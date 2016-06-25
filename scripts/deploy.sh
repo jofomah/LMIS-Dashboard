@@ -15,6 +15,7 @@ decode_ssh_key() {
 # Only deploy on non-forks
 [[ "$TRAVIS_REPO_SLUG" == "eHealthAfrica/LMIS-Dashboard" ]] || exit 1
 [[ "$TRAVIS_PULL_REQUEST" == "false" ]] || exit 1
+[[ "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "develop" ]] || exit 1
 
 dist="dist"
 [[ -d "$dist" ]] || error "$dist: no such directory"
@@ -26,8 +27,6 @@ fi
 if [[ "$TRAVIS_BRANCH" == "develop" ]]; then
   deploy "snapshot"
   host="dev.lomis.ehealth.org.ng"
-else
-  exit 1
 fi
 
 decode_ssh_key "$host"
