@@ -1,7 +1,9 @@
 <nav class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">LMIS Dashboard</a>
+      <a class="navbar-brand" href="/"><div class="logo-div">
+
+                                       </div></a>
     </div>
       <div class="menu-items">
     <ul ng-show="isLoggedIn()" class="nav navbar-nav">
@@ -30,18 +32,18 @@
       <li ng-class="{active: isActive('/ledger')}">
         <a href="/ledger">Ledger</a>
       </li>
-        <li ng-class="{active: isActive('/Supply Planning')}">
+        <li ng-class="{active: isActive('/supply-planning')}">
         <a href="/supply-planning">Supply Planning</a>
              <div id="dropdown-supply-planning" class="toogle dropdown-menu">
                  <ul>
-                     <li ng-class="{active: isActive('/Vendor Management')}">
-                         <a href="/vendor-managemnet">Vendor Management</a>
+                     <li ng-class="{active: isActive('/vendor-management')}">
+                         <a href="/vendor-management">Vendor Management</a>
                      </li>
-                     <li ng-class="{active: isActive('/Stock Allocations')}">
-                         <a href="/stock-allocations">Stock Allocations</a>
+                     <li ng-class="{active: isActive('/stock-allocation')}">
+                         <a href="/stock-allocation">Stock Allocation</a>
                      </li>
-                     <li ng-class="{active: isActive('/Vendor Assignments')}">
-                         <a href="/vendor-managemnet">Vendor Assigments</a>
+                     <li ng-class="{active: isActive('/vendor-management')}">
+                         <a href="/vendor-management">Vendor Assigments</a>
                      </li>
                  </ul>
              </div>

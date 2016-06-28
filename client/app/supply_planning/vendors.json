@@ -6,7 +6,22 @@
       "ContactPerson": "Mr. Aminu Bashir",
       "Phone": "07084635462",
       "Rating": 4,
-      "Id": "01"
+      "Id": "01",
+      "Category": "Surgical Supplies",
+      "Deliveries": [
+        {
+          "Key": "Delivered",
+          "Value": 30
+        },
+        {
+          "Key": "Pending",
+          "Value": 5
+        },
+        {
+          "Key": "Cancelled",
+          "Value": 4
+        }
+      ]
 
     },
     {
@@ -15,7 +30,22 @@
       "ContactPerson": "Mr. Solomon Dutse",
       "Phone": "09024635462",
       "Rating": 3,
-      "Id": "02"
+      "Id": "02",
+      "Category": "Vaccines",
+      "Deliveries": [
+        {
+          "Key": "Delivered",
+          "Value": 50
+        },
+        {
+          "Key": "Pending",
+          "Value": 2
+        },
+        {
+          "Key": "Cancelled",
+          "Value": 1
+        }
+      ]
 
 
     },
@@ -25,7 +55,22 @@
       "ContactPerson": "Mrs. Hauwa Mohammed",
       "Phone": "07064730462",
       "Rating": 4,
-      "Id": "03"
+      "Id": "03",
+      "Category": "Vaccines",
+      "Deliveries": [
+        {
+          "Key": "Delivered",
+          "Value": 25
+        },
+        {
+          "Key": "Pending",
+          "Value": 0
+        },
+        {
+          "Key": "Cancelled",
+          "Value": 0
+        }
+      ]
 
 
     },
@@ -35,7 +80,22 @@
       "ContactPerson": "Mr. John Gin",
       "Phone": "08074635462",
       "Rating": 2,
-      "Id": "04"
+      "Id": "04",
+      "Category": "Blood Testing Supplies",
+      "Deliveries": [
+        {
+          "Key": "Delivered",
+          "Value": 42
+        },
+        {
+          "Key": "Pending",
+          "Value": 3
+        },
+        {
+          "Key": "Cancelled",
+          "Value": 2
+        }
+      ]
 
 
     }

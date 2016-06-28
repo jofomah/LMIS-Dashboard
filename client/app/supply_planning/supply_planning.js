@@ -52,5 +52,29 @@ angular.module('lmisApp')
         });
         
     };
+
+    $scope.showConfirmation = function (id) {
+        var params = {
+            modalBodyText: "Are you sure you want to cancel this assignment and purchase order?",
+            modalHeader: "Confirmation",
+            size: "sm"
+        }
+        Modal.dialog(params)
+        .then({
+
+        })
+        .catch({
+
+        });
+    };
+    
+    $scope.getProductListHeader = function (ProductTypes) {
+        
+        var plist = [];
+        for (var i = 0; i < ProductTypes.length; i++) {
+            plist.push(ProductTypes[i].Name + ":" + ProductTypes[i].Current);
+        }
+        return plist.join(" | ");
+    }
     
 });

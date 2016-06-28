@@ -135,15 +135,19 @@ tr.grey-bg{
   margin-left: 10px;
 }
 .menu-items ul li:hover {
-    background:#c1d5d9;
+    background:#FFFFFF;
+    border:none;
 }
 .menu-items ul li:hover > div{
     display: block;
 }
+.menu-items ul li a:hover {
+    color:#1e679a;
+}
 .dropdown-menu{
     position:absolute;
     padding:20px;
-    background:#c1d5d9;
+    /*background:#c1d5d9;*/
 }
 .dropdown-menu ul li{
     list-style:none;
@@ -157,6 +161,9 @@ tr.grey-bg{
     margin-bottom:5px;
     display:block;
 }
+.dropdown-menu:hover ~ a{
+    color:#000;
+}
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
     text-decoration:underline;
     background:rgba(0,0,0,0);
@@ -168,16 +175,27 @@ tr.grey-bg{
 
 .block-green{
     background-color:#44904a !important;
-    color:white;
+    color:white !important;
+    border:0.5px solid #000;
 }
-
+.block-yellow{
+    background-color:rgb(253, 255, 0) !important;
+    color:black !important;
+    border:0.5px solid #000;
+}
 .block-orange{
     background-color:rgb(239, 184, 4) !important;
+    color:white !important;
+    border:0.5px solid #000;
 }
 
 .block-blood{
     background-color:#d70000 !important;
-    color:white;
+    color:white !important;
+    border:0.5px solid #000;
+}
+.block-blood >a , .block-green >a , .block-orange >a{
+    color:white !important;
 }
 .radius-circle {
     -moz-border-radius: 50%;
@@ -238,6 +256,79 @@ tr.grey-bg{
 .margin-bottom-20{
     margin-bottom:20px;
 }
+.panel-fixed-height-1{
+    overflow-y:auto;
+    height:300px;
+}
+#stock-allocation .vcenter{
+        height: 350px;
+    line-height: 350px;
+}
+.navbar-default{
+    background-color:#1e679a;
+}
+.navbar-default .navbar-nav > li > a{
+    color:white;
+}
+.navbar-nav > li > .dropdown-menu{
+    border-top:none;
+
+}
+.navbar-default .navbar-brand{
+    color:white;
+}
+.navbar-default .navbar-brand:hover{
+    color:#f1f1f1
+}
+.well{
+    background-color:#f7faff;
+}
+.panel-default > .panel-heading{
+    background-color:#4c96ca;
+    color:white;
+}
+.modal-header{
+    background-color:#4c96ca;
+    color:white;
+}
+
+
+.btn-primary{
+    background:rgba(0,0,0,0);
+    background-color:rgba(0,0,0,0);
+    border:1px solid #000;
+    color:#000;
+}
+.btn-primary[disabled]{
+    background-color:#f5f5f5;
+    border:1px solid #a0a0a0;
+    color:#a0a0a0;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+    color:white;
+    background-color:#fff;
+}
+.logo-div{
+    background-image:url('../assets/images/logo.png');
+    background-repeat:no-repeat;
+    height:50px;
+    width:165px;
+    background-position-x:center;
+    background-position-y :center;
+}
+.navbar-brand{
+    padding: 0;
+    background-color:white;
+}
+.margin-bottom-10{
+    margin-bottom:10px;
+    display:block;
+}
+.text-left-cos{
+    text-align:left !important;
+}
+
+
 
 // Component styles are injected through grunt
 // injector

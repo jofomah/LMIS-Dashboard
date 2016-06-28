@@ -1,0 +1,199 @@
+﻿{
+    "PO": [
+        {
+            "Facility": [
+                {
+                    "Name": "Facility A",
+                    "LGA": "Nassarawa",
+                    "ProductType": [
+                        {
+                            "Name": "BCG",
+                            "Current": 30,
+                            "Allocate": 70
+                        },
+
+                        {
+                            "Name": "HepB",
+                            "Current": 60,
+                            "Allocate": 140
+                        },
+
+                        {
+                            "Name": "HPV",
+                            "Current": 30,
+                            "Allocate": 70
+                        }
+                    ],
+                    "State": "Kano",
+                    "Ward": "Dakata",
+                    "Zone": "Zone A",
+                    "Id": "001"
+                },
+                {
+                    "Name": "Facility B",
+                    "ProductType": [
+
+                        {
+                            "Name": "BCG",
+                            "Current": 30,
+                            "Allocate": 90
+                        },
+
+                        {
+                            "Name": "HPV",
+                            "Current": 30,
+                            "Allocate": 120
+                        }
+
+                    ],
+                    "Ward": "Dakata",
+                    "LGA": "Nassarawa",
+                    "Zone": "Zone A",
+                    "State": "Kano",
+                    "Id": "002"
+                }
+            ],
+            "Vendor": [
+                {
+                    "Name": "Sun Rise Enterprises",
+                    "Address": "No. 5, Oluyemi Bankole Crescent, Kaji, Kano",
+                    "ContactPerson": "Mr. Aminu Bashir",
+                    "Phone": "07084635462",
+                    "Rating": 4,
+                    "Id": "01",
+                    "Category": "Surgical Supplies"
+                }
+            ],
+            "IssuedDate": "13-Apr-2015",
+            "ExpectedDeliveryDate": "16-Apr-2015",
+            "Status": "Pending",
+            "Id": "LPO234152"
+        },
+        {
+            "Facility": [
+                {
+                    "Name": "Facility Test C",
+                    "LGA": "LGA 234",
+                    "ProductType": [
+                        {
+                            "Name": "IPV",
+                            "Current": 24,
+                            "Allocate": 100
+                        },
+
+                        {
+                            "Name": "BCG",
+                            "Current": 90,
+                            "Allocate": 120
+                        }
+                    ],
+                    "State": "Kano",
+                    "Ward": "Dakata",
+                    "Zone": "Zone 78",
+                    "Id": "005"
+                },
+                {
+                    "Name": "Facility Test Q",
+                    "ProductType": [
+
+                        {
+                            "Name": "BCG",
+                            "Current": 30,
+                            "Allocate": 90
+                        },
+
+                        {
+                            "Name": "HPV",
+                            "Current": 30,
+                            "Allocate": 120
+                        }
+
+                    ],
+                    "Ward": "Dakata",
+                    "LGA": "Nassarawa",
+                    "Zone": "Zone A",
+                    "State": "Kano",
+                    "Id": "024"
+                }
+            ],
+            "Vendor": [
+                {
+                    "Name": "The Mega Movement Shop",
+                    "Address": "56, Ademola Adetokunbo Street, Abuja",
+                    "ContactPerson": "Mrs. Hauwa Mohammed",
+                    "Phone": "07064730462",
+                    "Rating": 4,
+                    "Id": "03",
+                    "Category": "Vaccines"
+                }
+            ],
+            "IssuedDate": "16-Apr-2015",
+            "ExpectedDeliveryDate": "21-May-2015",
+            "Status": "Delivered",
+            "Id": "LPO253198"
+        },
+        {
+            "Facility": [
+                {
+                    "Name": "Facility Test P",
+                    "LGA": "LGA 234",
+                    "ProductType": [
+                        {
+                            "Name": "IPV",
+                            "Current": 73,
+                            "Allocate": 83
+                        },
+
+                        {
+                            "Name": "BCG",
+                            "Current": 72,
+                            "Allocate": 14
+                        }
+                    ],
+                    "State": "Kano",
+                    "Ward": "Dakata",
+                    "Zone": "Zone 78",
+                    "Id": "015"
+                },
+                {
+                    "Name": "Facility Test L",
+                    "ProductType": [
+
+                        {
+                            "Name": "BCG",
+                            "Current": 542,
+                            "Allocate": 120
+                        },
+
+                        {
+                            "Name": "HPV",
+                            "Current": 30,
+                            "Allocate": 120
+                        }
+
+                    ],
+                    "Ward": "Dakata",
+                    "LGA": "Nassarawa",
+                    "Zone": "Zone A",
+                    "State": "Kano",
+                    "Id": "028"
+                }
+            ],
+            "Vendor": [
+                {
+                    "Name": "Test Vendor 209",
+                    "Address": "No. 5, Street Felix Nu, Kaji, Sokoto",
+                    "ContactPerson": "Mr. John Gin",
+                    "Phone": "08074635462",
+                    "Rating": 2,
+                    "Id": "04",
+                    "Category": "Blood Testing Supplies"
+                }
+            ],
+            "IssuedDate": "16-Apr-2015",
+            "ExpectedDeliveryDate": "21-May-2015",
+            "Status": "Enroute",
+            "Id": "LPO635427"
+        }
+    ]
+}

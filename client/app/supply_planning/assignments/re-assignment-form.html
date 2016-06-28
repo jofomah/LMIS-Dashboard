@@ -1,14 +1,17 @@
 ﻿<div>
-    
-
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" ng-click="closeDialog()" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-        <h3 class="panel-title">Stock Allocation | {{paramObject.selectedItem[0].Name}}</h3>
-    </div>
-
-    <div class="modal-body">
-        <div>
-                
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">  
+          <h3 class="panel-title">Stock Reassignment | {{paramObject.selectedItem[0].Name}}</h3>
+        </div>
+        <div class="panel-body" >
+            <div>
+                <div>
+                    <input disabled="disabled" value="" class="margin-bottom-20"/>
+                    <select id="placeType" class="form-control margin-bottom-20" ng-model="place.type" ng-change="place.search = ''">
+                        <option value="">Select a new vendor to assign this delivery</option>
+                        <option ng-if="sVen!=ven.Name"  ng-repeat="ven in vendors" value="{ven.Name}">{{ven.Name}}</option>
+                    </select>
+                </div>
                 <table class="table table-condensed table-bordered table-striped margin-bottom-20">
                     <thead>
                         <tr>
@@ -40,24 +43,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <span class="btn btn-default btn-file text-left-cos">
-                    <strong class="margin-bottom-10">Upload Invoice:</strong><input type="file"/>
+                <span class="btn btn-default btn-file text-left">
+                    <strong>Select Purchase Order:</strong><br /> <input type="file"/>
                 </span>
-            <span class="btn btn-default btn-file text-left-cos">
-                    <strong class="margin-bottom-10">Upload Reciept:</strong><input type="file"/>
-            </span><br /><br />
-            <input type="checkbox" checked="checked" value="" ng-model="IsDelivery">  Handle Delivery?<br /><br />
-            <div ng-show="IsDelivery">
-                    <select id="placeType" class="form-control margin-bottom-20" ng-model="place.type" ng-change="place.search = ''">
-                        <option value="">Select a vendor to assign this delivery to</option>
-                        <option  ng-repeat="ven in vendors" value="{ven.Name}">{{ven.Name}}</option>
-                    </select>
-                </div>
             </div>
-    </div>
-
+        </div>
+      </div>
     <div class="modal-footer">
-        <button class="btn btn-success" type="button" ng-click="confirm()">Submit</button>
-        <button class="btn btn-danger" type="button" ng-click="closeDialog()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="confirm()">Submit</button>
+        <button class="btn btn-warning" type="button" ng-click="closeDialog()">Cancel</button>
     </div>
 </div>

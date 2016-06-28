@@ -1,4 +1,20 @@
-﻿<link href="../app.scss" rel="stylesheet" />
+﻿
+<script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+        <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+            <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                {{heading}}
+            </span>
+            </a>
+        </h4>
+        </div>
+        <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+        </div>
+    </div>
+</script>
 
 <div class="row">
   <div class="col-xs-12">
@@ -56,43 +72,56 @@
               <th  style="width: 10%">Zone</th>
               <th  style="width: 10%">LGA</th>
               <th  style="width: 10%">Ward</th>
-              <th>Facility</th>
-              <th style="width: 8%">Product Type</th>
-              <th style="width: 5%">Max</th>
-                <th style="width: 5%">Min</th>
-                <th style="width: 5%">Buffer</th>
-                <th style="width: 5%">Reorder</th>
-                <th style="width: 5%">Current</th>
-                <th style="width: 5%">P/Allocation</th>
+              <th style="width: 15%">Facility</th>
+              <th>Product List</th>
                 <th style="width: 5%"></th>
             </tr>
             </thead>
-            <tbody
-              ng-repeat="row in contents"
+            <tbody>
+            <tr ng-repeat="row in contents"
               ng-init="rowIndex = $index">
-            <tr ng-repeat="item in row.ProductType">
-              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+              <td>
                 {{row.Id}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+              <td>
                 {{row.State}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+              <td>
                 {{row.Zone}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+              <td>
                 {{row.LGA}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+              <td>
                 {{row.Ward}}
               </td>
-              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+              <td>
                 {{row.Name}}
               </td>
               <td>
-                  {{item.Name}}
-              </td>
-              <td class="text-center">
+
+                  <div>
+                                                        
+                <accordion close-others="oneAtATime">
+                                                            
+                    <accordion-group heading="{{getProductListHeader(row.ProductType)}}">
+                        <div class="table-scroller">
+                  <table class="table table-condensed table-bordered table-striped">
+                      <thead>
+                          <tr>
+                              <th style="width: 40%">Product Type</th>
+              <th style="width: 10%">Max</th>
+                <th style="width: 10%">Min</th>
+                <th style="width: 10%">Buffer</th>
+                <th style="width: 10%">Reorder</th>
+                <th style="width: 10%">Current</th>
+                <th style="width: 10%">P/Allocation</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr  ng-repeat="item in row.ProductType">
+                              <td>{{item.Name}}</td>
+                              <td class="text-center">
                   {{item.Max}}
               </td>
               <td class="text-center">{{item.Min}}</td>
@@ -100,7 +129,23 @@
                 <td class="text-center">{{item.Reorder}}</td>
                 <td class="text-center" ng-class="{'block-blood' : item.Current<item.Min,'block-orange': item.Current<=item.Reorder}">{{item.Current}}</td>
                 <td class="text-center">{{(item.Max + item.Buffer) - item.Current}}</td>
-                <td class="text-center" ng-if="$index == 0" rowspan="{{row.ProductType.length}}"><a href="#" ng-click="showAllocationForm(row.Id)">Allocate</a></td>
+                
+                          </tr>
+                      </tbody>
+                  </table>
+                      </div>
+                    </accordion-group>
+                                                            
+                    </accordion>
+                    </div>
+
+
+
+
+
+                  
+              </td>
+              <td class="text-center"><a href="#" ng-click="showAllocationForm(row.Id)"><i class="fa fa-archive fa-2x" title="Allocate stock"></i></a></td>
             </tr>
             </tbody>
           </table>
@@ -174,7 +219,7 @@
               <td ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
                   <a href="#" ng-click="showReAssignmentForm(row.Facility.Id)">Reassign</a>
                   <br /><br />
-                  <a href="#" ng-click="showConfirmation(row.Facility.Id})">Cancel</a>
+                  <a href="#" ng-click="showConfirmation(row.Facility.Id)">Cancel</a>
               </td>
             </tr>
             </tbody>
@@ -200,10 +245,10 @@
             <tr>
               <th style="width: 3%">#</th>
               <th>Vendor</th>
-              <th  style="width: 20%">Address</th>
+              <th  style="width: 30%">Address</th>
               <th  style="width: 15%">Contact Person</th>
               <th  style="width: 15%">Phone</th>
-              <th style="width: 8%">Rating</th>
+              <!--<th style="width: 8%">Rating</th>-->
               
                 <th style="width: 5%"></th>
             </tr>
@@ -227,10 +272,10 @@
               <td>
                 {{item.Phone}}
               </td>
-              <td>
+              <!--<td>
                   <div class ="ratings" ng-class="{'ratings-0' : item.Rating==0,'ratings-1': item.Rating==1, 'ratings-2':item.Rating==2, 'ratings-3':item.Rating==3, 'ratings-4': item.Rating==4, 'ratings-5':item.Rating==5}"></div>
                 
-              </td>
+              </td>-->
               
                 <td class="text-center"><a href="#" ng-click="showVendorForm('{{item.Id}}')" >Manage</a></td>
             </tr>
@@ -238,7 +283,7 @@
           </table>
         </div>
         <div class="panel-footer text-right">
-            <input type="button" class ="btn btn-primary" value="More.." />
+            <a  href="/vendor-management" class ="btn btn-primary">More..</a>
         </div>
       </div>
               </div>
