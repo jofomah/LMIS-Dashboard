@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('LedgerCtrl', function($scope, $timeout, leafletData, Auth, Pagination, $filter, Places, bundleLines, productTypes, utility) {
+  .controller('LedgerCtrl', function($scope, $timeout, leafletData, Auth, Pagination, $filter, Places, bundleLines, productTypes, utility, UoMs) {
     var rows = bundleLines;
     var arrowPattern = {
       offset: '50%',
@@ -34,6 +34,7 @@ angular.module('lmisApp')
       'Product',
       'Quantity'
     ];
+    $scope.UoMs = UoMs;
 
     $scope.map = {
       defaults: {
@@ -242,6 +243,11 @@ angular.module('lmisApp')
       $scope.export = ledgerExport;
       $scope.exportTitle = 'ledger-' + filterType.toLowerCase().replace(/\s/, '-');
     };
+
+    $scope.getproductType = function (productType) {
+      var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+      return product.ProductType + " (" + product.UoM + 's)';
+    }
 
     $scope.update();
   });

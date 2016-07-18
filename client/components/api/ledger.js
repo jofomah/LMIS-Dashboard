@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .factory('ledgerFactory', function($rootScope, $http, $q, utility, Facility, ProductProfile, ProductType) {
+  .factory('ledgerFactory', function($rootScope, $http, $q, utility, Facility, ProductProfile, ProductType, UomFactory, $filter) {
     var URL = '/api/bundles';
     var allPromise = null;
 
@@ -29,7 +29,8 @@ angular.module('lmisApp')
         all(),
         Facility.all(),
         ProductProfile.all(),
-        ProductType.all()
+        ProductType.all(),
+        UomFactory.all()
       ];
       $q.all(promises)
         .then(function(response) {
@@ -38,7 +39,7 @@ angular.module('lmisApp')
           var productProfiles = response[2];
           var bundleTypes = ['Incoming Bundle', 'Outgoing Bundle'];
           var productType = response[3];
-
+          var uoms = response[4];
           bundles.forEach(function(bundle) {
             bundle.receivingFacilityName = getFacility(bundle.receivingFacility, facilities);
             bundle.sendingFacilityName = getFacility(bundle.sendingFacility, facilities);
@@ -59,7 +60,8 @@ angular.module('lmisApp')
               bundleLine.created = new Date(bundle.created);
               bundleLine.productCode = getProductTypeCode(bundleLine.productProfile, productType, productProfiles);
               bundleLine.productProfile = getProductProfile(bundleLine.productProfile, productProfiles);
-
+              bundleLine.productUoM = getProductUoM(productType, uoms, bundleLine.productCode);
+              
               rows.push(bundleLine);
             });
           });
@@ -116,6 +118,26 @@ angular.module('lmisApp')
         productCode = angular.isDefined(productProfileObjectList[productProfile]) ? productTypes[productProfileObjectList[productProfile].product].code : productProfile;
       }
       return productCode;
+    }
+
+    function getProductUoM(productTypes, UoMs, productType) {
+      var UoM = '';
+      var uomid = '';
+      angular.forEach(productTypes, function (pt, ptIndex) {
+        if (pt.code === productType) {
+                uomid = pt.base_uom;
+        }
+      });
+      for (var key in UoMs) {
+        if (UoMs.hasOwnProperty(key)) {
+          var row = UoMs[key];
+          if (row.uuid == uomid) {
+            UoM = row.symbol;
+            break;
+          }
+        }
+      }
+      return UoM;
     }
 
     return {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('StockOutCtrl', function($scope, $filter, utility, Auth, Pagination, Places, productTypes, stockOuts) {
+  .controller('StockOutCtrl', function ($scope, $filter, utility, Auth, Pagination, Places, productTypes, stockOuts, UoMs) {
     var rows = stockOuts;
 
     $scope.currentUser = Auth.getCurrentUser();
@@ -23,7 +23,7 @@ angular.module('lmisApp')
       'Product',
       'Stock Level'
     ];
-
+    $scope.UoMs = UoMs;
     $scope.place = {
       type: '',
       columnTitle: '',
@@ -107,6 +107,11 @@ angular.module('lmisApp')
       $scope.pagination.totalItems = $scope.filteredRows.length;
       $scope.export = stockOutExport;
     };
+
+    $scope.getproductType = function (productType) {
+      var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+      return product.ProductType + " (" + product.UoM + 's' ;
+    }
 
     $scope.update();
   });

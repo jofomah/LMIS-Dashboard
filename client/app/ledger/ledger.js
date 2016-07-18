@@ -17,6 +17,11 @@ angular.module('lmisApp')
             'ledgerFactory', function(ledgerFactory) {
               return ledgerFactory.getFormattedBundleLines();
             }
+          ],
+          UoMs: [
+            'stockOut', function (stockOut) {
+              return stockOut.productTypesWithUoM();
+            }
           ]
         }
       });

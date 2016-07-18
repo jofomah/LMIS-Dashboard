@@ -22,6 +22,11 @@ angular.module('lmisApp')
                   });
                 });
             }
+          ],
+          UoMs: [
+            'stockOut', function(stockOut) {
+              return stockOut.productTypesWithUoM();
+            }
           ]
         }
       });
