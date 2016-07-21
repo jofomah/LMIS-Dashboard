@@ -73,7 +73,7 @@ angular.module('lmisApp')
       angular.forEach(productTypes, function (productType, productIndex) {
         angular.forEach(UoMs, function (uom, uomIndex) {
           if (uom._id === productType.base_uom) {
-            result.push({ ProductType: productType.code, UoM: uom.symbol });
+            result.push({ ProductType: productType.code, UoM: uom.name });
           }
         });
       });

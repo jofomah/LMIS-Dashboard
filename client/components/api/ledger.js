@@ -132,7 +132,7 @@ angular.module('lmisApp')
         if (UoMs.hasOwnProperty(key)) {
           var row = UoMs[key];
           if (row.uuid == uomid) {
-            UoM = row.symbol;
+            UoM = row.name;
             break;
           }
         }

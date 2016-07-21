@@ -17,6 +17,11 @@ angular.module('lmisApp')
             'wasteCountFactory', function(wasteCountFactory) {
               return wasteCountFactory.getFormatted();
             }
+          ],
+          UoMs: [
+          'stockOut', function (stockOut) {
+              return stockOut.productTypesWithUoM();
+          }
           ]
         }
       });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .factory('stockCount', function($q, $http, InventoryRules, ProductProfile, ProductType, Facility, AppConfig, utility, ProductCategory) {
+  .factory('stockCount', function ($q, $http, InventoryRules, ProductProfile, ProductType, Facility, AppConfig, utility, ProductCategory, UomFactory) {
     var URL = '/api/stock_count',
       DAILY = 1,
       WEEKLY = 7,
@@ -252,12 +252,14 @@ angular.module('lmisApp')
       $q.all([
           ProductProfile.all(),
           ProductType.all(),
-          ProductCategory.all()
+          ProductCategory.all(),
+          UomFactory.all(),
         ])
         .then(function(response) {
           var productProfiles = response[0];
           var productTypes = response[1];
           var productCategories = response[2];
+          var UoMs = response[3];
 
           rows.forEach(function(row) {
             if (row.unopened) {
@@ -270,7 +272,8 @@ angular.module('lmisApp')
                 unopened[productType.uuid] = unopened[productType.uuid] || {
                   productType: productType || ProductType.unknown,
                   productCategory: productCategory || ProductCategory.unknown,
-                  count: 0
+                  count: 0,
+                  uom : setUoM(productType.base_uom, UoMs)
                 };
 
                 unopened[productType.uuid].count += row.unopened[key];
@@ -288,6 +291,18 @@ angular.module('lmisApp')
           console.log(error);
           d.reject(error);
         });
+
+      function setUoM(base_uom, UoMs) {
+          //console.log("base_uom", base_uom);
+          //console.log("uoms", UoMs);
+          var uom = "";
+              angular.forEach(UoMs, function (uoms, uomIndex) {
+                  if (uoms._id === base_uom) {
+                      uom = uoms.name;
+                  }
+              });
+              return uom;
+      }
 
       return d.promise;
     }

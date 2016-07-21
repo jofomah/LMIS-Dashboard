@@ -65,7 +65,7 @@
             <thead>
             <tr>
               <th>{{place.columnTitle}}</th>
-              <th ng-repeat="productType in productTypes">{{productType}}</th>
+              <th ng-repeat="productType in productTypes">{{getproductType(productType)}}</th>
             </tr>
             </thead>
             <tbody>
@@ -131,7 +131,7 @@
                 {{row.modified | date:SETTINGS.dateTimeFormat}}
               </td>
               <td>{{item.productType.code}}</td>
-              <td>{{item.count}}</td>
+              <td>{{item.count}} {{item.count === 1 ? item.uom : item.uom +'s'}}</td>
             </tr>
             </tbody>
           </table>
