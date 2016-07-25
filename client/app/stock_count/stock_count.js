@@ -25,6 +25,11 @@ angular.module('lmisApp')
 
               return d.promise;
             }
+          ],
+          UoMs: [
+          'stockOut', function (stockOut) {
+              return stockOut.productTypesWithUoM();
+          }
           ]
         }
       });

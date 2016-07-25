@@ -1,0 +1,176 @@
+﻿<div>
+
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" ng-click="closeDialog()" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h3 class="panel-title">Delivery Statistics | <strong>Sun Rise Enterprise</strong></h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+           <div class="col-md-4">
+               <input type="text" class="form-control filter margin-bottom-20" placeholder="Search PO #">
+               <div class="table-scroller">
+                            <table class="table table-condensed table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>PO #</th>
+                                        <th>Date Issued</th>
+                                        <th>Status</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="pointer">
+                                        <td>102774</td><td>13-April-2015</td><td class="text-center"><div class="radius-circle icon-div center-block block-green"></div></td>
+                                       
+                                    </tr>
+                                    <tr class="pointer">
+                                     <td>143532</td><td>07-January-2016</td><td class="text-center"><div class="radius-circle icon-div center-block block-blood"></div></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+           </div>
+            <div class="col-md-8">
+                <div class="table-scroller">
+                            <table class="table table-condensed table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Purchase Order Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="box-20">
+                                                <div>
+                                                    <table class="table table-condensed table-bordered table-striped">
+                                                <tr>
+                                                    <td>
+                                                        <strong class="bold">PO #</strong> : 102774
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Description</strong> : Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Issued Date</strong> : 13-Mar-2015
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <strong>Expected Delivery Date</strong> : 13-Apr-2015
+                                                    </td>
+                                                </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <strong>Deliveries</strong> :
+                                                            </td>
+                                                        </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>
+                                                        <script type="text/ng-template" id="group-template.html">
+                                                            <div class="panel {{panelClass || 'panel-default'}}">
+                                                              <div class="panel-heading">
+                                                                <h4 class="panel-title" style="color:#fa39c3">
+                                                                  <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                                                                    <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                                                                      {{heading}}
+                                                                    </span>
+                                                                  </a>
+                                                                </h4>
+                                                              </div>
+                                                              <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                                                                <div class="panel-body" style="text-align: right" ng-transclude></div>
+                                                              </div>
+                                                            </div>
+                                                          </script>
+                                                        <accordion close-others="oneAtATime">
+                                                            
+                                                            <accordion-group heading="Facility Test Alpha - Area 51">
+                                                             <table class="table table-condensed table-bordered table-striped">
+                                                           <thead>
+                                                               <tr><td><strong>From</strong></td><td><strong>Destination</strong></td><td><strong>Product</strong></td><td><strong>Unit</strong></td><td><strong>Quantity</strong></td></tr>
+                                                           </thead>
+                                                           <tbody>
+                                                              <tr>
+                                                                  <td rowspan="3">National Store - Abuja</td>
+                                                                  <td rowspan="3">Facility Test Alpha - Area 51</td>
+                                                                  <td>BCG</td>
+                                                                  <td>Cartons</td>
+                                                                  <td>10</td>
+                                                              </tr>
+                                                               <tr>
+                                                                  
+                                                                  <td>HPV</td>
+                                                                  <td>Cartons</td>
+                                                                  <td>5</td>
+                                                              </tr>
+                                                                <tr>
+                                                                  
+                                                                  <td>Penta</td>
+                                                                  <td>Cartons</td>
+                                                                  <td>3</td>
+                                                              </tr>
+
+                                                           </tbody>
+                                                       </table>
+                                                            </accordion-group>
+                                                             <accordion-group heading="Facility Test Beta - Area 53">
+                                                             <table class="table table-condensed table-bordered table-striped">
+                                                           <thead>
+                                                               <tr><td><strong>From</strong></td><td><strong>Destination</strong></td><td><strong>Product</strong></td><td><strong>Unit</strong></td><td><strong>Quantity</strong></td></tr>
+                                                           </thead>
+                                                           <tbody>
+                                                              <tr>
+                                                                  <td rowspan="3">National Store - Abuja</td>
+                                                                  <td rowspan="3">Facility Test Alpha - Area 51</td>
+                                                                  <td>BCG</td>
+                                                                  <td>Cartons</td>
+                                                                  <td>10</td>
+                                                              </tr>
+                                                               <tr>
+                                                                  
+                                                                  <td>HPV</td>
+                                                                  <td>Cartons</td>
+                                                                  <td>5</td>
+                                                              </tr>
+                                                                <tr>
+                                                                  
+                                                                  <td>Penta</td>
+                                                                  <td>Cartons</td>
+                                                                  <td>3</td>
+                                                              </tr>
+
+                                                           </tbody>
+                                                       </table>
+                                                            </accordion-group>
+                                                            
+                                                          </accordion>
+                                                            </div>
+                                                           
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                       
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
+       </div>
+    </div>
+
+    <div class="modal-footer">
+        
+        <button class="btn btn-primary" type="button" ng-click="closeDialog()">Close</button>
+    </div>
+</div>

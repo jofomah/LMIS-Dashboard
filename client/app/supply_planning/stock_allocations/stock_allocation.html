@@ -1,0 +1,201 @@
+﻿<div id="stock-allocation">
+    <div class="row">
+         <h2 class="page-header">Stock Allocation</h2>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            
+            <div class="radius-circle icon-div block-blood pull-right"></div>
+            <div class="pull-right col-xs-3"><input class="form-control input-sm" placeholder="Search..."/></div>
+            <h3 class="panel-title">Unallocated | <strong>2 Items</strong></h3>
+                
+        </div>
+                 <div class="table-scroller panel-fixed-height-1">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+            <tr>
+              <th style="width: 3%">#</th>
+              <th>Facility</th>
+              <th style="width: 8%">Product Type</th>
+              <th style="width: 5%">Max</th>
+                <th style="width: 5%">Min</th>
+                <th style="width: 5%">Buffer</th>
+                <th style="width: 5%">Reorder</th>
+                <th style="width: 5%">Current</th>
+                <th style="width: 5%">P/Allocation</th>
+                <th style="width: 5%"></th>
+            </tr>
+            </thead>
+            <tbody
+              ng-repeat="row in contents"
+              ng-init="rowIndex = $index">
+            <tr ng-repeat="item in row.ProductType">
+              <td ng-if="$index == 0" rowspan="{{row.ProductType.length}}">{{row.Id}}</td>
+              <td  ng-if="$index == 0" rowspan="{{row.ProductType.length}}">
+                {{row.Name + ' → ' + row.Ward + ' → ' + row.LGA + ' → ' + row.Zone + ' → ' + row.State}} 
+              </td>
+              <td>
+                  {{item.Name}}
+              </td>
+              <td class="text-center">
+                  {{item.Max}}
+              </td>
+              <td class="text-center">{{item.Min}}</td>
+              <td class="text-center">{{item.Buffer}}</td>
+                <td class="text-center">{{item.Reorder}}</td>
+                <td class="text-center" ng-class="{'block-blood' : item.Current<item.Min,'block-yellow': item.Current<=item.Reorder}">{{item.Current}}</td>
+                <td class="text-center">{{(item.Max + item.Buffer) - item.Current}}</td>
+                <td class="text-center" ng-if="$index == 0" rowspan="{{row.ProductType.length}}"><a href="#" ng-click="showAllocationForm(row.Id)"><i class="fa fa-archive fa-2x" title="Allocate stock"></i></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer text-right">
+            
+        </div>
+                </div>
+        </div>
+        <div class="col-xs-1 text-center vcenter">
+            <i class="fa fa-angle-double-right fa-2x"></i>
+        </div>
+        <div class="col-xs-5">
+             <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <div class="radius-circle icon-div block-orange pull-right"></div>
+            <div class="pull-right col-xs-3"><input class="form-control input-sm" placeholder="Search..."/></div>
+            <h3 class="panel-title">Pending Delivery</h3>
+            
+            </div>
+                 <div class="panel-body panel-fixed-height-1">
+                     <p></p>
+                 <h3 class="text-center">No pending deliveries</h3>
+                 </div>
+                 <div class="panel-footer text-right">
+            
+        </div>
+                </div>
+            
+        </div>
+    </div>
+    <div>
+        <div class="well hidden-print">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="placeType">Place Type:</label>
+          <select id="placeType" class="form-control" ng-model="place.type" ng-change="place.search = ''">
+            <option value=""></option>
+            <option value="state">State</option>
+            <option value="zone">Zone</option>
+            <option value="lga">LGA</option>
+            <option value="ward">Ward</option>
+            <option value="facility">Facility</option>
+          </select>
+        </div>
+        &nbsp;
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control filter" placeholder="Place Name"
+                 ng-model="place.search" ng-disabled="!place.type.length"
+                 typeahead="place for place in getPlaces($viewValue)"
+                 typeahead-loading="places.loading">
+          <span ng-show="places.loading"
+                class="glyphicon glyphicon-refresh form-control-feedback"></span>
+        </div>
+        &nbsp;
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="from.date"
+                   datepicker-popup is-open="from.opened"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="from.open($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+        &nbsp;
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="to.date"
+                   datepicker-popup is-open="to.opened"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="to.open($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+        &nbsp;
+        <button type="button" class="btn btn-primary" ng-click="update()">
+          Apply
+        </button>
+      </form>
+    </div>
+        <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <div class="key-row pull-right ">
+                <div class="radius-circle icon-div block-blood"></div>
+                <label>Cancel</label>&nbsp;&nbsp;&nbsp;
+                    <div class="radius-circle icon-div block-orange"></div>
+                <label>Pending</label>&nbsp;&nbsp;&nbsp;
+                 <div class="radius-circle icon-div block-green"></div>
+                 <label>Delivered</label>
+                </div>
+
+          <h3 class="panel-title">Historical Allocations</h3>
+        </div>
+        <div class="table-scroller">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+            <tr>
+              <th style="width: 3%">PO #</th>
+              <th style="width: 20%">Issued</th>
+              <th  style="width: 20%">Expected Delivery</th>
+              <th  style="width: 10%">Vendor</th>
+              <th>Facility</th>
+              <th style="width: 8%">Product</th>
+              <th style="width: 5%">Current</th>
+              <th style="width: 5%">Allocated</th>
+                <th style="width: 5%">Status</th>
+            </tr>
+            </thead>
+            <tbody
+              ng-repeat="row in POContents"
+              ng-init="rowIndex = $index">
+            <tr ng-repeat="item in row.Facility">
+              <td  ng-if="$index == 0" rowspan="{{row.Facility[$index].ProductType.length}}">
+                {{row.Id}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Name + ' → ' + row.Facility.Ward + ' → ' + row.Facility.LGA + ' → ' + row.Facility.Zone + ' → ' + row.Facility.State}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Vendor}}
+              </td>
+              <td  ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                {{row.Facility.Date}}
+              </td>
+              <td>
+                {{item.Name}}
+              </td>
+              <td>
+                {{item.Quantity}}
+              </td>
+              <td ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+               {{item.Status}}   
+                  <div class="radius-circle indicator center-block" ng-class="{'block-blood' : row.Facility.Status==='Pending','block-green': row.Facility.Status==='Delivered', 'block-orange': row.Facility.Status==='Enroute'}">
+
+                  </div>
+              </td>
+              <td ng-if="$index == 0" rowspan="{{row.Facility.ProductType.length}}">
+                  <a href="#" ng-click="showReAssignmentForm(row.Facility.Id)">Reassign</a>
+                  <br /><br />
+                  <a href="#" ng-click="showConfirmation(row.Facility.Id)">Cancel</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+    </div>
+    
+</div>

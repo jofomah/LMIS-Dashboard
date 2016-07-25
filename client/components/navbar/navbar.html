@@ -1,8 +1,11 @@
 <nav class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">LMIS Dashboard</a>
+      <a class="navbar-brand" href="/"><div class="logo-div">
+
+                                       </div></a>
     </div>
+      <div class="menu-items">
     <ul ng-show="isLoggedIn()" class="nav navbar-nav">
       <li ng-class="{active: isActive('/')}"><a href="/">Home</a></li>
       <li ng-class="{active: isActive('/inventory')}">
@@ -29,7 +32,26 @@
       <li ng-class="{active: isActive('/ledger')}">
         <a href="/ledger">Ledger</a>
       </li>
+        <li ng-class="{active: isActive('/supply-planning')}">
+        <a href="/supply-planning">Supply Planning</a>
+             <div id="dropdown-supply-planning" class="toogle dropdown-menu">
+                 <ul>
+                     <li ng-class="{active: isActive('/vendor-management')}">
+                         <a href="/vendor-management">Vendor Management</a>
+                     </li>
+                     <li ng-class="{active: isActive('/stock-allocation')}">
+                         <a href="/stock-allocation">Stock Allocation</a>
+                     </li>
+                     <li ng-class="{active: isActive('/vendor-management')}">
+                         <a href="/vendor-management">Vendor Assigments</a>
+                     </li>
+                 </ul>
+             </div>
+      </li>
     </ul>
+         
+
+          </div>
     <ul class="nav navbar-nav navbar-right">
       <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
       <li ng-show="isLoggedIn()" class="dropdown">
@@ -45,7 +67,7 @@
   </div>
 </nav>
 
-<div class="row" ng-controller="NavbarCtrl">
+<div ng-controller="NavbarCtrl">
   <div class="col-xs-12 clearfix">
     <div class="pull-right page-status" ng-show="isLoggedIn()">
       <strong>Last Updated: </strong> <span>{{ lastUpdated }}</span>

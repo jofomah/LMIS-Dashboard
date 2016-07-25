@@ -39,8 +39,8 @@ angular.module('lmisApp')
       return $modal.open({
         templateUrl: paramObject.templateUrl || 'components/modal/dialog.html',
         controller: paramObject.controller || defaultController,
-        scope: modalScope,
-        size: paramObject.size || 'sm'
+        size: paramObject.size,
+        scope: modalScope
       }).result;
     }
 

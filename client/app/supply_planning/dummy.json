@@ -1,0 +1,77 @@
+﻿{
+    "Facility": [
+        {
+            "Name": "Facility A",
+            "LGA": "Nassarawa",
+            "ProductType": [
+                {
+                    "Name": "BCG",
+                    "Buffer": 30,
+                    "Current": 30,
+                    "Max": 100,
+                    "Min": 20,
+                    "PAllocate": 70,
+                    "Reorder": 35
+                },
+
+                {
+                    "Name": "HepB",
+                    "Buffer": 70,
+                    "Current": 60,
+                    "Max": 200,
+                    "Min": 50,
+                    "PAllocate": 140,
+                    "Reorder": 60
+                },
+
+                {
+                    "Name": "HPV",
+                    "Buffer": 60,
+                    "Current": 30,
+                    "Max": 100,
+                    "Min": 40,
+                    "PAllocate": 70,
+                    "Reorder": 50
+                }
+            ],
+            "State": "Kano",
+            "Ward": "Dakata",
+            "Zone": "Zone A",
+            "Id": "001"
+        },
+        {
+            "Name": "Facility B",
+            "ProductType": [
+
+                {
+                    "Name": "BCG",
+                    "Buffer": 30,
+                    "Current": 30,
+                    "Max": 120,
+                    "Min": 20,
+                    "PAllocate": 90,
+                    "Reorder": 35
+                },
+
+                {
+                    "Name": "HPV",
+                    "Buffer": 60,
+                    "Current": 30,
+                    "Max": 150,
+                    "Min": 40,
+                    "PAllocate": 120,
+                    "Reorder": 50
+                }
+
+            ],
+            "Ward": "Dakata",
+            "LGA": "Nassarawa",
+            "Zone": "Zone A",
+            "State": "Kano",
+            "Id": "002"
+        }
+
+
+
+    ]
+}

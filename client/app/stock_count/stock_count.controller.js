@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('StockCountCtrl', function($scope, $filter, $routeParams, utility, Auth, Pagination, Places, stockCounts, productTypes) {
+  .controller('StockCountCtrl', function($scope, $filter, $routeParams, utility, Auth, Pagination, Places, stockCounts, productTypes, UoMs) {
     var rows = stockCounts;
-
     $scope.currentUser = Auth.getCurrentUser();
     $scope.productTypes = productTypes;
     $scope.pagination = new Pagination();
     $scope.filteredRows = [];
     $scope.totals = [];
     $scope.places = null;
+    $scope.UoMs = UoMs;
     $scope.getFilename = utility.getFileName;
     $scope.csvHeader = [
       'State',
@@ -120,6 +120,11 @@ angular.module('lmisApp')
       $scope.pagination.totalItems = $scope.filteredRows.length;
       $scope.export = unopenedExport;
     };
+
+    $scope.getproductType = function (productType) {
+        var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+        return product.ProductType + " (" + product.UoM + 's)';
+    }
 
     $scope.update();
   });

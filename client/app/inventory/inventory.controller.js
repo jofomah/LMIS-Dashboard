@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('InventoryCtrl', function($scope, $filter, utility, Auth, Places, stockCount, productTypes, stockCounts) {
+  .controller('InventoryCtrl', function($scope, $filter, utility, Auth, Places, stockCount, productTypes, stockCounts, UoMs) {
     var rows = stockCounts;
     var xTickValues = [];
 
@@ -16,6 +16,7 @@ angular.module('lmisApp')
     $scope.places = null;
     $scope.totals = [];
     $scope.chartData = [];
+    $scope.UoMs = UoMs;
 
     $scope.place = {
       type: '',
@@ -190,6 +191,11 @@ angular.module('lmisApp')
         return { key: productType.code, values: values };
       });
     };
+
+    $scope.getproductType = function (productType) {
+        var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+        return product.ProductType + " (" + product.UoM + 's)';
+    }
 
     $scope.updateTotals();
   });

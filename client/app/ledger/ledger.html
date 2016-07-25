@@ -86,7 +86,7 @@
             <thead>
             <tr>
               <th>{{place.columnTitle}}</th>
-              <th ng-repeat="productType in productTypes">{{productType}}</th>
+              <th ng-repeat="productType in productTypes">{{getproductType(productType)}}</th>
             </tr>
             </thead>
             <tbody>
@@ -136,7 +136,7 @@
               <td>{{row.batchNo}}</td>
               <td>{{row.type}}</td>
               <td>{{row.productProfile}}</td>
-              <td>{{row.quantity}}</td>
+              <td>{{row.quantity + ' '}} {{row.quantity === 1 ? row.productUoM : row.productUoM +'s'}}</td>
             </tr>
             </tbody>
           </table>

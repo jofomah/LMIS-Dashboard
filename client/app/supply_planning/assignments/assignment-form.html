@@ -1,0 +1,55 @@
+﻿<div>
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">  
+          <h3 class="panel-title">Assignment Management | {{paramObject.selectedItem[0].Name}}</h3>
+        </div>
+        <div class="panel-body" >
+            <div>
+                <div>
+                    <select id="placeType" class="form-control margin-bottom-20" ng-model="place.type" ng-change="place.search = ''">
+                        <option value="">Select a vendor to assign this delivery to</option>
+                        <option  ng-repeat="ven in vendors" value="{ven.Name}">{{ven.Name}}</option>
+                    </select>
+                </div>
+                <table class="table table-condensed table-bordered table-striped margin-bottom-20">
+                    <thead>
+                        <tr>
+
+                            <th style="width: 8%">Product Type</th>
+                            <th style="width: 5%">Max</th>
+                            <th style="width: 5%">Min</th>
+                            <th style="width: 5%">Buffer</th>
+                            <th style="width: 5%">Reorder</th>
+                            <th style="width: 5%">Current</th>
+                            <th style="width: 5%">P/Allocation</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="row in paramObject.selectedItem"
+                           ng-init="rowIndex = $index">
+                        <tr ng-repeat="item in row.ProductType">
+
+                            <td>
+                                {{item.Name}}
+                            </td>
+                            <td class="text-center">
+                                {{item.Max}}
+                            </td>
+                            <td class="text-center">{{item.Min}}</td>
+                            <td class="text-center">{{item.Buffer}}</td>
+                            <td class="text-center">{{item.Reorder}}</td>
+                            <td class="text-center" ng-class="{'block-blood' : item.Current<item.Min,'block-orange': item.Current<=item.Reorder}">{{item.Current}}</td>
+                            <td class="text-center"><input type="text" value="{{(item.Max + item.Buffer) - item.Current}}" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="btn btn-default btn-file text-left">
+                    <strong>Select Purchase Order:</strong><br /> <input type="file"/>
+                </span>
+            </div>
+        </div>
+      </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="confirm()">Submit</button>
+        <button class="btn btn-warning" type="button" ng-click="closeDialog()">Cancel</button>
+    </div>
+</div>

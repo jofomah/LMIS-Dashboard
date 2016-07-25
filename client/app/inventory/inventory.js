@@ -49,6 +49,11 @@ angular.module('lmisApp')
               return stockCount.all()
                 .then(stockCount.resolveUnopened);
             }
+          ],
+          UoMs: [
+          'stockOut', function (stockOut) {
+              return stockOut.productTypesWithUoM();
+          }
           ]
         }
       });

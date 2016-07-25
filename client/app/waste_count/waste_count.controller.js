@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('WasteCountCtrl', function($scope, Auth, Pagination, $filter, utility, Places, productTypes, wasteCounts) {
+  .controller('WasteCountCtrl', function ($scope, Auth, Pagination, $filter, utility, Places, productTypes, wasteCounts, UoMs) {
     var rows = wasteCounts;
-
     $scope.currentUser = Auth.getCurrentUser();
     $scope.pagination = new Pagination();
     $scope.productTypes = productTypes;
     $scope.filteredRows = [];
+    $scope.UoMs = UoMs;
     $scope.totals = [];
     $scope.places = null;
     $scope.getFilename = utility.getFileName;
@@ -107,6 +107,11 @@ angular.module('lmisApp')
       $scope.pagination.totalItems = $scope.filteredRows.length;
       $scope.export = wasteCountExport;
     };
+
+    $scope.getproductType = function (productType) {
+        var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+        return product.ProductType + " (" + product.UoM + 's)';
+    }
 
     $scope.update();
   });

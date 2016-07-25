@@ -1,0 +1,71 @@
+﻿[
+    {
+
+      "Facility": {
+        "Name": "Facility X",
+        "LGA": "Bebeji",
+        "ProductType": [
+          {
+            "Name": "BCG",
+            "Quantity": 30
+
+          },
+
+          {
+            "Name": "HepB",
+            "Quantity": 560
+          },
+
+          {
+            "Name": "HPV",
+            "Quantity": 70
+          },
+          {
+            "Name": "IPV",
+            "Quantity": 70
+          }
+        ],
+        "State": "Kano",
+        "Ward": "Kuki",
+        "Zone": "Zone B",
+        "Date": "03 May, 2016",
+        "Vendor": "Abdul and Sons Limited",
+        "Status": "Enroute",
+        "Id": "011"
+      }
+    },
+    {
+        "Facility": {
+            "Name": "Facility B",
+            "ProductType": [
+
+                {
+                    "Name": "YF",
+                    "Quantity": 60
+                },
+                {
+                    "Name": "Penta",
+                    "Quantity": 302
+                },
+                {
+                    "Name": "ADS-0.05ml",
+                    "Quantity": 179
+                }
+
+            ],
+            "Ward": "Dal",
+            "LGA": "Garko",
+            "Zone": "Zone C",
+            "State": "Kano",
+            "Date": "12 May, 2016",
+            "Vendor": "Sun Rise Logistics Limited",
+            "Status": "Pending",
+            "Id": "012"
+        }
+
+
+    }
+
+
+]
+
