@@ -109,7 +109,10 @@ angular.module('lmisApp')
     };
 
     $scope.getproductType = function (productType) {
-        var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+      var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+      if (product.UoM === 'Dose') {
+        product.UoM = 'Vial';
+      }
         return product.ProductType + " (" + product.UoM + 's)';
     }
 
