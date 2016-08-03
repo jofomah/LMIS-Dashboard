@@ -71,11 +71,26 @@ angular.module('lmisApp')
                   wasteCount: {}
                 };
 
-                if (wasteCount.discarded) {
-                  (Object.keys(wasteCount.discarded)).forEach(function(productProfileUUID) {
+                var tempdiscardedExtended = {}
+                var isHistoric = true;
+                if (wasteCount.discardedExtended) {
+                  tempdiscardedExtended = wasteCount.discardedExtended
+                  isHistoric = false;
+                } else {
+                  tempdiscardedExtended = wasteCount.discarded
+                }
+
+                if (tempdiscardedExtended) {
+                  (Object.keys(tempdiscardedExtended)).forEach(function (productProfileUUID) {
 
                   if (angular.isDefined(productProfiles[productProfileUUID])) {
-                    var uom = uomList[productPresentation[productProfiles[productProfileUUID].presentation].uom].symbol;
+                    var uom = ""
+                    if (isHistoric) {
+                      uom = uomList[productPresentation[productProfiles[productProfileUUID].presentation].uom].symbol;
+                    }else {
+                      uom = tempdiscardedExtended[productProfileUUID].UoM
+                    }
+                    console.log("presentation", productPresentation)
                     list.productLevelList[productProfileUUID] = (Object.keys(wasteCount.reason[productProfileUUID])).length;
 
                     (Object.keys(wasteCount.reason[productProfileUUID]))
@@ -84,6 +99,7 @@ angular.module('lmisApp')
                           uuid: wasteCount.uuid,
                           productIndex: index,
                           value: wasteCount.reason[productProfileUUID][reason],
+                          multiplier: productPresentation[productProfiles[productProfileUUID].presentation].value,
                           key: productProfileUUID,
                           productProfile: productProfiles[productProfileUUID].name,
                           reason: wasteReasons[reason],
