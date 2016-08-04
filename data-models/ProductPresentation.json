@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProductPresentation",
+  "description": "This describes how a product is packaged for distribution. e.g '10 Doses per Vial' for Vaccine, '10 Tablets Per Pack' for capsules.",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^product-presentation$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "value": {
+      "type": "number",
+      "description": "The number of the product's base uom in the presentation. e.g '10 Doses Per Vial' will have a value of 10 "
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "description": "describes this product category"
+    },
+    "uom": {
+      "type": "string",
+      "description": "The standard unit of measurement Id for this product",
+      "chance": {
+        "hash": {
+          "length": 32
+        }
+      }
+    }
+  },
+  "required": [
+    "doc_type",
+    "active",
+    "_id",
+    "value",
+    "name",
+    "code",
+    "uom"
+  ]
+}
+
+
+

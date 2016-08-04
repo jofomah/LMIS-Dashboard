@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Uom",
+  "description": "This is used to represent unit of measurement e.g Vials, Doses, Units etc",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^uom$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3
+    },
+    "uom_category": {
+      "type": "string",
+      "description": "The Id of this Uom's uom-category",
+    }
+  },
+  "required": [
+    "doc_type",
+    "active",
+    "_id",
+    "symbol",
+    "uom_category"
+  ]
+}
