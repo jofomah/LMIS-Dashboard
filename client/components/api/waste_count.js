@@ -90,7 +90,7 @@ angular.module('lmisApp')
                     }else {
                       uom = tempdiscardedExtended[productProfileUUID].UoM
                     }
-                    console.log("presentation", productPresentation)
+                    
                     list.productLevelList[productProfileUUID] = (Object.keys(wasteCount.reason[productProfileUUID])).length;
 
                     (Object.keys(wasteCount.reason[productProfileUUID]))
