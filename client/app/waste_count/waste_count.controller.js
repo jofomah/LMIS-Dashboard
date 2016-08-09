@@ -87,7 +87,11 @@ angular.module('lmisApp')
           });
 
           var code = reason.productType;
-          totals[key].values[code] = (totals[key].values[code] || 0) + reason.value;
+          var newvalue = reason.value;
+          if (reason.uom === 'vial' || reason.uom === 'Vial') {
+            newvalue = newvalue * reason.multiplier;
+          }
+          totals[key].values[code] = (totals[key].values[code] || 0) + newvalue;
         });
       });
 
@@ -110,11 +114,22 @@ angular.module('lmisApp')
 
     $scope.getproductType = function (productType) {
       var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
-      if (product.UoM === 'Dose') {
-        product.UoM = 'Vial';
-      }
-        return product.ProductType + " (" + product.UoM + 's)';
+      return product.ProductType + " (" + product.UoM + 's)';
     }
 
+    $scope.getValue = function (item) {
+      var newvalue = item.value;
+      var newuom = item.uom;
+      if (newuom === 'vial' || newuom === 'Vial') {
+        newvalue = newvalue * item.multiplier;
+        newuom = 'Dose';
+      }
+      if (newvalue !== 1) {
+        newuom = newuom + 's'
+      }
+
+      return newvalue + ' ' + newuom;
+    }
+    
     $scope.update();
   });
