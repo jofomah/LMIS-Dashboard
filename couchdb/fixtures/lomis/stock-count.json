@@ -1,0 +1,12 @@
+{
+  "docs": [
+    {
+      "_id": "stock-count_1",
+      "doc_type": "stock-count"
+    },
+    {
+     "_id": "stock-count_2",
+      "doc_type": "stock-count"
+    }
+  ]
+}
