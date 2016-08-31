@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProductCategory",
+  "description": "A heirarchical grouping of product types. e.g Cold Store Vaccines, Dry Goods, Health Commodities etc",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^product-category$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "parent": {
+      "type": "string",
+      "$ref": "#"
+    },
+    "level": {
+      "type": "number"
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "description": "describes this product category"
+    }
+  },
+  "required": [
+    "doc_type",
+    "active",
+    "_id",
+    "level",
+    "name"
+  ]
+}
+
+
+

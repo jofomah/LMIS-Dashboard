@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProductFormulation",
+  "description": "Simple used to describe the form of a product. e.g Liquid, Freeze, Dried",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^product-formulation$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "description": "describes this a given type of product formulation."
+    }
+  },
+  "required": [
+    "doc_type",
+    "active",
+    "_id",
+    "name"
+  ]
+}
+
+
+

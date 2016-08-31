@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ProductType",
+  "description": "A stock item type, could be vaccine types: BCG, OPV, other health commodities: Artesunate, ",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^product-type$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "base_uom": {
+      "type": "string",
+      "description": "The standard unit of measurement Id for this product",
+      "chance": {
+        "hash": {
+          "length": 32
+        }
+      }
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "code": {
+      "type": "string",
+      "faker": "hacker.abbreviation",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "faker": "lorem.sentence"
+    },
+    "name": {
+      "type": "string",
+      "faker": "company.catchPhrase",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "doc_type",
+    "name",
+    "base_uom",
+    "code",
+    "description",
+    "_id"
+  ]
+}

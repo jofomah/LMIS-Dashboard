@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ModeOfAdministration",
+  "description": "Used to represents various modes of administering vaccines, drugs etc.",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^mode-of-administration$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string",
+      "faker": "hacker.abbreviation",
+      "minLength": 1
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "description": "describes a given mode of administration"
+    }
+  },
+  "required": [
+    "doc_type",
+    "active",
+    "_id",
+    "name",
+    "code"
+  ]
+}
+
+
+

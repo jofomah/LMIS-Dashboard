@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "UomCategory",
+  "description": "A category used to group related units of measurement e.g 'Units' to group Vial, Doses etc, 'Weight' to group Kilo-Gram, Gram ",
+  "type": "object",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "pattern": "^uom-category$"
+    },
+    "version": {
+      "type": "string",
+      "format": "semver"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "parent": {
+      "type": "string",
+      "$ref": "#"
+    },
+    "level": {
+      "type": "number"
+    },
+    "_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "description": "describes this unit of measurement category"
+    }
+  },
+  "required": [
+    "doc_type",
+    "active",
+    "_id",
+    "level",
+    "name"
+  ]
+}
+
+
+

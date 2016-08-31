@@ -1,5 +1,5 @@
 'use strict';
-
+var couchCredential = require('./couchdb/credential.json')
 module.exports = function(grunt) {
   var localConfig;
   try {
@@ -18,7 +18,8 @@ module.exports = function(grunt) {
     protractor: 'grunt-protractor-runner',
     injector: 'grunt-asset-injector',
     buildcontrol: 'grunt-build-control',
-    ngconstant: 'grunt-ng-constant'
+    ngconstant: 'grunt-ng-constant',
+    couchdb: 'grunt-couchdb'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -50,6 +51,19 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    couchdb: {
+      url: couchCredential.url,
+      user: couchCredential.user,
+      password: couchCredential.password,
+      bootstrap: {
+        dir: 'couchdb/bootstrap'
+      },
+      fixtures: {
+        dir: 'couchdb/fixtures'
+      }
+    },
+
     open: {
       server: {
         url: 'http://localhost:<%= express.options.port %>'
@@ -527,7 +541,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     ngconstant: {
       options: {
         name: 'config',
