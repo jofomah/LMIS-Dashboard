@@ -4,66 +4,47 @@
       <a class="navbar-brand" href="/"><div class="logo-div">
 
                                        </div></a>
-    </div>
-      <div class="menu-items">
-    <ul ng-show="isLoggedIn()" class="nav navbar-nav">
-      <li ng-class="{active: isActive('/')}"><a href="/">Home</a></li>
-      <li ng-class="{active: isActive('/inventory')}">
-        <a href="/inventory">Inventory</a>
-      </li>
-      <li ng-class="{active: isActive('/ccu-breakdown')}">
-        <a href="/ccu-breakdown">CCU Breakdown</a>
-      </li>
-      <li ng-class="{active: isActive('/stock-count')}">
-        <a href="/stock-count">Stock Count</a>
-      </li>
-      <li ng-class="{active: isActive('/waste-count')}">
-        <a href="/waste-count">Waste Count</a>
-      </li>
-      <li ng-class="{active: isActive('/stock-out')}">
-        <a href="/stock-out">Stock Out</a>
-      </li>
-      <!-- li ng-class="{active: isActive('/stock-count-summary')}">
-        <a href="/stock-count-summary">Stock Count Summary</a>
-      </li -->
-      <li ng-class="{active: isActive('/facilities')}">
-        <a href="/facilities">Facilities</a>
-      </li>
-      <li ng-class="{active: isActive('/ledger')}">
-        <a href="/ledger">Ledger</a>
-      </li>
-        <li ng-class="{active: isActive('/supply-planning')}">
-        <a href="/supply-planning">Supply Planning</a>
-             <div id="dropdown-supply-planning" class="toogle dropdown-menu">
-                 <ul>
-                     <li ng-class="{active: isActive('/vendor-management')}">
-                         <a href="/vendor-management">Vendor Management</a>
-                     </li>
-                     <li ng-class="{active: isActive('/stock-allocation')}">
-                         <a href="/stock-allocation">Stock Allocation</a>
-                     </li>
-                     <li ng-class="{active: isActive('/vendor-management')}">
-                         <a href="/vendor-management">Vendor Assigments</a>
-                     </li>
-                 </ul>
-             </div>
-      </li>
-    </ul>
-         
+        <div class="navbar-header-content">
+            <div class="row height100">
+                <div class="col-sm-2">
+                    <select class="form-control select-primary no-focus">
+                        <option>Routine Immunization Stock</option>
+                        <option>Pharmaceutical Commodities</option>
+                    </select>
+                </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2 height100">
+                    <div class="row height100">
+                        <div class="col-sm-9 height100 search-bg"> 
+                            <input type="text" placeholder="search..." class="form-control height100 no-focus"/>
+                    
+                        </div>
+                        <div class="col-sm-2 height100 search-btn-bg">
+                            <a href="#" class="height100">
+                        <div class="fa fa-search fa-2x search-icon"></div>
+                    </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 height100">
+                    <div class="row height100">
+                        <div class="col-sm-9">
+                           <span class="header-username color-bg-font pull-right">Oluwatosin Oyemeze</span>
+                        </div>
+                        <div class="col-sm-2">
+                           <div class="profile-pic circle"></div>
+                        </div>
+                        <div class="col-sm-1 height100 search-btn-bg"><a href="#" class="height100">
+                           <div class="fa fa-power-off logout-icon fa-2x" title="log out"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-          </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-      <li ng-show="isLoggedIn()" class="dropdown">
-        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-          Logged in as: {{ getCurrentUser().name }} <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li ng-show="isAdmin()"><a href="/users">Users</a></li>
-          <li><a ng-click="logout()">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
+    </div>
+      
   </div>
 </nav>
 
