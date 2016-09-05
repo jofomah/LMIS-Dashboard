@@ -1,15 +1,17 @@
 <div class="row" ng-controller="MainCtrl">
-  <div class="col-md-12">
+  <div class="row">
+   <div class="col-md-12 margin-top-20">
     <div class="row" ng-controller="WeeklyReportGraphCtrl">
-      <div class="col-md-12" align="center">
-        <h2>Situation Report
+      <div class="col-md-1"></div>
+      <div class="col-md-6 text-left">
+        <h3>Routine Immunization Stock Overview 
           ({{ from.date | date : mediumDateFormat }} - {{ to.date | date : mediumDateFormat }})
-        </h2>
+        </h3>
         <br/>
       </div>
-
-      <div class="container-fliud" align="center">
-        <div class="col-md-4">
+        <div class="col-md-5">
+            <div class="margin-top-10">
+         <div class="col-md-4">
           <div class="form-group">
             <div class="input-group input-group-lg">
               <input type="text" class="form-control input-lg"
@@ -43,17 +45,19 @@
         </div>
 
         <div class="col-md-4" align="left">
-          <button type="button" class="btn btn-primary btn-lg"
+          <button type="button" class="btn btn-primary"
                   ng-disabled="isLoadingGraphData"
                   ng-click="updateGraph()">
             Apply
           </button>
         </div>
-        <br/><br/>
-      </div>
+</div>
+        </div>
 
-      <div class="col-md-12">
-        <div class="panel panel-default">
+      
+
+      <div class="col-md-9">
+        <div class="panel-transparent">
           <div class="panel-body">
             <div ng-show="isLoadingGraphData" align="center">
               <i class="fa fa-spin fa-spinner fa-3x"></i>
@@ -78,9 +82,38 @@
           </div>
         </div>
       </div>
+        <div class="col-md-3 margin-top-20">
+            <div class="row no-pad summary-block">
+                <div class="col-xs-3 summary-block-icon summary-facility">
+                    <i class="fa fa-3x fa-hospital-o line-height-100"></i>
+                </div>
+                <div class="col-xs-9 summary-block-content summary-facility-content">
+                    <div class="summary-number">1089</div>
+                    <div class="summary-text">Facilities in Gwali</div>
+                </div>
+            </div>
+            <div class="row no-pad summary-block">
+                <div class="col-xs-3 summary-block-icon summary-facility">
+                    <i class="fa fa-3x fa-hospital-o line-height-100"></i>
+                </div>
+                <div class="col-xs-9 summary-block-content summary-facility-content">
+                    <div class="summary-number">1089</div>
+                    <div class="summary-text">Facilities in Gwali</div>
+                </div>
+            </div>
+                <div class="row no-pad summary-block">
+                <div class="col-xs-3 summary-block-icon summary-facility">
+                    <i class="fa fa-3x fa-hospital-o line-height-100"></i>
+                </div>
+                <div class="col-xs-9 summary-block-content summary-facility-content">
+                    <div class="summary-number">1089</div>
+                    <div class="summary-text">Facilities in Gwali</div>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
-</div>
+  </div>
 
 <div class="row">
   <div class="col-md-8" ng-controller="MainStockOutReportCtrl">

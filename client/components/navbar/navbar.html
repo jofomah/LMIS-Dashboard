@@ -1,4 +1,6 @@
-<nav class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
+
+<div ng-controller="NavbarCtrl">
+    <nav class="navbar navbar-default navbar-static-top relative">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/"><div class="logo-div">
@@ -12,7 +14,25 @@
                         <option>Pharmaceutical Commodities</option>
                     </select>
                 </div>
-                <div class="col-sm-5"></div>
+                <div class="col-sm-5">
+                    <div class="row">
+                        <div class="col-sm-3">
+                           <a ng-click="toogleMenu()" id="menu-icon" title="Menu" class="height100">
+                            <div class="fa fa-bars fa-2x search-icon padding-top-bottom-10"></div>
+                           </a>
+                        </div>
+                        <div class="col-sm-9">
+                            <a href="#" title="Notifications" class="height100 relative">
+                            <div class="fa fa-bell-o fa-2x header-icon padding-top-bottom-15"></div>
+                                <div class="circle not-count">9+</div>
+                           </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" title="Messages" class="height100 relative">
+                            <div class="fa fa-envelope-o fa-2x header-icon padding-top-bottom-15"></div>
+                            <div class="circle not-count">5</div>
+                           </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-2 height100">
                     <div class="row height100">
                         <div class="col-sm-9 height100 search-bg"> 
@@ -29,32 +49,99 @@
                 <div class="col-sm-3 height100">
                     <div class="row height100">
                         <div class="col-sm-9">
-                           <span class="header-username color-bg-font pull-right">Oluwatosin Oyemeze</span>
+                           <span ng-show="isLoggedIn()" class="header-username color-bg-font pull-right">{{ getCurrentUser().name }}</span>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2" ng-show="isLoggedIn()">
                            <div class="profile-pic circle"></div>
                         </div>
-                        <div class="col-sm-1 height100 search-btn-bg"><a href="#" class="height100">
-                           <div class="fa fa-power-off logout-icon fa-2x" title="log out"></div>
+                         <a href="/login" class="height100"><div class="col-sm-2 height100 search-btn-bg"  ng-hide="isLoggedIn()">
+                            <div class="text-center color-header-font padding-top-bottom-5">Login</div>
+                        </div></a>
+                        <div class="col-sm-1 height100 search-btn-bg" ng-show="isLoggedIn()">
+                            <a href="#" class="height100" ng-click="logout()">
+                           <div class="fa fa-power-off logout-icon fa-2x header-icon" title="log out"></div>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
-
+        
     </div>
+      
       
   </div>
 </nav>
-
-<div ng-controller="NavbarCtrl">
-  <div class="col-xs-12 clearfix">
-    <div class="pull-right page-status" ng-show="isLoggedIn()">
-      <strong>Last Updated: </strong> <span>{{ lastUpdated }}</span>
-      <a title="Reload Page" class="btn btn-primary refresh-btn" ng-click="reloadPage()">
-        <i class="fa fa-refresh"></i>
-      </a>
-    </div>
-  </div>
+<div id="sub-menu-div" class="navbar navbar-default">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="header">REPORTS</div>
+                        <div class="links">
+                            <ul ng-show="isLoggedIn()" class="nav navbar-nav">
+                                <li ng-class="{active: isActive('/')}"><a href="/">Overview</a></li>
+                                <li ng-class="{active: isActive('/inventory')}">
+                                    <a href="/inventory">Inventory</a>
+                                </li>
+                                <li ng-class="{active: isActive('/ccu-breakdown')}">
+                                    <a href="/ccu-breakdown">CCU Breakdown</a>
+                                </li>
+                                <li ng-class="{active: isActive('/stock-count')}">
+                                    <a href="/stock-count">Stock Count</a>
+                                </li>
+                                <li ng-class="{active: isActive('/waste-count')}">
+                                    <a href="/waste-count">Waste Count</a>
+                                </li>
+                                <li ng-class="{active: isActive('/stock-out')}">
+                                    <a href="/stock-out">Stock Out</a>
+                                </li>
+                                
+                                <li ng-class="{active: isActive('/facilities')}">
+                                    <a href="/facilities">Facilities</a>
+                                </li>
+                                <li ng-class="{active: isActive('/ledger')}">
+                                    <a href="/ledger">Ledger</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mid-div">
+                        <div class="header">SUPPLY PLANNING</div>
+                        <div class="links">
+                            <ul ng-show="isLoggedIn()" class="nav navbar-nav">
+                                <li ng-class="{active: isActive('/vendor-management')}">
+                                    <a href="/vendor-management">Vendor Management</a>
+                                </li>
+                                <li ng-class="{active: isActive('/stock-allocation')}">
+                                    <a href="/stock-allocation">Stock Allocation</a>
+                                </li>
+                                <li ng-class="{active: isActive('/vendor-management')}">
+                                    <a href="/vendor-management">Vendor Assigments</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="header">SETTINGS</div>
+                        <div class="links">
+                            <ul ng-show="isLoggedIn()" class="nav navbar-nav">
+                                <li>
+                                    <a href="#">Users</a>
+                                </li>
+                                <li>
+                                    <a href="#">CCU</a>
+                                </li>
+                                <li>
+                                    <a href="#">Facility Information</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-handle" ng-click="toogleMenu()">
+                    <div class="fa fa-angle-up" ng-show="menuState" title="Close Menu"></div>
+                    <div class="fa fa-angle-down" ng-hide="menuState" title="Open Menu"></div>
+                </div>
+            </div>
 </div>

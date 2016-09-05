@@ -32,4 +32,23 @@ angular.module('lmisApp')
     $scope.reloadPage = function () {
       $window.location.reload()
     }
+
+    $scope.menuState = false;
+    $scope.toogleMenu = function () {
+      if ($scope.menuState) {
+        jQuery('#sub-menu-div').animate({
+          top: "-280px"
+        }, 300, function() {
+          // Animation complete.
+        });
+        $scope.menuState = false;
+      } else {
+        jQuery('#sub-menu-div').animate({
+          top: "45px"
+        }, 300, function () {
+          // Animation complete.
+        });
+        $scope.menuState = true;
+      }
+    }
   });
