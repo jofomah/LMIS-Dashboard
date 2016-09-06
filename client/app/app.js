@@ -17,7 +17,8 @@ angular.module('lmisApp',
 			'pagination',
 			'leaflet-directive',
 			'ui.grid',
-			'ui.grid.pagination'
+			'ui.grid.pagination',
+      'nvd3'
 		])
 		.config(function ($routeProvider, $locationProvider, $httpProvider, uiSelectConfig) {
 			$routeProvider

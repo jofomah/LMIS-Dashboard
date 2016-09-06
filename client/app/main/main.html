@@ -55,32 +55,212 @@
 
       
 
-      <div class="col-md-9">
+      <!--<div class="col-md-9">
         <div class="panel-transparent">
           <div class="panel-body">
             <div ng-show="isLoadingGraphData" align="center">
               <i class="fa fa-spin fa-spinner fa-3x"></i>
             </div>
             <div class="container-fluid" ng-if="!isLoadingGraphData">
-              <nvd3-multi-bar-chart
-                  data="weeklySituationReport"
-                  id="weeklyReportChart"
-                  margin="{ left: 80 }"
-                  height="450"
-                  tooltips="true"
-                  showXAxis="true"
-                  showYAxis="true"
-                  showLabels="true"
-                  forcey="[0, 1]" ,
-                  yAxisTickFormat="roundOff()"
-                  y="yValue()"
-                  showLegend="true">
-                <svg></svg>
-              </nvd3-multi-bar-chart>
+                <nvd3 options="weeklySituationReportOptions" data="weeklySituationReport"></nvd3>
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
+        
+        
+    </div>
+       <div class="row">
+           <div class="col-md-9 margin-top-20">
+           <div class="row">
+            <div class="col-md-6" ng-controller="stockCountSummaryCtrl">
+              <div class="panel">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <span>
+                        <!-- Tabs -->
+                       <ul class="nav panel-tabs text-center">
+                        <li class="active"><a ng-click="stockoutHome(true)"><i class="fa fa-bar-chart"></i></a></li>
+                        <li><a ng-click="stockoutHome(false)"><i class="fa fa-table"></i></a></li>
+                       </ul>
+                      </span>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <h5>
+                        Stock Count Summary
+                      </h5>
+                    </div>
+                    <div class="col-md-3 text-right">
+                      <div class="btn btn-export">
+                        <span>
+                          <i class="fa fa-cloud-download icon-left"></i>
+                          Export
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="tab-content">
+                    <div ng-show="stockoutHomeTab">
+                                <div>
+                                    <nvd3 options="stockCountSummaryOptions" data="stockCountSummaryData"></nvd3>
+                                </div>
+                      
+                    </div>
+                    <div ng-hide="stockoutHomeTab">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Product</th>
+                              <th>Quantity</th>
+                              <th>UoM</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>IPV</td>
+                              <td>30</td>
+                              <td>doses</td>
+                            </tr>
+                            <tr>
+                              <td>PCV</td>
+                              <td>0</td>
+                              <td>doses</td>
+                            </tr>
+                            <tr>
+                              <td>Phytomenadione</td>
+                              <td>0</td>
+                              <td>units</td>
+                            </tr>
+                            <tr>
+                              <td>BCG</td>
+                              <td>40</td>
+                              <td>doses</td>
+                            </tr>
+                            <tr>
+                              <td>DT</td>
+                              <td>0</td>
+                              <td>doses</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="row text-left">
+                        <div class="col-sm-6 fake-footer">
+                          <ul class="pagination">
+                            <li class="disabled"><a href="#"><</a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">></a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6 fake-footer text-right">
+                          <h6 class="grey"> VIEW ALL </h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="panel">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <span>
+                        <!-- Tabs -->
+                       <ul class="nav panel-tabs text-center">
+                        <li class="active"><a href="#tab3" data-toggle="tab"><i class="fa fa-bar-chart"></i></a></li>
+                        <li><a href="#tab4" data-toggle="tab"><i class="fa fa-table"></i></a></li>
+                       </ul>
+                      </span>
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <h5>
+                        CCE Status Summary
+                      </h5>
+                    </div>
+                    <div class="col-md-3 text-right">
+                      <div class="btn btn-export">
+                        <span>
+                          <i class="fa fa-cloud-download icon-left"></i>
+                          Export
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab3">
+                      <div ng-controller="cceSummaryCtrl">
+                                    <nvd3 options="cceSummaryOptions" data="cceSummaryData"></nvd3>
+                                </div>
+                    </div>
+                    <div class="tab-pane" id="tab4">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Brand</th>
+                              <th>Number Faulty</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Bright Light Solar - PS40</td>
+                              <td>1</td>
+                            </tr>
+                            <tr>
+                              <td>Dometic - FCW 20 EG</td>
+                              <td>4</td>
+                            </tr>
+                            <tr>
+                              <td>Dometic - FCW 20 EK</td>
+                              <td>1</td>
+                            </tr>
+                            <tr>
+                              <td>Dometic - FCW 200</td>
+                              <td>2</td>
+                            </tr>
+                            <tr>
+                              <td>Dometic - TCW 2000 AC</td>
+                              <td>10</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="row text-left">
+                        <div class="col-sm-6 fake-footer">
+                          <ul class="pagination">
+                            <li class="disabled"><a href="#"><</a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">></a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6 fake-footer text-right">
+                          <h6 class="grey"> VIEW ALL </h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           </div>
+
+               </div>
+        
         <div class="col-md-3 margin-top-20">
             <div class="row no-pad summary-block">
                 <div class="col-xs-3 summary-block-icon summary-facility">
@@ -92,27 +272,43 @@
                 </div>
             </div>
             <div class="row no-pad summary-block">
-                <div class="col-xs-3 summary-block-icon summary-facility">
-                    <i class="fa fa-3x fa-hospital-o line-height-100"></i>
+                <div class="col-xs-3 summary-block-icon summary-cce">
+                    <i class="fa fa-3x fa-medkit line-height-100"></i>
                 </div>
                 <div class="col-xs-9 summary-block-content summary-facility-content">
-                    <div class="summary-number">1089</div>
-                    <div class="summary-text">Facilities in Gwali</div>
+                    <div class="summary-number">12</div>
+                    <div class="summary-text">Faulty CCEs</div>
                 </div>
             </div>
                 <div class="row no-pad summary-block">
-                <div class="col-xs-3 summary-block-icon summary-facility">
-                    <i class="fa fa-3x fa-hospital-o line-height-100"></i>
+                <div class="col-xs-3 summary-block-icon summary-stock">
+                    <i class="fa fa-3x fa-heartbeat line-height-100"></i>
                 </div>
                 <div class="col-xs-9 summary-block-content summary-facility-content">
-                    <div class="summary-number">1089</div>
-                    <div class="summary-text">Facilities in Gwali</div>
+                    <div class="summary-number">23</div>
+                    <div class="summary-text">Out of Stock Facilities</div>
+                </div>
+            </div>
+            <div class="row no-pad summary-block">
+                <div class="col-xs-3 summary-block-icon summary-deliveries">
+                    <i class="fa fa-3x fa-ambulance line-height-100"></i>
+                </div>
+                <div class="col-xs-9 summary-block-content summary-facility-content">
+                    <div class="summary-number">5</div>
+                    <div class="summary-text">Pending Deliveries</div>
                 </div>
             </div>
         </div>
+
+        </div>
+
+       </div>
     </div>
-  </div>
-    </div>
+
+
+
+
+
 
 <div class="row">
   <div class="col-md-8" ng-controller="MainStockOutReportCtrl">
@@ -125,7 +321,7 @@
           <i class="fa fa-spin fa-spinner fa-3x"></i>
         </div>
         <div ng-hide="isLoadingStockOutData">
-          <nvd3-multi-bar-chart
+          <!--<nvd3-multi-bar-chart
             data="stoutOutChartData"
             id="stockOutChart"
             margin="{ left: 80 }"
@@ -139,7 +335,7 @@
             yAxisTickFormat="roundYAxis()"
             showLegend="true">
             <svg></svg>
-          </nvd3-multi-bar-chart>
+          </nvd3-multi-bar-chart>-->
         </div>
       </div>
     </div>
@@ -156,7 +352,7 @@
         </div>
         <div ng-hide="isLoadingCCEChart" style="max-height: 450px;">
 
-          <nvd3-pie-chart
+          <!--<nvd3-pie-chart
             data="breakdownChartData"
             id="breakdownPie"
             width="400"
@@ -171,7 +367,7 @@
             color="['#A60000', '#dff0d8']"
             tooltipcontent="tooltip()"
             showLegend="false">
-          </nvd3-pie-chart>
+          </nvd3-pie-chart>-->
         </div>
       </div>
     </div>
@@ -230,3 +426,4 @@
     </div>
   </div>
 </div>
+

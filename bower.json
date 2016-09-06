@@ -22,6 +22,7 @@
     "angular-bootstrap": "~0.11.0",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
+    "angular-nvd3": "~1.0.9",
     "angularjs-nvd3-directives": "~0.0.7",
     "moment": "~2.8.3",
     "ng-csv": "~0.2.4",
@@ -41,7 +42,8 @@
     "ehealth"
   ],
   "resolutions": {
-    "d3": "~3.4.1",
-    "angular": "1.2.x"
+    "d3": "^3.4.4",
+    "angular": "1.2.x",
+    "nvd3": "^1.8.4"
   }
 }
