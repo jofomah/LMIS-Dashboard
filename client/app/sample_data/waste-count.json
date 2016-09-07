@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Name": "Broken vial",
+    "Value": 258
+  },
+  {
+    "Name": "Expired",
+    "Value": 436
+  },
+  {
+    "Name": "VVM Stage 3",
+    "Value": 532
+  },
+  {
+    "Name": "Label Missing",
+    "Value": 56
+  },
+  {
+    "Name": "Unopened Expiry",
+    "Value": 82
+  },
+  {
+    "Name": "Suspected freezing",
+    "Value": 137
+  }
+]
