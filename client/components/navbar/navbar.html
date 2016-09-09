@@ -1,27 +1,28 @@
 
 <div ng-controller="NavbarCtrl">
     <nav class="navbar navbar-default navbar-static-top relative">
-  <div class="container-fluid">
+  <div>
     <div class="navbar-header">
       <a class="navbar-brand" href="/"><div class="logo-div">
 
                                        </div></a>
         <div class="navbar-header-content">
-            <div class="row height100">
-                <div class="col-sm-2">
+            <div class="container-fluid">
+                <div class="row height100">
+                <div class="col-md-3 maxwidth255">
                     <select class="form-control select-primary no-focus">
                         <option>Routine Immunization Stock</option>
                         <option>Pharmaceutical Commodities</option>
                     </select>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-md-3">
                     <div class="row">
                         <div class="col-sm-3">
                            <a ng-click="toogleMenu()" id="menu-icon" title="Menu" class="height100">
                             <div class="fa fa-bars fa-2x search-icon padding-top-bottom-10"></div>
                            </a>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-9 text-right">
                             <a href="#" title="Notifications" class="height100 relative">
                             <div class="fa fa-bell-o fa-2x header-icon padding-top-bottom-15"></div>
                                 <div class="circle not-count">9+</div>
@@ -33,37 +34,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2 height100">
-                    <div class="row height100">
-                        <div class="col-sm-9 height100 search-bg"> 
+                <div class="col-md-3 height100">
+                    <div class="container-fluid height100">
+                        <div class="row height100">
+                        <div class="col-md-8 height100 search-bg"> 
                             <input type="text" placeholder="search..." class="form-control height100 no-focus"/>
                     
                         </div>
-                        <div class="col-sm-2 height100 search-btn-bg">
-                            <a href="#" class="height100">
+                        <div class="col-md-3 height100 search-btn-bg">
+                            <a href="#" class="height100 centralize">
                         <div class="fa fa-search fa-2x search-icon"></div>
                     </a>
                         </div>
                     </div>
+                    </div>
+                    
                 </div>
-                <div class="col-sm-3 height100">
-                    <div class="row height100">
-                        <div class="col-sm-9">
+                <div class="col-md-3 height100 pull-right">
+                    <div class="container-fluid height100">
+                        <div class="row height100">
+                        <div class="col-md-7">
                            <span ng-show="isLoggedIn()" class="header-username color-bg-font pull-right">{{ getCurrentUser().name }}</span>
                         </div>
-                        <div class="col-sm-2" ng-show="isLoggedIn()">
+                        <div class="col-md-3" ng-show="isLoggedIn()">
                            <div class="profile-pic circle"></div>
                         </div>
                          <a href="/login" class="height100"><div class="col-sm-2 height100 search-btn-bg"  ng-hide="isLoggedIn()">
                             <div class="text-center color-header-font padding-top-bottom-5">Login</div>
                         </div></a>
-                        <div class="col-sm-1 height100 search-btn-bg" ng-show="isLoggedIn()">
-                            <a href="#" class="height100" ng-click="logout()">
+                        <div class="col-md-2 height100 search-btn-bg" ng-show="isLoggedIn()">
+                            <a href="#" class="height100 centralize" ng-click="logout()">
                            <div class="fa fa-power-off logout-icon fa-2x header-icon" title="log out"></div>
                             </a>
                         </div>
                     </div>
+                    </div>
                 </div>
+            </div>
             </div>
             
         </div>

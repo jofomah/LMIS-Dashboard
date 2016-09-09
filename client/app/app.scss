@@ -274,7 +274,7 @@ tr.grey-bg{
 }
 .navbar-header-content{
     float:left;
-    width: calc(100% - 251px);
+    width: calc(100% - 217px);
     height: 50px;
     padding-left:40px;
     border-bottom:1px solid #2c2c2c;
@@ -371,6 +371,7 @@ tr.grey-bg{
 }
 .search-bg{
     background-color:#525252;
+        padding-top: 3px;
 }
 .search-btn-bg{
     background-color:#404040;
@@ -1102,6 +1103,15 @@ th.sub-list {
 .page-header{
     margin:0 0 20px;
     border:none;
+}
+
+.centralize{
+    display:table;
+    margin: 0 auto;
+}
+
+.maxwidth255{
+    max-width:255px;
 }
 /*From html CSS Design*/
 
