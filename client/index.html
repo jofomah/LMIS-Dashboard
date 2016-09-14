@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
   <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+  <link rel="stylesheet" href="components/filter/css/daterangepicker.css"/>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css({.tmp,client}) app/app.css -->
@@ -74,7 +75,7 @@
 <script src="bower_components/nvd3/build/nv.d3.js"></script>
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
-<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
 <script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
@@ -114,8 +115,6 @@
 <script src="app/stock_count_summary/stock_count_summary.js"></script>
 <script src="app/stock_out/stock_out.controller.js"></script>
 <script src="app/stock_out/stock_out.js"></script>
-<script src="app/health_facility/health_facility.controller.js"></script>
-<script src="app/health_facility/health_facility.js"></script>
 <script src="app/supply_planning/assignments/assignment_form.js"></script>
 <script src="app/supply_planning/assignments/re_assignment_form.js"></script>
 <script src="app/supply_planning/stock_allocations/stock_allocation.js"></script>
@@ -158,6 +157,9 @@
 <script src="components/utility/remote-error.js"></script>
 <script src="components/utility/sidebar.js"></script>
 <script src="components/utility/utility.js"></script>
+<script src="components/filter/filter.controller.js"></script>
+    <!-- Include Date Range Picker -->
+<script src="components/filter/js/daterangepicker.js"></script>
 <!-- endinjector -->
 <!-- endbuild -->
 </body>

@@ -166,7 +166,7 @@ angular.module('lmisApp')
     $scope.summaryData = [
             {
               "key": "All antigens sufficient",
-              "color": "#005d98",
+              "color": "#606060",
               "values": [
                   {
                     "label": "Summary",
@@ -176,7 +176,7 @@ angular.module('lmisApp')
             },
             {
               "key": "1-2 antigens below minimum",
-              "color": "#00d5d2",
+              "color": "#a7a7a7",
               "values": [
                   {
                     "label": "Summary",
