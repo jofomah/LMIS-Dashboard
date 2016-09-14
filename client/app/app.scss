@@ -632,12 +632,13 @@ font-size:20px;
  $text: #4a4a4a;
  $font: 'Roboto', sans-serif;
  $grey: #979797;
+ $dark-grey: #777;
+ $light-grey: #ddd;
  $blue: #1e679a;
  $orange: #f05a22;
  $yellow: #f0bb22;
  $dark-blue: #063d64;
  $light-blue: #4196d7;
- $dark-grey: #777;
  $amber: #f09622;
  $red: #F84324;
  $green: #01c256;
@@ -912,6 +913,30 @@ font-size:20px;
    border-bottom: 1px solid #ddd !important;
  }
  .status-red-head :hover {
+   transform: scale(1.01);
+ }
+
+ .btn-filter.light-grey {
+   background-color: $light-grey;
+   color: #4a4a4a;
+ }
+ .btn-filter.light-grey:hover {
+   transform: scale(1.1);
+ }
+ .btn-filter.light-grey:active {
+   background-color: white;
+   color: #4a4a4a;
+   border: 1px solid $light-grey;
+ }
+ .status-grey {
+   border-left: 5px solid $grey !important;
+ }
+ .status-grey-head{
+   border-left: 5px solid $grey !important;
+   border-radius:0px !important;
+   border-bottom: 1px solid #ddd !important;
+ }
+ .status-grey-head :hover {
    transform: scale(1.01);
  }
 
