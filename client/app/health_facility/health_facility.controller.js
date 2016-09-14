@@ -11,5 +11,11 @@ angular.module('lmisApp')
     $scope.default = function (product) {return $scope.count == undefined;};
     $scope.green = function (product) {return $scope.count >= product.maximumLevel;};
     $scope.yellow = function (product) {return $scope.count < product.reorderLevel;};
-    $scope.red = function (product) {return $scope.count < product.minimumLevel;};
+    $scope.red = function (product) { return $scope.count < product.minimumLevel; };
+
+
+    $scope.tabnumber = 1;
+    $scope.showtab = function (tab) {
+      $scope.tabnumber = tab;
+    }
   });

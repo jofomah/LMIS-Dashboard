@@ -92,7 +92,7 @@
                 <li class="active"><a href="#tab1" data-toggle="tab"><h6>Products</h6></a></li>
                 <!-- <li><a href="#tab2" data-toggle="tab"><h6>Stock Out</h6></a></li> -->
                 <!-- <li><a href="#tab3" data-toggle="tab"><h6>Waste Count</h6></a></li> -->
-                <li><a href="#tab4" data-toggle="tab"><h6>Amenities</h6></a></li>
+                <li><a ng-click="showtab(1)"><h6>Amenities</h6></a></li>
                 <li><a href="#tab5" data-toggle="tab"><h6>Ledger</h6></a></li>
                 <li><h6><span class="btn btn-export"><i class="fa fa-cloud-download icon-left"></i>Export</span></h6></li>
                 <li><h6><span class="btn btn-export small"><i class="fa fa-cloud-download"></i></span></h6></li>
@@ -102,7 +102,7 @@
             <div class="panel-body">
               <div class="tab-content">
 
-                <div class="tab-pane active in-fade" id="tab1">
+                <div class="tab-pane in-fade" id="tab1" ng-class="active ? tabnumber==1">
                   <div class="row">
                     <div class="col-xs-12">
 
