@@ -8,29 +8,29 @@ angular.module('lmisApp')
         controller: 'StockCountCtrl',
         authenticate: true,
         resolve: {
-          productTypes: [
-            'ProductType', function(ProductType) {
-              return ProductType.codes();
-            }
-          ],
-          stockCounts: [
-            '$q', 'stockCount', function($q, stockCount) {
-              var d = $q.defer();
+          //productTypes: [
+          //  'ProductType', function(ProductType) {
+          //    return ProductType.codes();
+          //  }
+          //],
+          //stockCounts: [
+          //  '$q', 'stockCount', function($q, stockCount) {
+          //    var d = $q.defer();
 
-              stockCount.all()
-                .then(stockCount.latest)
-                .then(stockCount.resolveUnopened)
-                .then(d.resolve)
-                .catch(d.reject);
+          //    stockCount.all()
+          //      .then(stockCount.latest)
+          //      .then(stockCount.resolveUnopened)
+          //      .then(d.resolve)
+          //      .catch(d.reject);
 
-              return d.promise;
-            }
-          ],
-          UoMs: [
-          'stockOut', function (stockOut) {
-              return stockOut.productTypesWithUoM();
-          }
-          ]
+          //    return d.promise;
+          //  }
+          //],
+          //UoMs: [
+          //'stockOut', function (stockOut) {
+          //    return stockOut.productTypesWithUoM();
+          //}
+          //]
         }
       });
   });

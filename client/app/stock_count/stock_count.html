@@ -1,7 +1,18 @@
 <div class="row">
   <div class="col-xs-12">
-    <h2 class="page-header text-center">Stock Count</h2>
-    
+    <div class="row">
+        <div class="col-md-6 text-center margin-top-10">
+        <h2>Stock Count for Nassarawa | Kano</h2>
+      </div>
+        <div class="col-md-6">
+        <div class="margin-top-10">
+        
+
+        <div ng-include="'../../components/filter/filter.html'" class="relative"></div>
+</div>
+        </div>
+
+    </div>
 <div class="hide">
     <alert ng-hide="filteredRows.length" type="info">No data.</alert>
 </div>
@@ -77,19 +88,86 @@
                     </div>
                     <div class="tab-pane" id="tab2" ng-class="{'active' : chartTab === false}">
                       
-                      <div class="panel panel-default">
-                        <div class="panel-body">
-                          <div class="row">
-                            <div class="col-xs-2">
-                              <h6>
-                                <div class="input-group">
+                 <div>
+                     <div class="row list-border list-header">
+                         <div class="col-md-6 margin-top-10">
+                             <div class="row">
+                                        <div class="col-md-1 col-checkbox">
+                                            <div class="input-group">
                                   <input type="checkbox" aria-label="...">
                                 </div>
-                              </h6>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <strong>Facility</strong>
+                                        </div>
+                                    </div>
+                         </div>
+                         <div class="col-md-2 margin-top-10"><strong>Below Reorder Level</strong></div>
+                         <div class="col-md-2 margin-top-10"><strong> Stock Count</strong></div>
+                         <div class="col-md-2">
+                                 <input type="text" class="form-control" placeholder="Search" />
+                             
+                         </div>
+                     </div>
+                   <accordion close-others="oneAtATime" class="list-accordion">
+                                                            
+                    <accordion-group ng-class="{'red-border' : facility.LowStock > 3, 'green-border' : facility.LowStock === 0 , 'orange-border' : isWarning(facility.LowStock)}" ng-repeat="facility in facilityList">
+                        <accordion-heading>
+                            <div class="row list-border">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-1 col-checkbox">
+                                            <div class="input-group">
+                                  <input type="checkbox" aria-label="...">
+                                </div>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <span class="title">{{facility.Name}}</span><br />
+                                    <span class="loc">{{facility.Location}}</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-2 item">{{facility.LowStock}} items below reorder</div>
+                                <div class="col-md-2 item">{{facility.LastCount}}</div>
+                                <div class="col-md-2 text-right"><i class="fa fa-chevron-down margin-top-10" ng-show="facility.LowStock"></i>&nbsp;&nbsp;<a><i class="fa fa-bars fa-2x"></i></a></div>
                             </div>
-                          </div>
-                          </div>
+                        </accordion-heading>
+                      <div class="table-scroller" ng-show="facility.LowStock">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <table class="table table-stripped">
+                              <thead>
+                                  <tr>
+                                      <th>Product</th>
+                                      <th>UoM</th>
+                                      <th>Max</th>
+                                      <th>Reorder</th>
+                                      <th>Min</th>
+                                      <th>Current</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr ng-repeat="product in facility.Products">
+                                      <td ng-class="{'green-border-product' : product.Current > product.Reorder , 'orange-border-product' : product.Current < product.Reorder, 'red-border-product' : product.Current <= product.Min}">{{product.Name}}</td>
+                                      <td>{{product.UoM}}</td>
+                                      <td>{{product.Max}}</td>
+                                      <td>{{product.Reorder}}</td>
+                                      <td>{{product.Min}}</td>
+                                      <td>{{product.Current}}</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                      </div>
+                    </accordion-group>
+                        
+                                                            
+                    </accordion>
+
                         </div>
+                      
                       <div class="row">
                       <div class="col-xs-12">
                         <div class="panel panel-default">

@@ -1,133 +1,133 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('StockCountCtrl', function ($scope, $filter, $routeParams, utility, Auth, Pagination, stockCounts, Places, productTypes, UoMs, $http) {
-    var rows = stockCounts;
+  .controller('StockCountCtrl', function ($scope, $filter, $routeParams, utility, Auth, Pagination, /*stockCounts, Places, productTypes, UoMs, */ $http) {
+    //var rows = stockCounts;
     $scope.currentUser = Auth.getCurrentUser();
-    $scope.productTypes = productTypes;
-    $scope.pagination = new Pagination();
-    $scope.filteredRows = [];
-    $scope.totals = [];
-    $scope.places = null;
-    $scope.UoMs = UoMs;
-    $scope.getFilename = utility.getFileName;
+    //$scope.productTypes = productTypes;
+    //$scope.pagination = new Pagination();
+    //$scope.filteredRows = [];
+    //$scope.totals = [];
+    //$scope.places = null;
+    //$scope.UoMs = UoMs;
+    //$scope.getFilename = utility.getFileName;
     $scope.chartTab = true;
-    $scope.csvHeader = [
-      'State',
-      'Zone',
-      'LGA',
-      'Ward',
-      'Facility',
-      'Contact Name',
-      'Contact Phone',
-      'Product',
-      'Count',
-      'Due Date',
-      'Record Date',
-      'Modified Date'
-    ];
+    //$scope.csvHeader = [
+    //  'State',
+    //  'Zone',
+    //  'LGA',
+    //  'Ward',
+    //  'Facility',
+    //  'Contact Name',
+    //  'Contact Phone',
+    //  'Product',
+    //  'Count',
+    //  'Due Date',
+    //  'Record Date',
+    //  'Modified Date'
+    //];
 
-    $scope.place = {
-      type: '',
-      columnTitle: '',
-      search: ''
-    };
+    //$scope.place = {
+    //  type: '',
+    //  columnTitle: '',
+    //  search: ''
+    //};
 
-    if ($routeParams.facility) {
-      $scope.place = {
-        type: Places.FACILITY,
-        search: $routeParams.facility
-      };
-    }
+    //if ($routeParams.facility) {
+    //  $scope.place = {
+    //    type: Places.FACILITY,
+    //    search: $routeParams.facility
+    //  };
+    //}
 
-    $scope.from = {
-      opened: false,
-      date: moment().startOf('day').subtract(7, 'days').toDate(),
-      open: function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
+    //$scope.from = {
+    //  opened: false,
+    //  date: moment().startOf('day').subtract(7, 'days').toDate(),
+    //  open: function($event) {
+    //    $event.preventDefault();
+    //    $event.stopPropagation();
 
-        this.opened = true;
-      }
-    };
+    //    this.opened = true;
+    //  }
+    //};
 
-    $scope.to = {
-      opened: false,
-      date: moment().endOf('day').toDate(),
-      open: function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
+    //$scope.to = {
+    //  opened: false,
+    //  date: moment().endOf('day').toDate(),
+    //  open: function($event) {
+    //    $event.preventDefault();
+    //    $event.stopPropagation();
 
-        this.opened = true;
-      }
-    };
+    //    this.opened = true;
+    //  }
+    //};
 
-    $scope.getPlaces = function(filter) {
-      $scope.places = new Places($scope.place.type, filter);
+    //$scope.getPlaces = function(filter) {
+    //  $scope.places = new Places($scope.place.type, filter);
 
-      return $scope.places.promise;
-    };
+    //  return $scope.places.promise;
+    //};
 
-    $scope.update = function() {
-      var unopenedExport = [];
-      var totals = {};
-      var filterBy = Places.propertyName($scope.place.type);
-      var subType = $scope.place.type === Places.FACILITY ? Places.FACILITY : Places.subType($scope.place.type);
-      var groupBy = Places.propertyName(subType || $scope.currentUser.access.level);
-      var columnTitle = Places.typeName(subType || $scope.currentUser.access.level);
+    //$scope.update = function() {
+    //  var unopenedExport = [];
+    //  var totals = {};
+    //  var filterBy = Places.propertyName($scope.place.type);
+    //  var subType = $scope.place.type === Places.FACILITY ? Places.FACILITY : Places.subType($scope.place.type);
+    //  var groupBy = Places.propertyName(subType || $scope.currentUser.access.level);
+    //  var columnTitle = Places.typeName(subType || $scope.currentUser.access.level);
 
-      $scope.filteredRows = utility.placeDateFilter(rows, filterBy, $scope.place.search, $scope.from.date, $scope.to.date);
-      $scope.filteredRows.forEach(function(row) {
-        var key = row.facility[groupBy];
-        totals[key] = totals[key] || {
-          place: key,
-          values: {}
-        };
+    //  $scope.filteredRows = utility.placeDateFilter(rows, filterBy, $scope.place.search, $scope.from.date, $scope.to.date);
+    //  $scope.filteredRows.forEach(function(row) {
+    //    var key = row.facility[groupBy];
+    //    totals[key] = totals[key] || {
+    //      place: key,
+    //      values: {}
+    //    };
 
-        row.unopened.forEach(function(unopened) {
-          unopenedExport.push({
-            state: row.facility.state,
-            zone: row.facility.zone,
-            lga: row.facility.lga,
-            ward: row.facility.ward,
-            facility: row.facility.name,
-            contactName: row.facility.contact.name,
-            contactPhone: row.facility.phone,
-            product: unopened.productType.code,
-            count: unopened.count,
-            countDate: row.countDate,
-            created: row.created,
-            modified: row.modified
-          });
+    //    row.unopened.forEach(function(unopened) {
+    //      unopenedExport.push({
+    //        state: row.facility.state,
+    //        zone: row.facility.zone,
+    //        lga: row.facility.lga,
+    //        ward: row.facility.ward,
+    //        facility: row.facility.name,
+    //        contactName: row.facility.contact.name,
+    //        contactPhone: row.facility.phone,
+    //        product: unopened.productType.code,
+    //        count: unopened.count,
+    //        countDate: row.countDate,
+    //        created: row.created,
+    //        modified: row.modified
+    //      });
 
-          var code = unopened.productType.code;
-          totals[key].values[code] = (totals[key].values[code] || 0) + unopened.count;
-        });
-      });
+    //      var code = unopened.productType.code;
+    //      totals[key].values[code] = (totals[key].values[code] || 0) + unopened.count;
+    //    });
+    //  });
 
-      unopenedExport = $filter('orderBy')(unopenedExport, ['-created', 'product']);
+    //  unopenedExport = $filter('orderBy')(unopenedExport, ['-created', 'product']);
 
-      $scope.place.columnTitle = columnTitle;
-      $scope.totals = Object.keys(totals).map(function(key) {
-        var item = totals[key];
-        return {
-          place: item.place,
-          values: $scope.productTypes.map(function(productType) {
-            return (item.values[productType] || 0);
-          })
-        };
-      });
+    //  $scope.place.columnTitle = columnTitle;
+    //  $scope.totals = Object.keys(totals).map(function(key) {
+    //    var item = totals[key];
+    //    return {
+    //      place: item.place,
+    //      values: $scope.productTypes.map(function(productType) {
+    //        return (item.values[productType] || 0);
+    //      })
+    //    };
+    //  });
 
-      $scope.pagination.totalItems = $scope.filteredRows.length;
-      $scope.export = unopenedExport;
-    };
+    //  $scope.pagination.totalItems = $scope.filteredRows.length;
+    //  $scope.export = unopenedExport;
+    //};
 
-    $scope.getproductType = function (productType) {
-        var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
-        return product.ProductType + " (" + product.UoM + 's)';
-    }
+    //$scope.getproductType = function (productType) {
+    //    var product = $filter('filter')($scope.UoMs, { ProductType: productType })[0];
+    //    return product.ProductType + " (" + product.UoM + 's)';
+    //}
 
-    $scope.update();
+    //$scope.update();
 
 
     //new  UI
@@ -291,5 +291,48 @@ angular.module('lmisApp')
       return n % 2 == 0;
     }
 
+
+
+
+    $scope.oneAtATime = true;
+
+    $scope.groups = [
+      {
+        title: 'Dynamic Group Header - 1',
+        content: 'Dynamic Group Body - 1'
+      },
+      {
+        title: 'Dynamic Group Header - 2',
+        content: 'Dynamic Group Body - 2'
+      }
+    ];
+
+    $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+    $scope.addItem = function () {
+      var newItemNo = $scope.items.length + 1;
+      $scope.items.push('Item ' + newItemNo);
+    };
+
+    $scope.status = {
+      isCustomHeaderOpen: false,
+      isFirstOpen: true,
+      isFirstDisabled: false
+    };
+
+
+    $http.get('app/sample_data/stock-count-list.json')
+        .success(function (data) {
+          $scope.facilityList = data[0].Facilities;
+          console.log("facilities", $scope.facilityList);
+        });
+
+    $scope.isWarning = function (lowstock) {
+      if (lowstock > 0 && lowstock < 3) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
   });
