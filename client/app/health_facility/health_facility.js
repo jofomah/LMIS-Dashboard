@@ -5,7 +5,7 @@ angular.module('lmisApp')
     $routeProvider
       .when('/health-facility', {
         templateUrl: 'app/health_facility/health_facility.html',
-        controller: 'HealthFacilityCtrl',
+        controller: 'healthFacilityCtrl',
         authenticate: true
       });
   });
