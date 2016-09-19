@@ -630,9 +630,31 @@ height:100%;
 
 /*From html CSS Design*/
 
-.grey {
-  color: #979797;
-}
+ /* COLORS */
+ $primary: #1E679A;
+ $text: #4a4a4a;
+ $font: 'Roboto', sans-serif;
+ $grey: #979797;
+ $dark-grey: #777;
+ $light-grey: #ddd;
+ $blue: #1e679a;
+ $orange: #f05a22;
+ $yellow: #f0bb22;
+ $dark-blue: #063d64;
+ $light-blue: #4196d7;
+ $amber: #f09622;
+ $red: #F84324;
+ $green: #01c256;
+ $turquoise: #44E9E2;
+ $whitesmoke: #f5f5f5;
+
+ /* TABLES */
+ th {
+   color: $grey;
+   font-size: 14px;
+   font-weight: 500;
+   border-bottom: 0px !important;
+ }
 
 .blue {
   color: #1e679a;
