@@ -1201,6 +1201,10 @@ box-shadow:         -1px 5px 5px 0px rgba(50, 50, 50, 0.55);
 .list-accordion .green-border .panel-body{
     display:none;
 }
+
+.panel-tabs > li.active > a, .panel-tabs > li.active > a:hover, .panel-tabs > li.active > a:focus{
+    border-color:#ef8d00;
+}
 /*From html CSS Design*/
 
 

@@ -27,8 +27,8 @@
                       <span>
                         <!-- Tabs -->
                        <ul class="nav panel-tabs">
-                        <li class="active" ng-click="tabview(true)"><a><i class="fa fa-bar-chart"></i></a></li>
-                        <li class="text-center" ng-click="tabview(false)"><a><i class="fa fa-table"></i></a></li>
+                        <li ng-click="tabview(true)" ng-class="{'active' : chartTab === true}"><a><i class="fa fa-bar-chart"></i></a></li>
+                        <li class="text-center" ng-click="tabview(false)" ng-class="{'active' : chartTab === false}"><a><i class="fa fa-table"></i></a></li>
                        </ul>
                       </span>
                     </div>
@@ -94,31 +94,31 @@
                              <div class="row">
                                         <div class="col-md-1 col-checkbox">
                                             <div class="input-group">
-                                  <input type="checkbox" aria-label="...">
+                                  <input type="checkbox" aria-label="..." ng-change="selectall()" ng-model="sAll">
                                 </div>
                                         </div>
                                         <div class="col-md-11">
-                                            <strong>Facility  (found {{facilityList.length}})</strong>
+                                            <strong>Facility  (found {{nb}})</strong>
                                         </div>
                                     </div>
                          </div>
-                         <div class="col-md-2 margin-top-10"><strong>Below Reorder Level</strong></div>
+                         <div class="col-md-2 margin-top-10"><strong>Below Minimum Level</strong></div>
                          <div class="col-md-2 margin-top-10"><strong> Stock Count</strong></div>
                          <div class="col-md-2">
-                                 <input type="text" class="form-control" placeholder="Search" />
+                                 <input type="text" class="form-control" placeholder="Search" ng-model="searchText" ng-change="showcount()"/>
                              
                          </div>
                      </div>
                    <accordion close-others="oneAtATime" class="list-accordion">
                                                             
-                    <accordion-group ng-class="{'red-border' : facility.LowStock > 3, 'green-border' : facility.LowStock === 0 , 'orange-border' : isWarning(facility.LowStock)}" ng-repeat="facility in facilityList">
+                    <accordion-group ng-class="{'red-border' : facility.LowStock > 3, 'green-border' : facility.LowStock === 0 , 'orange-border' : isWarning(facility.LowStock)}" ng-repeat="facility in facilityList | filter:searchText">
                         <accordion-heading>
                             <div class="row list-border">
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-1 col-checkbox">
                                             <div class="input-group">
-                                  <input type="checkbox" aria-label="..." ng-click="checkboxClick(facility,$event)">
+                                  <input type="checkbox" aria-label="..." ng-click="checkboxClick(facility,$event)" ng-model="facility.Selected">
                                 </div>
                                         </div>
                                         <div class="col-md-11">
@@ -128,7 +128,7 @@
                                     </div>
                                     
                                 </div>
-                                <div class="col-md-2 item">{{facility.LowStock}} items below reorder</div>
+                                <div class="col-md-2 item">{{facility.LowStock}} items below minimum</div>
                                 <div class="col-md-2 item">{{facility.LastCount}}</div>
                                 <div class="col-md-2 text-right"><i class="fa fa-chevron-down margin-top-10" ng-show="facility.LowStock"></i>&nbsp;&nbsp;<a><i class="fa fa-bars fa-2x"></i></a></div>
                             </div>
@@ -184,7 +184,7 @@
                           </ul>
                         </div>
                         <div class="col-sm-6 fake-footer text-right">
-                          <h6 class="grey"> VIEW ALL </h6>
+                          
                         </div>
                       </div>
                     </div>

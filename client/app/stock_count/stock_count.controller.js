@@ -324,7 +324,14 @@ angular.module('lmisApp')
     $http.get('app/sample_data/stock-count-list.json')
         .success(function (data) {
           $scope.facilityList = data[0].Facilities;
-          console.log("facilities", $scope.facilityList);
+          $scope.nb = $scope.facilityList.length;
+          var sel = { selected: false };
+          for (var i = 0; i < $scope.facilityList.length; i++) {
+            $scope.facilityList[i].Selected = false;
+          }
+
+          
+          console.log($scope.facilityList);
         });
 
     $scope.isWarning = function (lowstock) {
@@ -346,6 +353,22 @@ angular.module('lmisApp')
 
     $scope.checkboxClick = function (facility, $event) {
       $event.stopPropagation();
+    }
+
+    $scope.showcount = function () {
+      $scope.nb = $filter('filter')($scope.facilityList, $scope.searchText).length;
+    }
+
+    $scope.selectall = function () {
+      if ($scope.sAll) {
+        for (var i = 0; i < $scope.facilityList.length; i++) {
+          $scope.facilityList[i].Selected = true;
+        }
+      } else {
+        for (var i = 0; i < $scope.facilityList.length; i++) {
+          $scope.facilityList[i].Selected = false;
+        }
+      }
     }
 
   });
