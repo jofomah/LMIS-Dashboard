@@ -98,7 +98,7 @@
                                 </div>
                                         </div>
                                         <div class="col-md-11">
-                                            <strong>Facility</strong>
+                                            <strong>Facility  (found {{facilityList.length}})</strong>
                                         </div>
                                     </div>
                          </div>
@@ -118,7 +118,7 @@
                                     <div class="row">
                                         <div class="col-md-1 col-checkbox">
                                             <div class="input-group">
-                                  <input type="checkbox" aria-label="...">
+                                  <input type="checkbox" aria-label="..." ng-click="checkboxClick(facility,$event)">
                                 </div>
                                         </div>
                                         <div class="col-md-11">
@@ -149,7 +149,7 @@
                               </thead>
                               <tbody>
                                   <tr ng-repeat="product in facility.Products">
-                                      <td ng-class="{'green-border-product' : product.Current > product.Reorder , 'orange-border-product' : product.Current < product.Reorder, 'red-border-product' : product.Current <= product.Min}">{{product.Name}}</td>
+                                      <td ng-class="{'green-border-product' : product.Current > product.Reorder , 'orange-border-product' : isWarningProduct(product), 'red-border-product' : product.Current <= product.Min}">{{product.Name}}</td>
                                       <td>{{product.UoM}}</td>
                                       <td>{{product.Max}}</td>
                                       <td>{{product.Reorder}}</td>
@@ -168,263 +168,19 @@
 
                         </div>
                       
-                      <div class="row">
-                      <div class="col-xs-12">
-                        <div class="panel panel-default">
-                          <div class="panel-heading status-red-head" role="button">
-                            <div class="row">
-                              <div class="col-sm-1">
-                                <h6>
-                                <div class="input-group">
-                                  <input type="checkbox" aria-label="...">
-                                </div>
-                                </h6>
-                              </div>
-                              <div class="col-sm-3">
-                                <h6>Kura General Hospital</h6>
-                              </div>
-                              <div class="col-sm-4">
-                                <h6>3 products below minimum</h6>
-                              </div>
-                              <div class="col-xs-8 col-sm-3">
-                                <h6>Last Count: 15/08/2016</h6>
-                              </div>
-                              <div class="col-xs-2 col-sm-1">
-                                <a href="#"><h6><i class="fa fa-ellipsis-h turquoise"></i></h6></a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="table-responsive">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th class="sub-list">Product</th>
-                                  <th class="sub-list">Stock Count</th>
-                                  <th class="sub-list">UoM</th>
-                                  <th class="sub-list">Max level</th>
-                                  <th class="sub-list">Min level</th>
-                                  <th class="sub-list">Reorder level</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr class="status-red">
-                                  <td> IPV </td>
-                                  <td> 15 </td>
-                                  <td> doses </td>
-                                  <td> 120 </td>
-                                  <td> 0 </td>
-                                  <td> 20 </td>
-                                </tr>
-                                <tr class="status-red">
-                                  <td> Phytomenadione </td>
-                                  <td> 0 </td>
-                                  <td> units </td>
-                                  <td> 50 </td>
-                                  <td> 2 </td>
-                                  <td> 5 </td>
-                                </tr>
-                                <tr class="status-yellow">
-                                  <td>Hep B</td>
-                                  <td> 72 </td>
-                                  <td> doses </td>
-                                  <td> 240 </td>
-                                  <td> 40 </td>
-                                  <td> 10 </td>
-                                </tr>
-                                <tr>
-                                  <td class="status-red">Measles</td>
-                                  <td> 10 </td>
-                                  <td> doses </td>
-                                  <td> 100 </td>
-                                  <td> 0 </td>
-                                  <td> 10 </td>
-                                </tr>
-                                <!-- <tr>
-                                  <td>SB 2.5l</td>
-                                  <td> 1 </td>
-                                  <td> unit </td>
-                                  <td> 100 </td>
-                                  <td> 0 </td>
-                                  <td> 10 </td>
-                                </tr>
-                                <tr>
-                                  <td>ADS 0.05L</td>
-                                  <td> 3 </td>
-                                  <td> units </td>
-                                  <td> 100 </td>
-                                  <td> 0 </td>
-                                  <td> 10 </td>
-                                </tr> -->
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-xs-12">
-                        <div class="panel panel-default">
-                          <div class="panel-heading status-green-head">
-                            <div class="row">
-                              <div class="col-sm-1">
-                                <h6>
-                                <div class="input-group">
-                                  <input type="checkbox" aria-label="...">
-                                </div>
-                                </h6>
-                              </div>
-                              <div class="col-sm-3">
-                                <h6>Ginsawa Health Post</h6>
-                              </div>
-                              <div class="col-sm-4">
-                                <h6>0 products below minimum</h6>
-                              </div>
-                              <div class="col-xs-10 col-sm-3">
-                                <h6>Last Count: 11/08/2016</h6>
-                              </div>
-                              <div class="col-xs-2 col-sm-1">
-                                <a href="#"><h6><i class="fa fa-ellipsis-h turquoise"></i></h6></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <!-- </div> -->
-
-                      <!-- <div class="row"> -->
-                        <div class="col-xs-12">
-                          <div class="panel panel-default">
-                            <div class="panel-heading status-green-head">
-                              <div class="row">
-                                <div class="col-sm-1">
-                                  <h6>
-                                  <div class="input-group">
-                                    <input type="checkbox" aria-label="...">
-                                  </div>
-                                  </h6>
-                                </div>
-                                <div class="col-sm-3">
-                                  <h6> BHC Bantaje </h6>
-                                </div>
-                                <div class="col-sm-4">
-                                  <h6>0 products below minimum</h6>
-                                </div>
-                                <div class="col-xs-10 col-sm-3">
-                                  <h6>Last Count: 07/08/2016</h6>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                  <a href="#"><h6><i class="fa fa-ellipsis-h turquoise"></i></h6></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-xs-12">
-                          <div class="panel panel-default">
-                            <div class="panel-heading status-yellow-head">
-                              <div class="row">
-                                <div class="col-sm-1">
-                                  <h6>
-                                  <div class="input-group">
-                                    <input type="checkbox" aria-label="...">
-                                  </div>
-                                  </h6>
-                                </div>
-                                <div class="col-sm-3">
-                                  <h6>Dukawa Primary Health Center</h6>
-                                </div>
-                                <div class="col-sm-4">
-                                  <h6>0 products below minimum</h6>
-                                </div>
-                                <div class="col-xs-10 col-sm-3">
-                                  <h6>Last Count: 02/08/2016</h6>
-                                </div>
-                                <div class="col-xs-1">
-                                  <h6><i class="fa fa-ellipsis-h turquoise"></i></h6>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="table-responsive">
-                              <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th class="sub-list">Product</th>
-                                    <th class="sub-list">Stock Count</th>
-                                    <th class="sub-list">UoM</th>
-                                    <th class="sub-list">Max level</th>
-                                    <th class="sub-list">Min level</th>
-                                    <th class="sub-list">Reorder level</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr class="status-yellow">
-                                    <td> IPV </td>
-                                    <td> 15 </td>
-                                    <td> doses </td>
-                                    <td> 60 </td>
-                                    <td> 10 </td>
-                                    <td> 15 </td>
-                                  </tr>
-                                  <tr>
-                                    <td class="status-yellow"> Phytomenadione </td>
-                                    <td> 9 </td>
-                                    <td> units </td>
-                                    <td> 30 </td>
-                                    <td> 3 </td>
-                                    <td> 15 </td>
-                                  </tr>
-                                  <!-- <tr>
-                                    <td>Hep B</td>
-                                    <td> 72 </td>
-                                    <td> doses </td>
-                                  </tr> -->
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-xs-12">
-                          <div class="panel panel-default">
-                            <div class="panel-heading status-green-head">
-                              <div class="row">
-                                <div class="col-sm-1">
-                                  <h6>
-                                  <div class="input-group">
-                                    <input type="checkbox" aria-label="...">
-                                  </div>
-                                  </h6>
-                                </div>
-                                <div class="col-sm-3">
-                                  <h6> Tiga General Hospital </h6>
-                                </div>
-                                <div class="col-sm-4">
-                                  <h6>0 products below minimum</h6>
-                                </div>
-                                <div class="col-xs-10 col-sm-3">
-                                  <h6>Last Count: 01/08/2016</h6>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                  <h6><i class="fa fa-ellipsis-h turquoise"></i></h6>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      
                       <!-- </div> -->
                       <!-- End of test -->
                       <div class="row text-left">
                         <div class="col-sm-6 fake-footer">
                           <ul class="pagination">
-                            <li class="disabled"><a href="#">«</a></li>
+                            <li class="disabled"><a href="#"><</a></li>
                             <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#">4</a></li>
                             <li><a href="#">5</a></li>
-                            <li><a href="#">»</a></li>
+                            <li><a href="#">></a></li>
                           </ul>
                         </div>
                         <div class="col-sm-6 fake-footer text-right">

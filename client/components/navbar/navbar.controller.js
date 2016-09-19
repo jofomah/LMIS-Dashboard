@@ -39,16 +39,15 @@ angular.module('lmisApp')
         jQuery('#sub-menu-div').animate({
           top: "-280px"
         }, 300, function() {
-          // Animation complete.
         });
         $scope.menuState = false;
       } else {
         jQuery('#sub-menu-div').animate({
           top: "45px"
         }, 300, function () {
-          // Animation complete.
         });
         $scope.menuState = true;
       }
     }
+
   });

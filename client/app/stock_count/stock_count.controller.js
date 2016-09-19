@@ -335,4 +335,17 @@ angular.module('lmisApp')
       }
     }
 
+    $scope.isWarningProduct = function (product) {
+      if (product.Current <= product.Reorder && product.Current > product.Min) {
+        return true;
+
+      } else {
+        return false;
+      }
+    }
+
+    $scope.checkboxClick = function (facility, $event) {
+      $event.stopPropagation();
+    }
+
   });
