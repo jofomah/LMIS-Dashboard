@@ -5,9 +5,13 @@ var utility = require('../../components/utility');
 
 var db = new (cradle.Connection)().database('stockcount');
 
+var config = require('../../config/environment');
+var lomisDB = new (cradle.Connection)().database(config.couch.db);
+
 exports.all = all;
 exports.unopened = unopened;
 exports.getWithin = getWithin;
+exports.getBy = getBy;
 
 
 function all(cb) {
@@ -65,4 +69,19 @@ function getWithin(startDate, endDate, cb) {
     }
     return cb(null, rows.toArray());
   });
+}
+
+/**
+ *
+ * @param options - {object} to be used to override query options if define, pass null to use default value
+ * @param cb {Function} - callback with two arguments (err, result)
+ */
+function getBy (options, cb) {
+  var opts = options || {}
+  lomisDB.view('stockcount/by_program_countdate_facility', opts, function (err, rows) {
+    if (err)  {
+      cb(err)
+    }
+    return cb(null, rows.toArray())
+  })
 }
