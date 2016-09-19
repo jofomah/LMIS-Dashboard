@@ -2,6 +2,12 @@
 // AngularJS will instantiate a singleton by calling "new" on this function
 angular.module('lmisApp')
 		.service('utility', function utility($filter, $q, $http, $window) {
+
+      this.format = function (date, format) {
+        var dateFormat = angular.isString(format)? format : 'yyyy-MM-dd';
+        return $filter('date')(new Date(date), dateFormat);
+      }
+
 			this.castArrayToObject = function (array, key) {
 				var newObject = {};
 				key = angular.isUndefined(key) ? 'uuid' : key;
