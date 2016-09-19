@@ -3,8 +3,11 @@
 var q = require('q');
 var cradle = require('cradle');
 var utility = require('../../components/utility');
-
+var config = require('../../config/environment');
 var db = new (cradle.Connection)().database('facilities');
+
+// new unified single LoMIS DB
+var lomisDB = new (cradle.Connection)().database(config.couch.db);
 
 // use promises for caching across all requests
 var allPromise = null;
@@ -28,6 +31,17 @@ db.exists(function(err, exists) {
 
 // exports
 exports.all = all;
+exports.byLocation = byLocation;
+
+
+function byLocation (options, cb) {
+  var queryOptions = options || {}
+  lomisDB.view('facility/by_location', queryOptions, function (err, res) {
+    if (err) return cb(err);
+    return cb(null, res.toArray());
+  });
+}
+
 
 function all(cb) {
   if (!allPromise) {
