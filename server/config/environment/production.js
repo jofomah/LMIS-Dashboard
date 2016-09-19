@@ -5,6 +5,7 @@
 module.exports = {
   port: 8080,
   couch: {
-    host: 'http://lomis.ehealth.org.ng'
+    host: 'http://lomis.ehealth.org.ng',
+    db: 'move_db'
   }
 };
