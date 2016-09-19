@@ -48,14 +48,14 @@ angular.module('lmisApp')
 
     $scope.incoming = [
       {product: "YF 10", quantity: 10, uom: "vials", expiry: "18/10/2017", receivedFrom: "Dan Marke Health Facility", batchNumber: 947, received: "12/08/2016", recordedOn: "12/08/2016 16:33"},
-      {product: "2ml Dil. Syringe", quantity: 115, uom: "units", expiry: "11/01/2018", receivedFrom: "Kunnawa Primary Health Facility", batchNumber: 050153, received: "12/08/2016", recordedOn: "12/08/2016 15:29"},
+      {product: "2ml Dil Syringe", quantity: 115, uom: "units", expiry: "11/01/2018", receivedFrom: "Kunnawa Primary Health Facility", batchNumber: 50153, received: "12/08/2016", recordedOn: "12/08/2016 15:29"},
       {product: "Measles 10", quantity: 75, uom: "doses", expiry: "10/10/2019", receivedFrom: "Babba Riga Health Facility", batchNumber: "004M5113", received: "12/08/2016", recordedOn: "12/08/2016 15:11"},
       {product: "BCG 20", quantity: 20, uom: "vials", expiry: "30/05/2017", receivedFrom: "Dan Marke Health Facility", batchNumber: "037G5204", received: "12/08/2016", recordedOn: "12/08/2016 15:07"},
     ]
 
     $scope.outgoing = [
       {product: "YF 10", quantity: 10, uom: "vials", expiry: "18/10/2017", sentTo: "Dan Marke Health Facility", batchNumber: 947},
-      {product: "2ml Dil. Syringe", quantity: 115, uom: "units", expiry: "11/01/2018", sentTo: "Kunnawa Health Facility", batchNumber: 050153},
+      {product: "2ml Dil Syringe", quantity: 115, uom: "units", expiry: "11/01/2018", sentTo: "Kunnawa Health Facility", batchNumber: 50153},
       {product: "Measles 10", quantity: 75, uom: "doses", expiry: "10/10/2017", sentTo: "Babba Riga", batchNumber: "004M5113"},
       {product: "BCG 20", quantity: 20, uom: "vials", expiry: "18/06/2017", sentTo: "BHC Bantaje", batchNumber: "037G5204"},
     ]
