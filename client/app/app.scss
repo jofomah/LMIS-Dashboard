@@ -1174,7 +1174,23 @@ th.sub-list {
 }
 
 .daterange{
-    background: #efefef; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%
+    background: #efefef; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; position:relative;
+}
+
+.daterange input{
+        border: none;
+    width: 100%;
+    padding: 0 0 0 40px;
+    background-color: transparent;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    z-index:1;
+}
+
+.daterange input:focus{
+    border:none !important;
+    outline:none;
 }
 
 .align-right-dropdown{
@@ -1259,6 +1275,23 @@ box-shadow:         -1px 5px 5px 0px rgba(50, 50, 50, 0.55);
 }
 
 .panel-tabs > li.active > a, .panel-tabs > li.active > a:hover, .panel-tabs > li.active > a:focus{
+    border-color:#ef8d00;
+}
+
+
+.daterangepicker .ranges li{
+    color:#ef8d00;
+}
+
+.daterangepicker .ranges li:hover{
+    color:#fff;
+    background-color:#f5c47f;
+    border-color:#f5c47f;
+}
+
+.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover{
+    color:#fff;
+    background-color:#ef8d00;
     border-color:#ef8d00;
 }
 /*From html CSS Design*/

@@ -5,9 +5,10 @@
             <div ng-show="isFilterEdit" class="filter-div">
                  <div class="row">
                      <div class="col-md-5">
+                         
                          <div id="dateselector" class="pull-right daterange">
                              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;
-                             <span></span><b class="glyphicon glyphicon-chevron-down fa fa-chevron-down pull-right"></b>
+                             <input type="daterange" ng-model="datesRange" ranges="ranges" open="right" /><b class="glyphicon glyphicon-chevron-down fa fa-chevron-down pull-right"></b>
                          </div>
 
                      </div>

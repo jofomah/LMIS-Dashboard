@@ -21,13 +21,11 @@
   <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
   <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css({.tmp,client}) app/app.css -->
   <link rel="stylesheet" href="app/app.css">
-  <!-- injector:css -->
-  <link rel="stylesheet" href="components/filter/css/daterangepicker.css">
-  <!-- endinjector -->
   <!-- endbuild -->
 </head>
 <body ng-app="lmisApp" class="color-bg">
@@ -78,6 +76,8 @@
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
 <script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/ng-bs-daterangepicker/dist/ng-bs-daterangepicker.min.js"></script>
 <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
 <script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
@@ -150,7 +150,6 @@
 <script src="components/auth/auth.service.js"></script>
 <script src="components/auth/user.service.js"></script>
 <script src="components/filter/filter.controller.js"></script>
-<script src="components/filter/js/daterangepicker.js"></script>
 <script src="components/modal/modal.service.js"></script>
 <script src="components/navbar/navbar.controller.js"></script>
 <script src="components/pagination/pagination.js"></script>
