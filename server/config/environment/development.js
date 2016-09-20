@@ -4,6 +4,7 @@
 // ==================================
 module.exports = {
   couch: {
-    host: 'http://dev.lomis.ehealth.org.ng'
+    host: 'http://dev.lomis.ehealth.org.ng',
+    db: 'move_db'
   }
 };

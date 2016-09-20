@@ -2,6 +2,7 @@
 
 angular.module('lmisApp')
 		.controller('MainCtrl', function ($scope, Auth, SETTINGS, Report, utility, $rootScope) {
+
 			$scope.currentUser = Auth.getCurrentUser();
 			$scope.mediumDateFormat = SETTINGS.mediumDate;
 			$scope.isLoadingGraphData = true;

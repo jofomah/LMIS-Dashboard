@@ -9,5 +9,6 @@ var router = express.Router();
 router.get('/', auth.isAuthenticated(), controller.index);
 router.get('/unopened', auth.isAuthenticated(), controller.unopened);
 router.get('/in_range', auth.isAuthenticated(), controller.inDateRange);
+router.get('/by/:locationId/:programId/:startDate/:endDate', auth.isAuthenticated(), controller.by);
 
 module.exports = router;

@@ -30,6 +30,7 @@ module.exports = function(app) {
   app.use('/api/stock_out', require('./api/stock_out'));
   app.use('/api/app_config', require('./api/app_config'));
   app.use('/api/report', require('./api/report'));
+  app.use('/api/location', require('./api/location'));
 
   app.use('/auth', require('./auth'));
 

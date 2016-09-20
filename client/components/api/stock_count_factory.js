@@ -8,6 +8,14 @@ angular.module('lmisApp')
       BI_WEEKLY = 14,
       MONTHLY = 30;
 
+    function getBy (locationId, programId, startDate, endDate) {
+      var apiUrl = [URL, 'by', locationId, programId, utility.format(startDate), utility.format(endDate)].join('/')
+      return $http.get(apiUrl)
+        .then(function (response) {
+          return response.data
+        })
+    }
+
     function groupByProductType(rows) {
       var d = $q.defer();
       ProductProfile.all()
@@ -382,6 +390,7 @@ angular.module('lmisApp')
       getSortedStockCount: getSortedStockCount,
       hasPendingStockCount: hasPendingStockCount,
       resolveUnopened: resolveUnopened,
-      latest: latest
+      latest: latest,
+      getBy: getBy
     };
   });
