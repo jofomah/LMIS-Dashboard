@@ -27,6 +27,8 @@ module.exports = function(config) {
       'client/bower_components/angular-nvd3/dist/angular-nvd3.js',
       'client/bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js',
       'client/_bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js',
+      'client/bower_components/ng-bs-daterangepicker/dist/ng-bs-daterangepicker.min.js',
+      'client/bower_components/bootstrap-daterangepicker/daterangepicker.js',
       'client/app/app.js',
       'client/app/config.js',
       'client/app/**/*.js',
