@@ -1,147 +1,200 @@
 <div class="row">
   <div class="col-xs-12">
-    <h2 class="page-header">Stock Count</h2>
-    <div class="well hidden-print">
-      <form class="form-inline">
-        <div class="form-group">
-          <label for="placeType">Place Type:</label>
-          <select id="placeType" class="form-control" ng-model="place.type" ng-change="place.search = ''">
-            <option value=""></option>
-            <option ng-if="currentUser.showStates" value="state">State</option>
-            <option ng-if="currentUser.showZones" value="zone">Zone</option>
-            <option ng-if="currentUser.showLgas" value="lga">LGA</option>
-            <option ng-if="currentUser.showWards" value="ward">Ward</option>
-            <option value="facility">Facility</option>
-          </select>
-        </div>
-        &nbsp;
-        <div class="form-group has-feedback">
-          <input type="text" class="form-control filter" placeholder="Place Name"
-                 ng-model="place.search" ng-disabled="!place.type.length"
-                 typeahead="place for place in getPlaces($viewValue)"
-                 typeahead-loading="places.loading">
-          <span ng-show="places.loading"
-                class="glyphicon glyphicon-refresh form-control-feedback"></span>
-        </div>
-        &nbsp;
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" ng-model="from.date" datepicker-popup is-open="from.opened"/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="from.open($event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-        &nbsp;
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" ng-model="to.date" datepicker-popup is-open="to.opened"/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="to.open($event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-        &nbsp;
-        <button type="button" class="btn btn-primary" ng-click="update()">
-          Apply
-        </button>
-      </form>
-    </div>
+    <div class="row">
+        <div class="col-md-6 text-center margin-top-10">
+        <h2>Stock Count for Nassarawa | Kano</h2>
+      </div>
+        <div class="col-md-6">
+        <div class="margin-top-10">
+        
 
+        <div ng-include="'../../components/filter/filter.html'" class="relative"></div>
+</div>
+        </div>
+
+    </div>
+<div class="hide">
     <alert ng-hide="filteredRows.length" type="info">No data.</alert>
+</div>
+    <div>
+    <div class="container-fluid">
+      <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <span>
+                        <!-- Tabs -->
+                       <ul class="nav panel-tabs">
+                        <li ng-click="tabview(true)" ng-class="{'active' : chartTab === true}"><a><i class="fa fa-bar-chart"></i></a></li>
+                        <li class="text-center" ng-click="tabview(false)" ng-class="{'active' : chartTab === false}"><a><i class="fa fa-table"></i></a></li>
+                       </ul>
+                      </span>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h3>Stock Sufficiency Levels</h3>
+                    </div>
+                    <div class="col-md-3 text-right">
+                      <div class="btn btn-export">
+                        <span>
+                          <i class="fa fa-cloud-download icon-left"></i>
+                          Export
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-body"> 
+                  <div class="tab-content">
+                    <div class="tab-pane" id="tab1" ng-class="{'active' : chartTab === true}">
+                        <span>
+                        <ul class="pill-filter text-center" >
+                          <li class="btn btn-filter green"> Sufficient (25)</li>
+                          <li class="btn btn-filter yellow">1-2 below minimum (40) </li>
+                          <li class="btn btn-filter red">> 3 below minimum (62) </li>
+                        </ul>
+                      </span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                                <div id="summaryChart">
+                                                    <nvd3 options="summaryOptions" data="summaryData"></nvd3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-1">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div ng-repeat="lga in lgas1">
+                                                        <div>
+                                                            <nvd3 options="minOptions" data="lga.data"></nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div ng-repeat="lga in lgas2">
+                                                        <div>
+                                                            <nvd3 options="minOptions" data="lga.data"></nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="tab-pane" id="tab2" ng-class="{'active' : chartTab === false}">
+                      
+                 <div>
+                     <div class="row list-border list-header">
+                         <div class="col-md-6 margin-top-10">
+                             <div class="row">
+                                        <div class="col-md-1 col-checkbox">
+                                            <div class="input-group">
+                                  <input type="checkbox" aria-label="..." ng-change="selectall()" ng-model="sAll">
+                                </div>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <strong>Facility  (found {{nb}})</strong>
+                                        </div>
+                                    </div>
+                         </div>
+                         <div class="col-md-2 margin-top-10"><strong>Below Minimum Level</strong></div>
+                         <div class="col-md-2 margin-top-10"><strong> Stock Count</strong></div>
+                         <div class="col-md-2">
+                                 <input type="text" class="form-control" placeholder="Search" ng-model="searchText" ng-change="showcount()"/>
+                             
+                         </div>
+                     </div>
+                   <accordion close-others="oneAtATime" class="list-accordion">
+                                                            
+                    <accordion-group ng-class="{'red-border' : facility.LowStock > 3, 'green-border' : facility.LowStock === 0 , 'orange-border' : isWarning(facility.LowStock)}" ng-repeat="facility in facilityList | filter:searchText">
+                        <accordion-heading>
+                            <div class="row list-border">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-1 col-checkbox">
+                                            <div class="input-group">
+                                  <input type="checkbox" aria-label="..." ng-click="checkboxClick(facility,$event)" ng-model="facility.Selected">
+                                </div>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <span class="title">{{facility.Name}}</span><br />
+                                    <span class="loc">{{facility.Location}}</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-2 item">{{facility.LowStock}} items below minimum</div>
+                                <div class="col-md-2 item">{{facility.LastCount}}</div>
+                                <div class="col-md-2 text-right"><i class="fa fa-chevron-down margin-top-10" ng-show="facility.LowStock"></i>&nbsp;&nbsp;<a><i class="fa fa-bars fa-2x"></i></a></div>
+                            </div>
+                        </accordion-heading>
+                      <div class="table-scroller" ng-show="facility.LowStock">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <table class="table table-stripped">
+                              <thead>
+                                  <tr>
+                                      <th>Product</th>
+                                      <th>UoM</th>
+                                      <th>Max</th>
+                                      <th>Reorder</th>
+                                      <th>Min</th>
+                                      <th>Current</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr ng-repeat="product in facility.Products">
+                                      <td ng-class="{'green-border-product' : product.Current > product.Reorder , 'orange-border-product' : isWarningProduct(product), 'red-border-product' : product.Current <= product.Min}">{{product.Name}}</td>
+                                      <td>{{product.UoM}}</td>
+                                      <td>{{product.Max}}</td>
+                                      <td>{{product.Reorder}}</td>
+                                      <td>{{product.Min}}</td>
+                                      <td>{{product.Current}}</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                      </div>
+                    </accordion-group>
+                        
+                                                            
+                    </accordion>
 
-    <div ng-show="filteredRows.length">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-
-          <h3 class="panel-title">Summary</h3>
-        </div>
-        <div class="table-scroller">
-          <table class="table table-condensed table-bordered table-striped table-condensed">
-            <thead>
-            <tr>
-              <th>{{place.columnTitle}}</th>
-              <th ng-repeat="productType in productTypes">{{getproductType(productType)}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="total in totals | orderBy:'place'">
-              <td>{{total.place}}</td>
-              <td ng-repeat="value in total.values track by $index">{{value}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-          <button ng-disabled="!export.length" class="btn btn-primary btn-xs pull-right hidden-print" type="button"
-                  ng-csv="export" csv-header="csvHeader" filename="{{getFileName('stock-count')}}">
-            Export
-          </button>
-          <h3 class="panel-title">Details</h3>
-        </div>
-        <div class="table-scroller">
-          <table class="table table-condensed table-bordered table-striped">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th ng-if="currentUser.showStates" style="width: 10%">State</th>
-              <th ng-if="currentUser.showZones" style="width: 10%">Zone</th>
-              <th ng-if="currentUser.showLgas" style="width: 10%">LGA</th>
-              <th ng-if="currentUser.showWards" style="width: 10%">Ward</th>
-              <th style="width: 15%">Facility</th>
-              <th style="width: 13%">Created</th>
-              <th style="width: 13%">Modified</th>
-              <th style="width: 11%">Product Type</th>
-              <th style="width: 8%">Stock Count</th>
-            </tr>
-            </thead>
-            <tbody
-              ng-repeat="row in filteredRows | orderBy:'-created' | limitTo:pagination.limit | limitTo:-pagination.count"
-              ng-init="rowIndex = $index">
-            <tr ng-repeat="item in row.unopened | orderBy:['productCategory.name', 'productType.code']">
-              <td ng-if="$index == 0" rowspan="{{row.unopened.length}}">
-                {{rowIndex + 1 + ((pagination.currentPage-1) * pagination.itemsPerPage)}}
-              </td>
-              <td ng-if="$index == 0 && currentUser.showStates" rowspan="{{row.unopened.length}}">
-                {{row.facility.state}}
-              </td>
-              <td ng-if="$index == 0 && currentUser.showZones" rowspan="{{row.unopened.length}}">
-                {{row.facility.zone}}
-              </td>
-              <td ng-if="$index == 0 && currentUser.showLgas" rowspan="{{row.unopened.length}}">
-                {{row.facility.lga}}
-              </td>
-              <td ng-if="$index == 0 && currentUser.showWards" rowspan="{{row.unopened.length}}">
-                {{row.facility.ward}}
-              </td>
-              <td ng-if="$index == 0" rowspan="{{row.unopened.length}}">
-                {{row.facility.name}}
-              </td>
-              <td ng-if="$index == 0" rowspan="{{row.unopened.length}}">
-                {{row.created | date:SETTINGS.dateTimeFormat}}
-              </td>
-              <td ng-if="$index == 0" rowspan="{{row.unopened.length}}">
-                {{row.modified | date:SETTINGS.dateTimeFormat}}
-              </td>
-              <td>{{item.productType.code}}</td>
-              <td>{{item.count}} {{item.count === 1 ? item.uom : item.uom +'s'}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="panel-footer text-center">
-          <pagination style="margin-top: 0" max-size="10" boundary-links="true" rotate="false"
-                      total-items="pagination.totalItems" items-per-page="pagination.itemsPerPage"
-                      ng-model="pagination.currentPage"></pagination>
-        </div>
-      </div>
+                        </div>
+                      
+                      
+                      <!-- </div> -->
+                      <!-- End of test -->
+                      <div class="row text-left">
+                        <div class="col-sm-6 fake-footer">
+                          <ul class="pagination">
+                            <li class="disabled"><a href="#"><</a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">></a></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-6 fake-footer text-right">
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
+              </div>
   </div>
 </div>
+

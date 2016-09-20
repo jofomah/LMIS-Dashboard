@@ -1,0 +1,61 @@
+﻿[
+  {
+    "Facilities": [
+      {
+        "key": "Incoming",
+        "values": [
+          {
+            "label": "Barvo Health Facility",
+            "value": 30,
+            "color": "#e7b508"
+          },
+          {
+            "label": "Charlie Health Facility",
+            "value": 40,
+            "color": "#e7b508"
+          },
+          {
+            "label": "Alpha Health Post",
+            "value": 90,
+            "color": "#e7b508"
+          },
+
+          {
+            "label": "Delta Health Post",
+            "value": 80,
+            "color": "#e7b508"
+          }
+        ],
+        "color": "#e7b508"
+      },
+      {
+        "key": "Outgoing",
+        "values": [
+          {
+            "label": "Barvo Health Facility",
+            "value": 70,
+            "color": "#08e7ca"
+          },
+          {
+            "label": "Charlie Health Facility",
+            "value": 20,
+            "color": "#08e7ca"
+          },
+
+          {
+            "label": "Alpha Health Post",
+            "value": 250,
+            "color": "#08e7ca"
+          },
+
+          {
+            "label": "Delta Health Post",
+            "value": 120,
+            "color": "#08e7ca"
+          }
+        ],
+        "color": "#08e7ca"
+      }
+    ]
+  }
+]

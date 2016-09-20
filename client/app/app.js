@@ -17,7 +17,9 @@ angular.module('lmisApp',
 			'pagination',
 			'leaflet-directive',
 			'ui.grid',
-			'ui.grid.pagination'
+			'ui.grid.pagination',
+      'nvd3',
+      'ngBootstrap'
 		])
 		.config(function ($routeProvider, $locationProvider, $httpProvider, uiSelectConfig) {
 			$routeProvider
@@ -55,9 +57,34 @@ angular.module('lmisApp',
 					}
 				}
 			};
+		}).factory("menuState", function () {
+
+		  var menuState = {};
+		  menuState.state = false;
+		  menuState.maintain = function (state) {
+		    if (state) {
+		      jQuery('#sub-menu-div').animate({
+		        top: "-280px"
+		      }, 300, function () {
+		      });
+		      menuState.state = false;
+		      jQuery('#menu-icon-collapse').hide();
+		      jQuery('#menu-icon-expand').show();
+		    } else {
+		      jQuery('#sub-menu-div').animate({
+		        top: "45px"
+		      }, 300, function () {
+		      });
+		      menuState.state = true;
+		      jQuery('#menu-icon-collapse').show();
+		      jQuery('#menu-icon-expand').hide();
+		    }
+		  }
+
+		  return menuState;
 		})
 
-		.run(function ($rootScope, $location, SETTINGS, utility, Alerts, Auth, State, Zone, LGA, Ward, Facility) {
+		.run(function ($rootScope, $location, SETTINGS, utility, Alerts, Auth, State, Zone, LGA, Ward, Facility, menuState) {
 			$rootScope.loadingView = true;
 			$rootScope.loadViewError = false;
 			$rootScope.SETTINGS = SETTINGS;
@@ -78,7 +105,9 @@ angular.module('lmisApp',
 			});
 
 			$rootScope.$on('$routeChangeSuccess', function (event) {
-				$rootScope.loadingView = false;
+			  $rootScope.loadingView = false;
+			  var mState = menuState;
+			  mState.maintain(true);
 			});
 
 			$rootScope.$on('$routeChangeError', function (event) {

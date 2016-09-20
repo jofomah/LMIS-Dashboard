@@ -1,0 +1,48 @@
+﻿<div ng-controller="FilterCtrl">
+   
+    <div class="panel">
+        <div class="panel-body">
+            <div ng-show="isFilterEdit" class="filter-div">
+                 <div class="row">
+                     <div class="col-md-5">
+                         
+                         <div id="dateselector" class="pull-right daterange">
+                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;
+                             <input type="daterange" ng-model="datesRange" ranges="ranges" open="right" /><b class="glyphicon glyphicon-chevron-down fa fa-chevron-down pull-right"></b>
+                         </div>
+
+                     </div>
+                <div class="col-md-7">
+                    <div class="dropdown daterange">
+                        <div class="dropdown-toggle" id="LocationMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="glyphicon glyphicon-map-marker fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;
+                            <span>Location</span>
+                         <b class="glyphicon glyphicon-chevron-down fa fa-chevron-down pull-right"></b>
+                        </div>
+                        <div class="dropdown-menu align-right-dropdown col-md-9" aria-labelledby="LocationMenu1">
+
+                            <input type="text" class="form-control" placeholder="Search..." /><br />
+                            <select class="form-control select-primary no-focus">
+                                <option>Select State</option>
+                            </select><br />
+                            <select class="form-control select-primary no-focus">
+                                <option>Select Zone</option>
+                            </select><br />
+                            <select class="form-control select-primary no-focus">
+                                <option>Select LGA</option>
+                            </select><br />
+                            <select class="form-control select-primary no-focus">
+                                <option>Select Ward</option>
+                            </select><br />
+                            <button class="btn btn-success">Apply</button>
+                            <button class="btn btn-default">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div ng-hide="isFilterEdit"></div>
+        </div>
+    </div>
+</div>

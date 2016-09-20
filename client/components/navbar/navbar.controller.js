@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lmisApp')
-  .controller('NavbarCtrl', function ($scope, $location, $route, Auth, $filter, $window) {
+  .controller('NavbarCtrl', function ($scope, $location, $route, Auth, $filter, $window, menuState) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -11,6 +11,7 @@ angular.module('lmisApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.menuState = menuState.state;
 
     $scope.logout = function() {
       Auth.logout();
@@ -32,4 +33,18 @@ angular.module('lmisApp')
     $scope.reloadPage = function () {
       $window.location.reload()
     }
+    $scope.toogleMenu = function () {
+      $scope.menuState = menuState.state;
+      menuState.maintain($scope.menuState);
+      
+    }
+    
+    jQuery(document).click(function () {
+      menuState.state = true;
+      $scope.toogleMenu();
+    });
+
+    jQuery('.bottom-handle').click(function (event) {
+      event.stopPropagation();
+    });
   });

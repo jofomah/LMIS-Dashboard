@@ -40,7 +40,7 @@ angular.module('lmisApp')
         });
 				Report.getWithin(utility.getFullDate($scope.from.date), utility.getFullDate($scope.to.date))
 						.then(function (res) {
-							$scope.weeklySituationReport = res;
+						  $scope.weeklySituationReport = res;
 						})
 						.catch(function (err) {
 							$scope.weeklySituationReport = [];
@@ -67,6 +67,31 @@ angular.module('lmisApp')
 					return (d[1] / 100);
 				};
 			};
+			$scope.weeklySituationReportOptions = {
+          chart: {
+            type: 'multiBarChart',
+            height: 400,
+            x: function (d) { return d.key; },
+            y: $scope.yValue,
+            showLabels: true,
+            duration: 500,
+            tooltip:true,
+            forcey:[0,1],
+            yAxisTickFormat: $scope.roundOff(),
+            legend: {
+              margin: {
+                top: 5,
+                right: 35,
+                bottom: 5,
+                left: 0
+              },
+              maxKeyLength: 500,
+              align: true,
+              height: 250,
+              padding: 50
+            }
+          }
+        };
 
 		})
 		.controller('MainStockReport', function ($scope, facilityReports) {
@@ -315,4 +340,205 @@ angular.module('lmisApp')
       setChart();
     });
 
-  });
+  }).controller('stockCountSummaryCtrl', function ($scope) {
+
+
+    $scope.stockCountSummaryOptions = {
+      chart: {
+        type: 'pieChart',
+        height: 450,
+        x: function (d) { return d.key; },
+        y: function (d) { return d.y; },
+        showLabels: true,
+        duration: 500,
+        labelThreshold: 0.01,
+        labelSunbeamLayout: false,
+        labelType: "percent",
+        legend: {
+          margin: {
+            top: 5,
+            right: 35,
+            bottom: 5,
+            left: 0
+          },
+          maxKeyLength: 500,
+          align: true,
+          height: 250,
+          padding: 50
+        },
+        donut: true,
+        donutRatio: .3
+      }
+    };
+
+    $scope.stockCountSummaryData = [
+          {
+            key: "All antigens sufficient",
+            y: 60,
+            color: '#1ADB6F'
+          },
+          {
+            key: "1-2 antigens below minimum",
+            y: 25,
+            color: '#F8E71C'
+          },
+          {
+            key: "3 or more antigens below minimum",
+            y: 10,
+            color: '#F84324'
+          },
+          {
+            key: "Facility that did not report",
+            y: 5,
+            color: '#D3D3D3'
+          }
+    ];
+
+    $scope.stockoutHomeTab = true;
+
+    $scope.stockoutHome = function(tab){
+      $scope.stockoutHomeTab = tab;
+    };
+
+  })
+.controller('cceSummaryCtrl', function ($scope) {
+
+
+  $scope.cceSummaryOptions = {
+    chart: {
+      type: 'pieChart',
+      height: 450,
+      x: function (d) { return d.key; },
+      y: function (d) { return d.y; },
+      showLabels: true,
+      duration: 500,
+      labelThreshold: 0.01,
+      labelSunbeamLayout: false,
+      labelType: "percent",
+      legend: {
+        margin: {
+          top: 5,
+          right: 35,
+          bottom: 5,
+          left: 0
+        },
+        maxKeyLength: 500,
+        align: true,
+        height: 250,
+        padding: 50
+      },
+      donut: true,
+      donutRatio: 0.4
+    }
+  };
+
+  $scope.cceSummaryData = [
+        {
+          key: "Functional",
+          y: 70,
+          color: '#1ADB6F'
+        },
+        {
+          key: "Non-Functional",
+          y: 20,
+          color: '#F8E71C'
+        },
+        {
+          key: "No Reports",
+          y: 10,
+          color: '#D3D3D3'
+        }
+  ];
+
+})
+.controller('stockoutSummaryCtrl', function ($scope, $http) {
+
+
+  $scope.stockoutSummaryOptions = {
+    chart: {
+      type: 'pieChart',
+      height: 500,
+      x: function (d) { return d.Name; },
+      y: function (d) { return d.Value; },
+      showLabels: true,
+      duration: 500,
+      labelThreshold: 0.01,
+      labelSunbeamLayout: false,
+      labelType: "percent",
+      legend: {
+        margin: {
+          top: 5,
+          right: 35,
+          bottom: 5,
+          left: 0
+        },
+        maxKeyLength: 500,
+        align: true,
+        height: 250,
+        padding: 50
+      },
+      donut: true,
+      donutRatio: .4
+    }
+  };
+
+  $http.get('app/sample_data/stock-out.json')
+    .success(function (data) {
+      $scope.stockoutSummaryData = data;
+    });
+}).controller('wasteSummaryCtrl', function ($scope, $http) {
+
+
+  $scope.wasteSummaryOptions = {
+    chart: {
+      type: 'pieChart',
+      height: 500,
+      x: function (d) { return d.Name; },
+      y: function (d) { return d.Value; },
+      showLabels: true,
+      duration: 500,
+      labelThreshold: 0.01,
+      labelSunbeamLayout: false,
+      labelType: "percent",
+      legend: {
+        margin: {
+          top: 5,
+          right: 35,
+          bottom: 5,
+          left: 0
+        },
+        maxKeyLength: 500,
+        align: true,
+        height: 250,
+        padding: 50
+      },
+      donut: false
+    }
+  };
+
+  $http.get('app/sample_data/waste-count.json')
+    .success(function (data) {
+      $scope.wasteSummaryData = data;
+    });
+}).controller('ledgerSummaryCtrl', function ($scope, $http) {
+
+
+  $scope.ledgerSummaryOptions = {
+    chart: {
+      type: 'multiBarChart',
+      height: 450,
+      x: function (d) { return d.label; },
+      y: function (d) { return d.value; },
+      showLabels: true,
+      duration: 500,
+      staggerLabels: true
+    }
+  };
+
+
+
+  $http.get('app/sample_data/ledger-summary.json')
+    .success(function (data) {
+      $scope.ledgerSummaryData = data[0].Facilities;
+    });
+});
