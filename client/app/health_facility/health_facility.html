@@ -89,11 +89,9 @@
               <span>
                 <!-- Tabs -->
                <ul class="nav nav-tabs text-center">
-                <li ng-class="{'active' : tabnumber==1}"><a ng-click="showtab(1)"><h6>Products</h6></a></li>
-                <!-- <li><a href="#tab2" data-toggle="tab"><h6>Stock Out</h6></a></li> -->
-                <!-- <li><a href="#tab3" data-toggle="tab"><h6>Waste Count</h6></a></li> -->
-                <li ng-class="{'active' : tabnumber==4}"><a ng-click="showtab(4)"><h6>Amenities</h6></a></li>
-                <li ng-class="{'active' : tabnumber==5}"><a ng-click="showtab(5)"><h6>Ledger</h6></a></li>
+                <li ng-class="{'active' : currentTab==tabs[0]}"><a ng-click="showtab(tabs[0])"><h6>Products</h6></a></li>
+                <li ng-class="{'active' : currentTab==tabs[1]}"><a ng-click="showtab(tabs[1])"><h6>Amenities</h6></a></li>
+                <li ng-class="{'active' : currentTab==tabs[2]}"><a ng-click="showtab(tabs[2])"><h6>Ledger</h6></a></li>
                 <li><h6><span class="btn btn-export"><i class="fa fa-cloud-download icon-left"></i>Export</span></h6></li>
                 <li><h6><span class="btn btn-export small"><i class="fa fa-cloud-download"></i></span></h6></li>
                </ul>
@@ -102,7 +100,7 @@
             <div class="panel-body">
               <div class="tab-content">
 
-                <div class="tab-pane in-fade" id="tab1" ng-class="{'active': tabnumber==1}">
+                <div class="tab-pane in-fade" id="tab1" ng-class="{'active': currentTab==tabs[0]}">
                   <div class="row">
                     <div class="col-xs-12">
 
@@ -330,157 +328,7 @@
                   </div><!-- Modal end -->
                 </div>
 
-                <div class="tab-pane" id="tab2">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <div class="table-responsive">
-                        <table class="table">
-                          <thead>
-                            <th><div class="input-group"><input type="checkbox" aria-label="..."></div></th>
-                            <th></th>
-                            <th class="sub-list">Product</th>
-                            <th class="sub-list">Count</th>
-                            <th class="sub-list">UoM</th>
-                            <th class="sub-list">Maximum level</th>
-                            <th class="sub-list">Minimum level</th>
-                            <th class="sub-list">Reorder level</th>
-                          </thead>
-                          <tbody>
-                            <tr class="status-red">
-                              <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                              <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                              <td> IPV </td>
-                              <td> 15 </td>
-                              <td> doses </td>
-                              <td> 120 </td>
-                              <td> 0 </td>
-                              <td> 20 </td>
-                            </tr>
-                            <tr class="status-red">
-                              <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                              <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                              <td> Phytomenadione </td>
-                              <td> 0 </td>
-                              <td> units </td>
-                              <td> 50 </td>
-                              <td> 2 </td>
-                              <td> 5 </td>
-                            </tr>
-                            <tr class="status-yellow">
-                              <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                              <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                              <td>Hep B</td>
-                              <td> 72 </td>
-                              <td> doses </td>
-                              <td> 240 </td>
-                              <td> 40 </td>
-                              <td> 10 </td>
-                            </tr>
-                            <tr class="status-red">
-                              <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                              <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                              <td>Measles</td>
-                              <td> 10 </td>
-                              <td> doses </td>
-                              <td> 100 </td>
-                              <td> 0 </td>
-                              <td> 10 </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="row text-left">
-                        <div class="col-sm-8 fake-footer">
-                          <ul class="pagination">
-                            <li class="disabled"><a href="#">«</a></li>
-                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">»</a></li>
-                          </ul>
-                        </div>
-                        <div class="col-sm-4 fake-footer text-right">
-                          <h6 class="blue"> VIEW ALL </h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tab-pane" id="tab3">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th><div class="input-group"><input type="checkbox" aria-label="..."></div></th>
-                          <th></th>
-                          <th class="sub-list">Report Date</th>
-                          <th class="sub-list">Product</th>
-                          <th class="sub-list">Reason</th>
-                          <th class="sub-list">Quantity</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        <tr>
-                          <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                          <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                          <td> 12/08/2016 </td>
-                          <td> OPV 10</td>
-                          <td> Unopened Expiry </td>
-                          <td> 15 doses </td>
-                        </tr>
-
-                        <tr>
-                          <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                          <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                          <td> 09/08/2016 </td>
-                          <td> Penta 10 </td>
-                          <td> VVM Stage 3 </td>
-                          <td> 10 doses </td>
-                        </tr>
-                        <tr>
-                          <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                          <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                          <td> 09/08/2016</td>
-                          <td> Measles 10 </td>
-                          <td> VVM Stage 4 </td>
-                          <td> 2 doses </td>
-                        </tr>
-
-                        <tr>
-                          <td><div class="input-group"><input type="checkbox" aria-label="..."></div></td>
-                          <td><a href="#" data-toggle="modal" data-target="#chartModal" class="detail-link"><i class="fa fa-bar-chart icon-right"></i></a></td>
-                          <td> 04/08/2016 </td>
-                          <td> Measles 10 </td>
-                          <td> Suspected Freezing </td>
-                          <td> 2 units </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div class="row text-left">
-                    <div class="col-sm-8 fake-footer">
-                      <ul class="pagination">
-                        <li class="disabled"><a href="#">«</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                      </ul>
-                    </div>
-                    <div class="col-sm-4 fake-footer text-right">
-                      <h6 class="blue"> VIEW ALL </h6>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tab-pane" id="tab4" ng-class="{'active' : tabnumber==4}">
+                <div class="tab-pane" id="tab4" ng-class="{'active' : currentTab==tabs[1]}">
                   <div class="row">
                     <div class="col-xs-12">
                       <div class="row">
@@ -534,7 +382,7 @@
                   </div>
                 </div>
 
-                <div class="tab-pane" id="tab5" ng-class="{'active' : tabnumber==5}">
+                <div class="tab-pane" id="tab5" ng-class="{'active' : currentTab==tabs[2]}">
                   <div class="row">
                     <div class="col-xs-12">
 

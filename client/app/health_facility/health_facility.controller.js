@@ -60,8 +60,10 @@ angular.module('lmisApp')
       {product: "BCG 20", quantity: 20, uom: "vials", expiry: "18/06/2017", sentTo: "BHC Bantaje", batchNumber: "037G5204"},
     ]
 
-    $scope.tabnumber = 1;
+    $scope.currentTab = "products";
       $scope.showtab = function(tab) {
-        $scope.tabnumber = tab;
+        $scope.currentTab = tab;
       }
+
+      $scope.tabs = ['products','ammenities','ledger'];
   });
