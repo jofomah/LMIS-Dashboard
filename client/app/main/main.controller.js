@@ -481,10 +481,39 @@ angular.module('lmisApp')
     }
   };
 
-  $http.get('app/sample_data/stock-out.json')
-    .success(function (data) {
-      $scope.stockoutSummaryData = data;
-    });
+      $scope.stockoutSummaryData = [
+  {
+    "Name": "Wudil",
+    "Value": 176,
+    "color": "#37dccb"
+  },
+  {
+    "Name": "Rano",
+    "Value": 281,
+    "color": "#dcb337"
+  },
+  {
+    "Name": "Nassarawa",
+    "Value": 157,
+    "color": "#6adc37"
+  },
+  {
+    "Name": "Gwale",
+    "Value": 36,
+    "color": "#dc3756"
+  },
+  {
+    "Name": "Dawakin Tofa",
+    "Value": 90,
+    "color": "#6773e6"
+  },
+  {
+    "Name": "Bichi",
+    "Value": 743,
+    "color": "#ba4ac7"
+  }
+      ];
+
 }).controller('wasteSummaryCtrl', function ($scope, $http) {
 
 
@@ -515,10 +544,32 @@ angular.module('lmisApp')
     }
   };
 
-  $http.get('app/sample_data/waste-count.json')
-    .success(function (data) {
-      $scope.wasteSummaryData = data;
-    });
+  $scope.wasteSummaryData = [
+{
+  "Name": "Broken vial",
+  "Value": 258
+},
+{
+  "Name": "Expired",
+  "Value": 436
+},
+{
+  "Name": "VVM Stage 3",
+  "Value": 532
+},
+{
+  "Name": "Label Missing",
+  "Value": 56
+},
+{
+  "Name": "Unopened Expiry",
+  "Value": 82
+},
+{
+  "Name": "Suspected freezing",
+  "Value": 137
+}
+  ];
 }).controller('ledgerSummaryCtrl', function ($scope, $http) {
 
 
@@ -534,10 +585,66 @@ angular.module('lmisApp')
     }
   };
 
+  var ldata = [
+  {
+    "Facilities": [
+      {
+        "key": "Incoming",
+        "values": [
+          {
+            "label": "Barvo Health Facility",
+            "value": 30,
+            "color": "#e7b508"
+          },
+          {
+            "label": "Charlie Health Facility",
+            "value": 40,
+            "color": "#e7b508"
+          },
+          {
+            "label": "Alpha Health Post",
+            "value": 90,
+            "color": "#e7b508"
+          },
 
+          {
+            "label": "Delta Health Post",
+            "value": 80,
+            "color": "#e7b508"
+          }
+        ],
+        "color": "#e7b508"
+      },
+      {
+        "key": "Outgoing",
+        "values": [
+          {
+            "label": "Barvo Health Facility",
+            "value": 70,
+            "color": "#08e7ca"
+          },
+          {
+            "label": "Charlie Health Facility",
+            "value": 20,
+            "color": "#08e7ca"
+          },
 
-  $http.get('app/sample_data/ledger-summary.json')
-    .success(function (data) {
-      $scope.ledgerSummaryData = data[0].Facilities;
-    });
+          {
+            "label": "Alpha Health Post",
+            "value": 250,
+            "color": "#08e7ca"
+          },
+
+          {
+            "label": "Delta Health Post",
+            "value": 120,
+            "color": "#08e7ca"
+          }
+        ],
+        "color": "#08e7ca"
+      }
+    ]
+  }
+  ];
+      $scope.ledgerSummaryData = ldata[0].Facilities;
 });
