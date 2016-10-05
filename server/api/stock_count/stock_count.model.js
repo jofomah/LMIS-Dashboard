@@ -3,6 +3,7 @@
 var cradle = require('cradle');
 var _ = require('lodash')
 var utility = require('../../components/utility');
+var db = new (cradle.Connection)().database('stockcount');
 
 exports.all = all;
 exports.unopened = unopened;
