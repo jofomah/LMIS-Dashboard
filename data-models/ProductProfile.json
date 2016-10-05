@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "ProductProfile",
-  "description": "A stock i",
+  "description": "A stock product profile provides a summary of products' key characteristics",
   "type": "object",
   "properties": {
     "doc_type": {
       "type": "string",
-      "pattern": "^product-type$"
+      "pattern": "^product-profile$"
     },
     "version": {
       "type": "string",
@@ -23,20 +23,19 @@
       "type": "string",
       "minLength": 1
     },
-    "category": {
+    "productCategory": {
       "type": "string",
       "description": "Id of the product category, this product profile belongs to."
     },
-    "long_name": {
+    "description": {
       "type": "string",
-      "minLength": 1,
-      "description": "concatenation of required product profile properties"
+      "description": "used to add extra details about a product profile."
     },
-    "product": {
+    "productType": {
       "type": "string",
       "description": "Id of the product type, this product profile belongs to."
     },
-    "presentation": {
+    "productPresentation": {
       "type": "string",
       "description": "Id of the product presentation, this product profile belongs to."
     }
@@ -44,9 +43,8 @@
   "required": [
     "doc_type",
     "name",
-    "base_uom",
-    "code",
-    "description",
+    "product",
+    "category",
     "_id"
   ]
 }
