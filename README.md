@@ -2,6 +2,16 @@
 
 Lightweight dashboard for LoMIS database views
 
+## Setup
+
+0. Clone repo: `git clone https://github.com/eHealthAfrica/LMIS-Dashboard.git`
+1. Install packages: `npm install && bower install`
+2. Configure public & private variables as described below
+3. Run tests: `grunt test`
+4. Start server: `grunt serve`
+
+Dashboard is accessible at http://localhost:9000/
+
 ## Server Configuration
 
 There are 2 types of configuration options: secret and public options. Secret options can only be defined as environment
@@ -10,7 +20,7 @@ left off to use default values.
 
 ### Secret Options
 
-For development, copy the file `config/local.env.sample.js` to `config/local.env.js` and set the values of the variables.
+For development, copy the file `server/config/local.env.sample.js` to `server/config/local.env.js` and set the values of the variables.
 These variables will be exported to the environment when running `grunt serve` or `grunt test`.
 
 In production, the required variables have to be set in the environment of the node process.
