@@ -29,19 +29,26 @@ db.exists(function(err, exists) {
   }
 });
 
+
+var dbService = require('../../components/db');
+var VIEWS = require('../../components/db/db-constants').VIEWS;
+
+
 // exports
 exports.all = all;
 exports.byLocation = byLocation;
+exports.byId = byId;
 
 
-function byLocation (options, cb) {
+function byLocation (options) {
+  var opts = options || {};
+  return dbService.queryBy(VIEWS.facilityByLocation, opts);
   var queryOptions = options || {}
   lomisDB.view('facility/by_location', queryOptions, function (err, res) {
     if (err) return cb(err);
     return cb(null, res.toArray());
   });
 }
-
 
 function all(cb) {
   if (!allPromise) {
@@ -64,4 +71,15 @@ function all(cb) {
       allPromise = null;
       cb(err);
     })
+}
+
+
+// New code
+
+var dbService = require('../../components/db');
+var VIEWS = require('../../components/db/db-constants').VIEWS;
+
+function byId(options) {
+  var opts = options || {};
+  return dbService.queryBy(VIEWS.adminLevelByFacility, opts);
 }

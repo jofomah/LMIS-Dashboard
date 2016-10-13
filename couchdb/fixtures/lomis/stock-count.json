@@ -1,12 +1,44 @@
 {
   "docs": [
     {
-      "_id": "stock-count_1",
-      "doc_type": "stock-count"
+      "_id": "sc-1",
+      "countDate": "2016-09-22",
+      "programId": "program:ri",
+      "facilityId": "ntf@a.org",
+      "productCounts": [
+        {
+          "_id": "product-profile:2ml-dil-syr",
+          "base_uom": "uom:unit",
+          "count": 873
+        },
+        {
+          "_id": "product-profile:opv-10",
+          "base_uom": "uom:dose",
+          "count": 290
+        }
+      ],
+      "doc_type": "stock-count",
+      "created": "2016-09-12T03:34:35.548Z"
     },
     {
-     "_id": "stock-count_2",
-      "doc_type": "stock-count"
+      "_id": "sc-3",
+      "countDate": "2016-09-29",
+      "programId": "program:ri",
+      "facilityId": "ntf@a.org",
+      "productCounts": [
+        {
+          "_id": "product-profile:2ml-dil-syr",
+          "base_uom": "uom:unit",
+          "count": 873
+        },
+        {
+          "_id": "product-profile:opv-10",
+          "base_uom": "uom:dose",
+          "count": 290
+        }
+      ],
+      "doc_type": "stock-count",
+      "created": "2016-09-29T13:34:35.548Z"
     }
   ]
 }

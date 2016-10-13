@@ -8,3 +8,4 @@ client/app/config.js
 /server/config/local.env.js
 .idea/
 npm-debug.log
+vwd.webinfo
