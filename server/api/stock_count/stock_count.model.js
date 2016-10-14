@@ -76,7 +76,7 @@ var DOC_TYPES = require('../../components/db/db-constants').DOC_TYPES;
 var _ = require('lodash');
 
 
-var stockCountDocType = 'stock-count'
+var stockCountDocType = DOC_TYPES.stockCount;
 // expose public functions
 exports.buildList = buildList;
 exports.getBy = getBy;
