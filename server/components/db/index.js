@@ -19,6 +19,11 @@ exports.queryBy = function (view, options) {
     .then(toArray);
 };
 
+exports.create = function (doc) {
+  doc = addTimeInfo(doc);
+  return db.saveAsync(doc._id, doc);
+};
+
 exports.save = function (doc) {
   doc = addTimeInfo(doc);
   if (doc._rev) {
@@ -30,6 +35,11 @@ exports.save = function (doc) {
 exports.get = function (id) {
   return db.getAsync(id);
 };
+
+exports.getIdFrom = function (docType, name) {
+  name = name.toLowerCase().split(' ').join('-');
+  return [docType, name].join(':')
+}
 
 function toArray(cradleResultSet) {
   return cradleResultSet.toArray();
