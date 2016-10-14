@@ -3,9 +3,10 @@
 var ProductCategory = require('./product_category.model');
 var config = require('../../config/environment');
 var productCategorySchema = require('./product_category.schema');
+var Utility = require('../../components/utility');
 var Promise = require('bluebird');
 var Joi = Promise.promisifyAll(require('joi'));
-var _ = require('lodash');
+
 
 // get list of product categories
 exports.all = function(req, res, next) {
@@ -21,7 +22,7 @@ exports.create = function (req, res, next) {
     .then(getDocFromSaveResult)
     .then(res.json.bind(res))
     .catch(function (err) {
-      handleError(err, res);
+      Utility.handleError(err, res);
     })
     .catch(next);
 };
@@ -32,22 +33,26 @@ exports.save = function (req, res, next) {
     .then(ProductCategory.save)
     .then(getDocFromSaveResult)
     .then(res.json.bind(res))
-    .catch(function (err) {
-      handleError(err, res);
+    .catch(function (error) {
+      var err = Utility.handleError(error);
+      if (err && err.statusCode && err.msg) {
+        res.status(err.statusCode).json(err.msg);
+      }
+      throw err;
     })
     .catch(next);
 };
 
-function getDocFromSaveResult (result) {
-  return ProductCategory.get(result.id);
+exports.get = function (req, res, next) {
+  var id = req.params.id;
+  return ProductCategory.get(id)
+    .then(res.json.bind(res))
+    .catch(function (err) {
+      Utility.handleError(err, res);
+    })
+    .catch(next);
 }
 
-function handleError(err, res) {
-  var statusCode = (err.headers && err.headers.status);
-  var errMsg = _.omit(err, 'headers');
-  if (statusCode && errMsg) {
-    res.status(statusCode).json(errMsg);
-    return;
-  }
-  throw err;
+function getDocFromSaveResult (result) {
+  return ProductCategory.get(result.id);
 }
