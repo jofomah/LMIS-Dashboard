@@ -1,16 +1,39 @@
 'use strict';
 
-var cradle = require('cradle');
-var utility = require('../../components/utility');
+var dbService = require('../../components/db');
+var VIEWS = require('../../components/db/db-constants').VIEWS;
+var DOC_TYPES = require('../../components/db/db-constants').DOC_TYPES;
 
-var db = new (cradle.Connection)().database('product_category');
 
+// expose public functions
 exports.all = all;
+exports.create = create;
+exports.get = get;
+exports.save = save;
 
-function all(cb) {
-  db.all({ include_docs: true }, function(err, rows) {
-    if (err) return cb(err);
+function all() {
+  var options = {
+    key: DOC_TYPES.productCategory,
+    include_docs: true
+  };
+  return dbService.queryBy(VIEWS.byDocTypes, options);
+}
 
-    return cb(null, utility.removeDesignDocs(rows.toArray()));
-  });
+function getIdFrom (docType, name) {
+  name = name.toLowerCase().split(' ').join('-');
+  return [docType, name].join(':')
+}
+
+function create (doc) {
+  doc._id = getIdFrom(DOC_TYPES.productCategory, doc.name);
+  return save(doc);
+}
+
+function save (doc) {
+  doc.doc_type = DOC_TYPES.productCategory;
+  return dbService.save(doc);
+}
+
+function get (id) {
+  return dbService.get(id);
 }
