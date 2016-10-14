@@ -33,12 +33,8 @@ exports.save = function (req, res, next) {
     .then(ProductCategory.save)
     .then(getDocFromSaveResult)
     .then(res.json.bind(res))
-    .catch(function (error) {
-      var err = Utility.handleError(error);
-      if (err && err.statusCode && err.msg) {
-        res.status(err.statusCode).json(err.msg);
-      }
-      throw err;
+    .catch(function (err) {
+      Utility.handleError(err, res);
     })
     .catch(next);
 };
