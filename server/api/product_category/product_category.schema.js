@@ -1,5 +1,3 @@
-'use strict';
-
 var Joi = require('joi');
 var DOC_TYPES = require('../../components/db/db-constants').DOC_TYPES;
 
