@@ -4,7 +4,6 @@ var dbService = require('../../components/db');
 var VIEWS = require('../../components/db/db-constants').VIEWS;
 var DOC_TYPES = require('../../components/db/db-constants').DOC_TYPES;
 
-
 // expose public functions
 exports.all = all;
 exports.create = create;
@@ -19,14 +18,10 @@ function all() {
   return dbService.queryBy(VIEWS.byDocTypes, options);
 }
 
-function getIdFrom (docType, name) {
-  name = name.toLowerCase().split(' ').join('-');
-  return [docType, name].join(':')
-}
-
 function create (doc) {
-  doc._id = getIdFrom(DOC_TYPES.productCategory, doc.name);
-  return save(doc);
+  doc.doc_type = DOC_TYPES.productType;
+  doc._id = dbService.getIdFrom(DOC_TYPES.productCategory, doc.name);
+  return dbService.create(doc);
 }
 
 function save (doc) {
