@@ -1,7 +1,6 @@
 'use strict';
 
 var ProductCategory = require('./product_category.model');
-var config = require('../../config/environment');
 var productCategorySchema = require('./product_category.schema');
 var Utility = require('../../components/utility');
 var Promise = require('bluebird');
