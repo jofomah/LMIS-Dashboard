@@ -13,5 +13,6 @@ exports.DOC_TYPES = {
   facilityProgramProductProfile : 'facility-program-product-profile',
   productType: 'product-type',
   stockCount: 'stock-count',
-  productCategory: 'product-category'
+  productCategory: 'product-category',
+  productProfile: 'product-profile'
 }
