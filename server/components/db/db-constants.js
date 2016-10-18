@@ -10,6 +10,6 @@ exports.VIEWS = {
 };
 
 exports.DOC_TYPES = {
-  facilityProgramProductProfile : 'facility-program-product-profile',
+  facilityProgramProductProfile : 'facility-program-product',
   productType: 'product-type'
 }
