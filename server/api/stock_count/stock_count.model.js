@@ -122,8 +122,8 @@ function  buildProgramProducts (facilityProgramProducts, resultSetById) {
     var pt = resultSetById[ffp.productTypeId] || {};
     return {
       productType: {
-        _id: pt._id,
-        code: pt.code
+        _id: pt._id || '',
+        code: pt.code || ''
       },
       minLevel: ffp.minLevel || '',
       reorderLevel: ffp.reorderLevel || '',
