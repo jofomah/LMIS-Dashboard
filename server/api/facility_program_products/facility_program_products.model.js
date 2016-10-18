@@ -5,5 +5,5 @@ exports.getBy = getBy;
 
 function getBy(options) {
   var opts = options || {};
-  return dbService.queryBy(VIEWS.programProductProfilesByFacilityAndProgram, opts);
+  return dbService.queryBy(VIEWS.facilityProgramProducts, opts);
 }

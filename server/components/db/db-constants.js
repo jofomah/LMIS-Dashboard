@@ -5,7 +5,7 @@ exports.VIEWS = {
   stockCountByProgramCountDateAndFacility: 'stockcount/by_program_countdate_facility',
   facilityByLocation: 'facility/by_location',
   productProfileById: 'productprofile/by_id',
-  programProductProfilesByFacilityAndProgram: 'facility_program_product_profile/by_facility_and_program',
+  facilityProgramProducts: 'facility_program_product/by_facility_and_program',
   adminLevelByFacility: 'facility/by_id'
 };
 
