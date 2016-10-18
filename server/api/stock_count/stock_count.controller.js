@@ -46,7 +46,7 @@ exports.by = function (req, res, next) {
     include_docs: true
   };
   //TODO: Check if user is allowed to see for this location, else return access restriction error message
-  Facility.byLocation(facilityByLocQuery)
+  return Facility.byLocation(facilityByLocQuery)
     .then(function (facilities) {
       var startDateInMilliSec = new Date(req.params.startDate).getTime()
       var endDateInMilliSec = new Date(req.params.endDate).getTime()
@@ -76,7 +76,7 @@ exports.by = function (req, res, next) {
           facilityAncestorAdminBoundaries: Facility.byId(facAdminQueryOptions),
           coreDocs: dbService.queryBy(VIEWS.byDocTypes, coreDocsQueryOptions),
           stockCounts: StockCount.getBy(stockCountQueryOptions),
-          facilityProgramProductProfiles: FacilityProgramProducts.getBy(fppQueryOptions)
+          facilityProgramProducts: FacilityProgramProducts.getBy(fppQueryOptions)
         })
         .then(function (rsByKey) {
           var resultSet = buildResultSet(rsByKey)
@@ -91,7 +91,7 @@ exports.by = function (req, res, next) {
 function buildResultSet (rsByKey) {
   return rsByKey.stockCounts.concat(
     rsByKey.stockCounts,
-    rsByKey.facilityProgramProductProfiles,
+    rsByKey.facilityProgramProducts,
     rsByKey.coreDocs,
     rsByKey.facilityAncestorAdminBoundaries
   );
